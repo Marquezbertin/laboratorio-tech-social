@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tech Social Lab</title>
+  <style>
+    :root { --azul:#38bdf8; --rosa:#ff6f61; --fundo:#0f172a; --texto:#e2e8f0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--fundo); color: var(--texto); line-height: 1.6; }
+    header { background: linear-gradient(135deg, #1e293b, #0f172a); padding: 18px 20px; border-bottom: 1px solid #334155; }
+    nav { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+    nav .logo { font-weight: 700; color: var(--azul); margin-right: auto; }
+    nav a { color: var(--texto); text-decoration: none; font-size: 0.95rem; }
+    nav a:hover { color: var(--azul); }
+    .hero { text-align: center; padding: 70px 20px 50px; }
+    .hero h1 { font-size: 2.6rem; color: var(--azul); }
+    .hero p { max-width: 680px; margin: 16px auto; color: #94a3b8; }
+    .badges { margin: 16px 0; }
+    .badge { display: inline-block; background: #1e293b; border: 1px solid #334155; border-radius: 999px; padding: 6px 14px; margin: 4px; font-size: 0.85rem; }
+    main { max-width: 1000px; margin: 0 auto; padding: 30px 20px 60px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+    .card { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 24px; }
+    .card h3 { color: var(--azul); margin-bottom: 8px; }
+    .card a { color: var(--azul); }
+    .section-title { text-align: center; margin: 40px 0 20px; color: var(--rosa); }
+    .cta { text-align: center; margin: 50px 0; }
+    .btn { background: var(--rosa); color: #fff; text-decoration: none; padding: 14px 30px; border-radius: 999px; font-weight: 600; display: inline-block; }
+    footer { text-align: center; padding: 30px; color: #64748b; border-top: 1px solid #334155; }
+    footer a { color: var(--azul); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <span class="logo">🚀 Tech Social Lab</span>
+      <a href="index.html">PT</a>
+      <a href="trilhas.html">Tracks</a>
+      <a href="blog.html">Blog</a>
+      <a href="calendario.html">Schedule</a>
+      <a href="voluntarios.html">Volunteers</a>
+      <a href="inscricao/">Sign up</a>
+      <a href="certificado/">Certificates</a>
+      <a href="sobre.html">About</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Tech Social Lab</h1>
+    <p>A <strong>free</strong> and <strong>open</strong> technology lab for children (8–12) and teens (13–20). Lessons, slides, certificates and sign-up — all here, for free.</p>
+    <div class="badges">
+      <span class="badge">💙 100% Free</span>
+      <span class="badge">🌍 Open Source (MIT)</span>
+      <span class="badge">🧒 8–12 yrs</span>
+      <span class="badge">🧑‍💻 13–20 yrs</span>
+    </div>
+    <div class="cta"><a class="btn" href="inscricao/">Sign me up 💙</a></div>
+  </section>
+
+  <main>
+    <h2 class="section-title">What you'll find</h2>
+    <div class="grid">
+      <div class="card"><h3>🧭 Tracks</h3><p>Step-by-step content for each age group.</p><p><a href="trilhas.html">See tracks →</a></p></div>
+      <div class="card"><h3>📊 Slides</h3><p>Ready-to-project decks, one per module.</p><p><a href="slides.html">See slides →</a></p></div>
+      <div class="card"><h3>📝 Sign up</h3><p>Online form with guardian consent (LGPD/ECA).</p><p><a href="inscricao/">Sign up →</a></p></div>
+      <div class="card"><h3>🏅 Certificates</h3><p>Generate a completion certificate as PDF.</p><p><a href="certificado/">Generate →</a></p></div>
+      <div class="card"><h3>🤝 Volunteers</h3><p>Teach, create material or mentor. Join us!</p><p><a href="voluntarios.html">Help →</a></p></div>
+      <div class="card"><h3>📖 About</h3><p>Mission, pedagogy and safety guidelines.</p><p><a href="sobre.html">Learn more →</a></p></div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Free social project by <a href="https://github.com/Marquezbertin">Bruno Bertin Marquez</a>. MIT License.</p>
+  </footer>
+
+  <div vw class="enabled">
+    <div vw-access-button class="active"></div>
+    <div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div>
+  </div>
+  <script src="https://vlibras.gov.br/app.js"></script>
+  <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+</body>
+</html>
