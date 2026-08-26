@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Laboratório de Tecnologia Social">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#38bdf8"/>
+      <stop offset="1" stop-color="#ff6f61"/>
+    </linearGradient>
+  </defs>
+  <rect x="2" y="2" width="60" height="60" rx="16" fill="url(#g)"/>
+  <g fill="#0f172a">
+    <path d="M27 40 L22 51 L31 45 Z"/>
+    <path d="M37 40 L42 51 L33 45 Z"/>
+    <path d="M32 9 C25 14 23 22 23 32 L23 45 L41 45 L41 32 C41 22 39 14 32 9 Z"/>
+    <circle cx="32" cy="26" r="5" fill="#38bdf8"/>
+    <path d="M30 45 L32 55 L34 45 Z" fill="#ff6f61"/>
+  </g>
+</svg>
