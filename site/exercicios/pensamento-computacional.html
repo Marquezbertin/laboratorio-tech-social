@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pensamento Computacional | Lab Tech</title>
+  <style>
+    :root { --azul:#38bdf8; --rosa:#ff6f61; --fundo:#0f172a; --texto:#e2e8f0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--fundo); color: var(--texto); line-height: 1.6; }
+    header { background: #1e293b; padding: 16px 20px; border-bottom: 1px solid #334155; }
+    nav { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    nav .logo { font-weight: 700; color: var(--azul); margin-right: auto; }
+    nav a { color: var(--texto); text-decoration: none; font-size: 0.9rem; }
+    nav a:hover { color: var(--azul); }
+    main { max-width: 1000px; margin: 0 auto; padding: 34px 20px 60px; }
+    .voltar { color: var(--azul); text-decoration: none; font-size: 0.9rem; }
+    h1 { color: var(--azul); margin: 14px 0; }
+    .faixa { color: var(--rosa); font-weight: 600; }
+    .intro { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 18px; margin-top: 16px; }
+    .card { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 20px; margin-top: 18px; }
+    .card h3 { color: var(--azul); margin-bottom: 6px; }
+    .badge { display: inline-block; font-size: .75rem; padding: 3px 10px; border-radius: 999px; background: #334155; color: var(--azul); margin-left: 8px; }
+    .card .enun { color: #cbd5e1; }
+    .card code { background: #020617; padding: 1px 6px; border-radius: 5px; color: #93c5fd; }
+    .resposta { display: flex; gap: 10px; align-items: center; margin-top: 12px; flex-wrap: wrap; }
+    .resposta input { padding: 8px 10px; border-radius: 8px; border: 1px solid #334155; background: #0f172a; color: var(--texto); }
+    button { background: var(--azul); color: #0f172a; border: none; padding: 9px 14px; border-radius: 10px; cursor: pointer; font-weight: 700; font-size: .9rem; margin: 6px 6px 0 0; }
+    button.rosa { background: var(--rosa); color: #fff; }
+    .fb { margin-left: 8px; font-weight: 700; }
+    .sol { margin-top: 12px; background: #020617; border-left: 4px solid var(--azul); padding: 12px; border-radius: 8px; display: none; color: #a7f3d0; }
+    .links { margin-top: 26px; }
+    .links a { display: inline-block; margin: 6px 8px 0 0; color: var(--azul); border: 1px solid #334155; border-radius: 999px; padding: 6px 14px; text-decoration: none; }
+    footer { text-align: center; padding: 26px; color: #64748b; border-top: 1px solid #334155; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <span class="logo"><img src="/laboratorio-tech-social/logo.svg" alt="Logo" height="22" style="vertical-align:middle;margin-right:6px;" /> Lab Tech Social</span>
+      <a href="/laboratorio-tech-social/index.html">Início</a>
+      <a href="/laboratorio-tech-social/trilhas.html">Trilhas</a>
+      <a href="/laboratorio-tech-social/exercicios.html">Exercícios</a>
+      <a href="/laboratorio-tech-social/blog.html">Blog</a>
+      <a href="/laboratorio-tech-social/calendario.html">Calendário</a>
+      <a href="/laboratorio-tech-social/voluntarios.html">Voluntários</a>
+      <a href="/laboratorio-tech-social/slides.html">Slides</a>
+      <a href="/laboratorio-tech-social/inscricao/">Inscrição</a>
+      <a href="/laboratorio-tech-social/certificado/">Certificados</a>
+      <a href="/laboratorio-tech-social/sobre.html">Sobre</a>
+      <a href="/laboratorio-tech-social/index_en.html" style="color:var(--azul);">EN</a>
+    </nav>
+  </header>
+
+  <main>
+    <a class="voltar" href="/laboratorio-tech-social/exercicios.html">← Voltar aos Exercícios</a>
+    <h1>🧠 Pensamento Computacional</h1>
+    <p class="faixa">Para crianças e adolescentes</p>
+    <div class="intro">
+      <p>Resolva estes desafios usando os 4 pilares da computação:</p>
+      <p>🔹 <b>Decomposição</b> – dividir o problema em partes menores<br>
+         🔹 <b>Reconhecimento de padrões</b> – achar semelhanças e repetições<br>
+         🔹 <b>Abstração</b> – ignorar detalhes e focar no essencial<br>
+         🔹 <b>Algoritmos</b> – criar passos ordenados para a solução</p>
+      <p class="faixa">São 12 problemas. Confira os que têm resposta numérica e revele a solução modelo nos outros!</p>
+    </div>
+
+    <div id="lista"></div>
+
+    <div class="links">
+      <a href="desafio-logica.html">🧩 Desafio de Lógica</a>
+      <a href="code-builder.html">💻 Construtor de Código</a>
+      <a href="robo-labirinto.html">🤖 Robô no Labirinto</a>
+      <a href="flashcards.html">🧠 Flashcards</a>
+    </div>
+  </main>
+
+  <footer>Licença MIT — projeto social gratuito.</footer>
+  <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+  <script src="https://vlibras.gov.br/app.js"></script>
+  <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+
+  <script>
+    const problemas = [
+      { t:"1. Sequência de tarefas (Decomposição)", n:"Iniciante",
+        e:"Descreva, passo a passo, como fazer um sanduíche de queijo. Escreva pelo menos 5 passos na ordem certa.",
+        d:"Pense nas ações menores: pegar o pão, o queijo, montar, etc.",
+        s:"Exemplo: 1) Pegue duas fatias de pão. 2) Coloque o queijo em uma fatia. 3) Feche com a outra fatia. 4) Leve ao prato. 5) Sirva. Decompor um problema grande em partes menores é o primeiro pilar da computação." },
+
+      { t:"2. Repetição (Laço)", n:"Iniciante", num:12,
+        e:"Um robô dá 3 passos para frente e 1 para trás, repetindo isso 4 vezes. Quantos passos para <b>frente</b> no total ele dá?",
+        d:"Multiplique 3 por 4.",
+        s:"3 passos × 4 repetições = 12 passos para frente. Os passos para trás não entram nessa contagem. Laços (loops) repetem blocos de código." },
+
+      { t:"3. Decisão (Se/Então)", n:"Iniciante",
+        e:"Regra: SE está chovendo ENTÃO leve guarda-chuva, SENÃO não leve. O que acontece se estiver nublado, mas <b>sem chuva</b>?",
+        d:"A condição exata é 'está chovendo'.",
+        s:"Como a regra só aciona quando está chovendo, nublado sem chuva → NÃO levar. Condicionais (SE/ENTÃO) dependem da condição ser verdadeira." },
+
+      { t:"4. Contador e variável", n:"Intermediário", num:15,
+        e:"Comece com <code>total = 0</code>. Some 1, depois 2, 3, 4 e 5. Qual o valor final de <code>total</code>?",
+        d:"Some 1+2+3+4+5.",
+        s:"total = 0+1+2+3+4+5 = 15. Variáveis guardam valores que mudam durante a execução do programa." },
+
+      { t:"5. Reconhecimento de padrão", n:"Intermediário", num:64,
+        e:"Sequência: 2, 4, 8, 16, 32, ... Qual o próximo número?",
+        d:"Cada número é o dobro do anterior.",
+        s:"Padrão: multiplica por 2 → 32 × 2 = 64. Reconhecer padrões ajuda a prever e automatizar." },
+
+      { t:"6. Padrão (Fibonacci)", n:"Intermediário", num:21,
+        e:"Fibonacci: 1, 1, 2, 3, 5, 8, 13, ... Cada número é a soma dos dois anteriores. Qual vem depois de 13?",
+        d:"Some 8 + 13.",
+        s:"8 + 13 = 21. Este padrão aparece na natureza e em vários algoritmos." },
+
+      { t:"7. Busca linear (Algoritmo)", n:"Intermediário", num:4,
+        e:"Na lista [7, 3, 9, 2, 5], em qual <b>posição</b> (contando do 1) está o número 2? Descreva os passos.",
+        d:"Olhe um por um, do início.",
+        s:"Posição 4 (7=1º, 3=2º, 9=3º, 2=4º). Busca linear examina cada item até achar o alvo — um algoritmo fundamental." },
+
+      { t:"8. Abstração (Mapa)", n:"Intermediário",
+        e:"Numa grade 3×3, o robô está em (1,1) e o tesouro em (3,3). Explique, em palavras, como chegar lá usando só 'direita' e 'baixo'.",
+        d:"Conte quantos movimentos de cada tipo.",
+        s:"Vá 2 vezes para a direita e 2 para baixo (ordem não importa). Abstrair o problema em passos simples facilita a solução e a programação." },
+
+      { t:"9. Lógica booleana", n:"Intermediário",
+        e:"(Sol é quente) <b>E</b> (Água é molhada). Se ambos forem verdadeiros, o resultado do <b>E</b> lógico é Verdadeiro ou Falso?",
+        d:"Operador E só é verdadeiro se TODOS forem verdadeiros.",
+        s:"Verdadeiro. Em lógica, A E B é verdadeiro somente quando A e B são verdadeiros." },
+
+      { t:"10. Algoritmo com laço e condição", n:"Avançado", num:5,
+        e:"Conte de 1 a 10 e escreva 'PAR' se o número for divisível por 2, senão 'ÍMPAR'. Quantas vezes aparece 'PAR'?",
+        d:"2, 4, 6, 8, 10 são pares.",
+        s:"Aparece 5 vezes (2,4,6,8,10). Este exercício combina repetição (laço) + decisão (condição)." },
+
+      { t:"11. Ordenação (Bubble Sort)", n:"Avançado",
+        e:"Ordene [5, 2, 8, 1] do menor para o maior, comparando dois vizinhos por vez e trocando se estiverem fora de ordem. Qual a lista final?",
+        d:"Repita as trocas até não haver mais nenhuma.",
+        s:"[1, 2, 5, 8]. Algoritmos de ordenação são base de quase todo sistema que organiza dados." },
+
+      { t:"12. Decomposição de problema real", n:"Avançado",
+        e:"Você vai criar um app que avisa quando regar as plantas. Liste 3 perguntas/sub-problemas que o app precisa resolver.",
+        d:"Pense em sensores, regras e avisos.",
+        s:"Exemplos: 1) Como medir a umidade da terra? 2) Qual regra decide 'regar agora'? 3) Como avisar o dono (notificação)? Decompor problemas complexos em partes é como se cria software de verdade." }
+    ];
+
+    const lista = document.getElementById("lista");
+    problemas.forEach((p, idx) => {
+      const id = idx + 1;
+      const card = document.createElement("div"); card.className = "card";
+      let html = `<h3>${p.t}<span class="badge">${p.n}</span></h3><p class="enun">${p.e}</p>`;
+      if (p.num !== undefined) {
+        html += `<div class="resposta"><input id="r${id}" placeholder="Sua resposta"><button onclick="conferir(${id}, ${p.num})">✅ Conferir</button><span class="fb" id="fb${id}"></span></div>`;
+      }
+      html += `<button class="rosa" onclick="this.parentNode.querySelector('.sol').style.display='block'">💡 Mostrar solução</button>`;
+      html += `<div class="sol"><b>Dica:</b> ${p.d}<br><br><b>Solução modelo:</b> ${p.s}</div>`;
+      card.innerHTML = html;
+      lista.appendChild(card);
+    });
+
+    function conferir(id, correto){
+      const v = document.getElementById("r" + id).value.trim();
+      const fb = document.getElementById("fb" + id);
+      if (v === "") { fb.textContent = "Digite algo!"; fb.style.color = "#fde047"; return; }
+      if (Number(v) === correto) { fb.textContent = "🎉 Correto!"; fb.style.color = "#22c55e"; }
+      else { fb.textContent = "🤔 Não é esse. Tente de novo!"; fb.style.color = "#ef4444"; }
+    }
+  </script>
+</body>
+</html>
