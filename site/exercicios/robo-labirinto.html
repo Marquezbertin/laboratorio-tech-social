@@ -18,7 +18,7 @@
     h1 { color: var(--azul); margin: 14px 0; }
     .faixa { color: var(--rosa); font-weight: 600; }
     .painel { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 22px; margin-top: 20px; }
-    #grid { display: grid; grid-template-columns: repeat(8, 38px); grid-template-rows: repeat(8, 38px); gap: 2px; margin: 0 auto; width: max-content; }
+    #grid { display: grid; grid-template-columns: repeat(7, 38px); grid-template-rows: repeat(7, 38px); gap: 2px; margin: 0 auto; width: max-content; }
     .cell { background: #0f172a; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
     .cell.wall { background: #475569; }
     .cell.robot { background: #38bdf8; color: #0f172a; }
@@ -56,7 +56,7 @@
     <h1>🤖 Robô no Labirinto</h1>
     <p class="faixa">Para crianças e adolescentes</p>
     <p>Programe o robô (🤖) para chegar à saída (🎯). Um comando por linha:</p>
-    <p class="dica"><code>CIMA</code> · <code>BAIXO</code> · <code>ESQ</code> · <code>DIR</code> · <code>REPETIR 3 CIMA</code> (repete o próximo comando N vezes).</p>
+    <p class="dica"><code>CIMA</code> · <code>BAIXO</code> · <code>ESQ</code> · <code>DIR</code> · <code>REPETIR 3 DIR</code> (repete o comando N vezes).</p>
 
     <div class="painel">
       <div id="grid"></div>
@@ -67,12 +67,11 @@
         <button class="rosa" id="reset">♻️ Recomeçar</button>
       </div>
       <h3 style="color:var(--azul);margin-top:14px;">📜 Programa</h3>
-      <textarea id="prog">REPETIR 2 DIR
-BAIXO
-DIR
-BAIXO
-DIR
-BAIXO</textarea>
+      <textarea id="prog">REPETIR 4 BAIXO
+REPETIR 2 DIR
+REPETIR 2 CIMA
+REPETIR 2 DIR
+REPETIR 2 BAIXO</textarea>
       <div>
         <button class="verde" id="run">▶ Rodar</button>
         <button class="rosa" id="stop" disabled>⏹ Parar</button>
@@ -93,18 +92,19 @@ BAIXO</textarea>
 
   <script>
     const $ = id => document.getElementById(id);
-    const N = 8;
+    const N = 7;
     const maze = [
-      "S.......",
-      ".#####.",
-      ".#...#.",
-      ".#.#.#.",
-      ".#.#.#.",
-      ".#...#.",
-      ".#####.",
-      "......G"
-    ].map(r => r.padEnd(N, ".").split(""));
-    let rx = 0, ry = 0, stopFlag = false;
+      "#######",
+      "#S#...#",
+      "#.###.#",
+      "#.#...#",
+      "#.#.#.#",
+      "#...#G#",
+      "#######"
+    ].map(r => r.padEnd(N, "#").split(""));
+    let rx = 1, ry = 1, stopFlag = false;
+    for (let y=0; y<N; y++) for (let x=0; x<N; x++) if (maze[y][x] === "S") { rx = x; ry = y; }
+    const startX = rx, startY = ry;
 
     function draw(){
       const g = $("grid"); g.innerHTML = "";
@@ -127,7 +127,7 @@ BAIXO</textarea>
       else if (maze[ry][rx] === "S") { /* start */ }
       return true;
     }
-    function reset(){ rx=0; ry=0; stopFlag=false; $("status").textContent="Recomeçou!"; draw(); }
+    function reset(){ rx=startX; ry=startY; stopFlag=false; $("status").textContent="Recomeçou!"; draw(); }
 
     $("up").onclick = () => move(0,-1);
     $("down").onclick = () => move(0,1);
