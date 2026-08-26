@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Avaliação e Certificado — História da Computação | Lab Tech Social</title>
+  <style>
+    :root { --azul:#38bdf8; --rosa:#ff6f61; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #0f172a; color: #e2e8f0; line-height: 1.7; }
+    header { background: #1e293b; padding: 16px 20px; border-bottom: 1px solid #334155; }
+    nav { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    nav .logo { font-weight: 700; color: var(--azul); margin-right: auto; }
+    nav a { color: #e2e8f0; text-decoration: none; font-size: 0.9rem; }
+    nav a:hover { color: var(--azul); }
+    main { max-width: 820px; margin: 0 auto; padding: 34px 20px 60px; }
+    .voltar { color: var(--azul); text-decoration: none; font-size: 0.9rem; }
+    h1 { color: var(--azul); margin: 14px 0; }
+    .faixa { color: var(--rosa); font-weight: 600; }
+    .quiz { background: #1e293b; border: 1px solid #334155; border-radius: 14px; padding: 18px; margin-top: 16px; }
+    .quiz .perg { margin-top: 16px; font-weight: 700; color: #f1f5f9; }
+    .quiz button { background: #0f172a; color: #e2e8f0; border: 1px solid #334155; padding: 9px 13px; border-radius: 8px; cursor: pointer; margin: 6px 6px 0 0; }
+    .quiz button.certo { background: #14532d; color: #fff; border-color: #22c55e; }
+    .quiz button.errado { background: #7f1d1d; color: #fff; border-color: #ef4444; }
+    .quiz button:disabled { opacity: .9; cursor: default; }
+    .fb { margin-top: 6px; font-size: .92rem; }
+    .resumo { margin-top: 16px; font-weight: 700; }
+    button.acao { background: var(--azul); color: #0f172a; border: none; padding: 10px 18px; border-radius: 10px; cursor: pointer; font-weight: 700; margin: 8px 6px 0 0; }
+    button.rosa { background: var(--rosa); color: #fff; }
+    .cert-area { display: none; margin-top: 22px; }
+    .certificado { background: #fff; color: #0f172a; border: 8px solid var(--azul); border-radius: 16px; padding: 40px; text-align: center; }
+    .certificado h1 { color: #0f172a; letter-spacing: 4px; }
+    .certificado .nome { font-size: 32px; color: var(--rosa); margin: 18px 0; font-weight: 800; }
+    .certificado p { color: #334155; font-size: 17px; }
+    .rodape { margin-top: 30px; font-size: 13px; color: #64748b; }
+    .links { margin-top: 26px; }
+    .links a { display: inline-block; margin: 6px 8px 0 0; color: var(--azul); border: 1px solid #334155; border-radius: 999px; padding: 6px 14px; text-decoration: none; }
+    footer { text-align: center; padding: 26px; color: #64748b; border-top: 1px solid #334155; }
+    @media print { body { background: #fff; } header, main .quiz, .cert-area button, .links, footer { display: none; } main { padding: 0; } .cert-area { display: block !important; } }
+  </style>
+  <link rel="icon" href="/laboratorio-tech-social/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <header>
+    <nav>
+      <span class="logo"><img src="/laboratorio-tech-social/logo.svg" alt="Logo" height="22" style="vertical-align:middle;margin-right:6px;" /> 🚀 Lab Tech Social</span>
+      <a href="/laboratorio-tech-social/index.html">Início</a>
+      <a href="/laboratorio-tech-social/trilhas.html">Trilhas</a>
+      <a href="/laboratorio-tech-social/exercicios.html">Exercícios</a>
+      <a href="/laboratorio-tech-social/blog.html">Blog</a>
+      <a href="/laboratorio-tech-social/calendario.html">Calendário</a>
+      <a href="/laboratorio-tech-social/voluntarios.html">Voluntários</a>
+      <a href="/laboratorio-tech-social/slides.html">Slides</a>
+      <a href="/laboratorio-tech-social/inscricao/">Inscrição</a>
+      <a href="/laboratorio-tech-social/certificado/">Certificados</a>
+      <a href="/laboratorio-tech-social/sobre.html">Sobre</a>
+      <a href="/laboratorio-tech-social/index_en.html" style="color:var(--azul);">EN</a>
+    </nav>
+  </header>
+
+  <main>
+    <a class="voltar" href="/laboratorio-tech-social/trilhas/criancas/06-historia-computacao.html">← Voltar à aula</a>
+    <h1>🏅 Avaliação: A História da Computação</h1>
+    <p class="faixa">Responda e ganhe seu certificado!</p>
+
+    <div class="quiz" id="quiz"></div>
+    <button class="acao" id="ver" style="margin-top:16px;">✅ Ver resultado</button>
+    <div class="resumo" id="resumo"></div>
+
+    <div class="cert-area" id="certArea">
+      <h2 style="color:#f1f5f9;margin-top:10px;">🎓 Seu certificado</h2>
+      <input id="nome" placeholder="Seu nome completo" style="padding:10px;border-radius:8px;border:1px solid #334155;background:#0f172a;color:#e2e8f0;width:100%;max-width:360px;" />
+      <div style="margin-top:10px;">
+        <button class="acao" id="gerar">🪄 Gerar certificado</button>
+        <button class="acao rosa" id="imprimir">🖨️ Imprimir / PDF</button>
+      </div>
+      <div class="certificado" id="cert" style="margin-top:16px;display:none;">
+        <h1>CERTIFICADO</h1>
+        <p>Certificamos que</p>
+        <div class="nome" id="outNome">Aluno(a)</div>
+        <p>concluiu a aula <strong>A História da Computação</strong><br>no Laboratório de Tecnologia Social.</p>
+        <p id="outData"></p>
+        <div class="rodape">Projeto social gratuito · Licença MIT · lab-tech-social</div>
+      </div>
+    </div>
+
+    <div class="links">
+      <a href="/laboratorio-tech-social/trilhas/criancas/06-historia-computacao.html">🕰️ Aula (8–12)</a>
+      <a href="/laboratorio-tech-social/trilhas/adolescentes/07-historia-computacao.html">🧑‍💻 Aula (13–20)</a>
+      <a href="/laboratorio-tech-social/exercicios/pensamento-computacional.html">🧠 Pensamento Computacional</a>
+    </div>
+  </main>
+
+  <footer>Licença MIT — projeto social gratuito.</footer>
+  <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+  <script src="https://vlibras.gov.br/app.js"></script>
+  <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+
+  <script>
+    const perguntas = [
+      { q:"O que as pessoas usavam para contar há muito tempo?", o:["Ábaco","Celular","Computador"], a:0 },
+      { q:"Quem escreveu o primeiro programa da história?", o:["Ada Lovelace","Alan Turing","Steve Jobs"], a:0 },
+      { q:"O ENIAC era...", o:["Um videogame","Um computador gigante","Um relógio"], a:1 },
+      { q:"Alan Turing ensinou o computador a...", o:["Pensar","Voar","Cozinhar"], a:0 },
+      { q:"Hoje, os computadores cabem...", o:["Num salão","No bolso","Debaixo da cama"], a:1 }
+    ];
+    const quiz = document.getElementById("quiz");
+    const respostas = {};
+    perguntas.forEach((p, idx) => {
+      const d = document.createElement("div");
+      d.innerHTML = `<div class="perg">${idx+1}. ${p.q}</div>`;
+      p.o.forEach((op, oi) => {
+        const b = document.createElement("button");
+        b.textContent = op;
+        b.onclick = () => {
+          if (b.disabled) return;
+          d.querySelectorAll("button").forEach(x => x.disabled = true);
+          if (oi === p.a) b.classList.add("certo"); else { b.classList.add("errado"); d.querySelectorAll("button")[p.a].classList.add("certo"); }
+          respostas[idx] = oi === p.a;
+          const fb = document.createElement("div"); fb.className = "fb";
+          fb.style.color = (oi===p.a) ? "#22c55e" : "#ef4444";
+          fb.textContent = (oi===p.a) ? "🎉 Certo!" : "🤔 Não era esse. A certa está em verde.";
+          d.appendChild(fb);
+        };
+        d.appendChild(b);
+      });
+      quiz.appendChild(d);
+    });
+
+    document.getElementById("ver").onclick = () => {
+      let feitas = Object.keys(respostas).length, acertos = 0;
+      perguntas.forEach((_, i) => { if (respostas[i]) acertos++; });
+      const r = document.getElementById("resumo");
+      if (feitas < perguntas.length) { r.style.color = "#fde047"; r.textContent = "Responda todas as " + perguntas.length + " perguntas primeiro!"; return; }
+      if (acertos >= 3) {
+        r.style.color = "#22c55e";
+        r.textContent = "🏅 Você acertou " + acertos + " de " + perguntas.length + "! Ganhou o certificado!";
+        document.getElementById("certArea").style.display = "block";
+      } else {
+        r.style.color = "#ef4444";
+        r.textContent = "Você acertou " + acertos + ". Tente de novo para ganhar o certificado!";
+      }
+    };
+
+    document.getElementById("gerar").onclick = () => {
+      const nome = document.getElementById("nome").value.trim() || "Aluno(a)";
+      document.getElementById("outNome").textContent = nome;
+      document.getElementById("outData").textContent = "Emitido em " + new Date().toLocaleDateString("pt-BR");
+      document.getElementById("cert").style.display = "block";
+    };
+    document.getElementById("imprimir").onclick = () => window.print();
+  </script>
+</body>
+</html>
