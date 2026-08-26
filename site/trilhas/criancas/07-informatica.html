@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Informática Divertida — Crianças | Lab Tech Social</title>
+  <style>
+    :root { --azul:#38bdf8; --rosa:#ff6f61; --fundo:#0f172a; --texto:#e2e8f0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--fundo); color: var(--texto); line-height: 1.7; }
+    header { background: #1e293b; padding: 16px 20px; border-bottom: 1px solid #334155; }
+    nav { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    nav .logo { font-weight: 700; color: var(--azul); margin-right: auto; }
+    nav a { color: var(--texto); text-decoration: none; font-size: 0.9rem; }
+    nav a:hover { color: var(--azul); }
+    main { max-width: 860px; margin: 0 auto; padding: 34px 20px 60px; }
+    .voltar { color: var(--azul); text-decoration: none; font-size: 0.9rem; }
+    h1 { color: var(--azul); margin: 14px 0; }
+    .faixa { color: var(--rosa); font-weight: 600; }
+    h2 { color: var(--azul); margin: 26px 0 8px; border-bottom: 2px solid #334155; padding-bottom: 4px; }
+    .atividade { background: #1e293b; border-left: 5px solid var(--azul); border-radius: 10px; padding: 14px 16px; margin: 14px 0; }
+    .ciencia { background: #11251f; border-left: 5px solid #22c55e; border-radius: 10px; padding: 12px 16px; margin: 14px 0; font-size: 0.95rem; }
+    .ciencia b { color: #4ade80; }
+    .links a { display: inline-block; margin: 6px 8px 0 0; color: var(--azul); border: 1px solid #334155; border-radius: 999px; padding: 6px 14px; text-decoration: none; }
+    .quiz button { background: #0f172a; color: var(--texto); border: 1px solid #334155; padding: 9px 13px; border-radius: 8px; cursor: pointer; margin: 6px 6px 0 0; }
+    .quiz button.certo { background: #14532d; color: #fff; border-color: #22c55e; }
+    .quiz button.errado { background: #7f1d1d; color: #fff; border-color: #ef4444; }
+    .quiz button:disabled { opacity: .95; cursor: default; }
+    .fb { margin-top: 6px; font-size: .92rem; }
+    footer { text-align: center; padding: 26px; color: #64748b; border-top: 1px solid #334155; }
+  </style>
+  <link rel="icon" href="/laboratorio-tech-social/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <header>
+    <nav>
+      <span class="logo"><img src="/laboratorio-tech-social/logo.svg" alt="Logo" height="22" style="vertical-align:middle;margin-right:6px;" /> 🚀 Lab Tech Social</span>
+      <a href="/laboratorio-tech-social/index.html">Início</a>
+      <a href="/laboratorio-tech-social/trilhas.html">Trilhas</a>
+      <a href="/laboratorio-tech-social/exercicios.html">Exercícios</a>
+      <a href="/laboratorio-tech-social/blog.html">Blog</a>
+      <a href="/laboratorio-tech-social/calendario.html">Calendário</a>
+      <a href="/laboratorio-tech-social/voluntarios.html">Voluntários</a>
+      <a href="/laboratorio-tech-social/slides.html">Slides</a>
+      <a href="/laboratorio-tech-social/inscricao/">Inscrição</a>
+      <a href="/laboratorio-tech-social/certificado/">Certificados</a>
+      <a href="/laboratorio-tech-social/sobre.html">Sobre</a>
+      <a href="/laboratorio-tech-social/index_en.html" style="color:var(--azul);">EN</a>
+    </nav>
+  </header>
+
+  <main>
+    <a class="voltar" href="/laboratorio-tech-social/trilhas.html">← Voltar às Trilhas</a>
+    <h1>💡 Informática Divertida (8–12 anos)</h1>
+    <p class="faixa">Módulo 07 · Digitação, Documentos, Planilhas, Pesquisa e Mídias</p>
+    <p>Usar o computador é como aprender a ler: quanto mais você <b>pratica fazendo</b>, mais fácil fica. Aqui cada tema tem uma brincadeira. Nada de decorar sozinho — você aprende <b>criando</b>!</p>
+
+    <div class="ciencia"><b>🧠 Por que aprendemos assim?</b> Estudos mostram que <b>aprendizagem ativa</b> (fazer, testar, errar) funciona melhor que só assistir (Freeman et al., 2014). E o <b>construcionismo</b> de Seymour Papert diz: a gente entende melhor quando <b>constrói</b> algo com a própria cabeça e as mãos.</p></div>
+
+    <h2>1. ⌨️ Digitação — o teclado é um piano</h2>
+    <p>Antes de escrever cartas, a gente aprende onde ficam as teclas. Use os <b>dedos da casa</b> (a fileira do meio: A S D F e J K L). Assim seus dedos "decoram" o caminho sem olhar — isso chama-se <b>memória muscular</b>.</p>
+    <div class="atividade">
+      <h3>🎮 Brincadeira</h3>
+      <p>Abaixe o queixo, sente reto e jogue o desafio de digitação. Tente bater seu próprio recorde, um pouquinho por dia.</p>
+      <div class="links"><a href="/laboratorio-tech-social/exercicios/digitacao.html">⌨️ Jogar Digitação</a></div>
+    </div>
+    <div class="ciencia"><b>💡 Dica científica:</b> praticar <b>um pouco todo dia</b> (prática espaçada) fixa melhor que treinar 2 horas só uma vez (Karpicke, 2012).</div>
+
+    <h2>2. 📄 Meu primeiro documento (tipo o "Word")</h2>
+    <p>Um documento é um papel mágico: você escreve, muda a cor, põe desenhos e guarda. Isso é <b>processador de texto</b>.</p>
+    <div class="atividade">
+      <h3>✍️ Atividade</h3>
+      <p>Crie uma <b>convite de aniversário</b> ou uma <b>lista de super-heróis</b>: escreva o título grande, mude a cor, coloque uma imagem e salve. Imprima ou mostre para alguém.</p>
+      <div class="links"><a href="/laboratorio-tech-social/exercicios/editor-texto.html">📝 Abrir Editor de Texto</a></div>
+    </div>
+
+    <h2>3. 📊 Planilhas divertidas (tipo o "Excel")</h2>
+    <p>Planilha é uma <b>tabela inteligente</b>. Ela conta, soma e mostra gráficos sozinha. Ótimo para saber quantos doces tem na lata ou quantas estrelas você ganhou.</p>
+    <div class="atividade">
+      <h3>🔢 Atividade</h3>
+      <p>Faça a <b>tabela dos seus pets</b> (nome, idade, quantas comidinhas) e use <b>SOMA</b> para contar o total. Veja o gráfico aparecer!</p>
+      <div class="links"><a href="/laboratorio-tech-social/exercicios/planilha.html">📈 Abrir Planilha</a></div>
+    </div>
+
+    <h2>4. 🔎 Caçador de informação (pesquisa na web)</h2>
+    <p>A internet é uma biblioteca gigante. Para achar respostas, usamos palavras-chave e a "lupa" (o buscador). Mas nem tudo que está escrito é verdade!</p>
+    <div class="atividade">
+      <h3>🕵️ Desafio</h3>
+      <p>Peça para um adulto: "me ajuda a procurar quantos dentes tem um tubarão". Depois veja se <b>dois sites diferentes</b> dizem a mesma coisa.</p>
+    </div>
+    <div class="ciencia"><b>🔬 Método comprovado:</b> pesquisadores de Stanford ensinam a <b>leitura lateral</b> — em vez de ler só a página, abra outra aba e confira quem escreveu. E use o <b>teste CRAAP</b>: a informação é <b>C</b>orrente (nova)? <b>R</b>elevante? de <b>A</b>utoridade? <b>A</b>corrável? tem um <b>P</b>ropósito claro?</div>
+
+    <h2>5. 📱 Mídias e eu (fotos, vídeos e notícias)</h2>
+    <p>Mídia é tudo o que a gente vê e ouve na tela: vídeo, meme, notícia. Legal criar! Mas devemos saber o que é verdade e <b>nunca</b> contar onde moramos ou nosso telefone.</p>
+    <div class="atividade">
+      <h3>🛡️ Atividade</h3>
+      <p>Jogue de <b>detetive de notícias</b>: essa história é real ou inventada? E lembre: <b>não compartilhe dados pessoais</b>.</p>
+      <div class="links"><a href="/laboratorio-tech-social/exercicios/verifica-noticia.html">🧐 Verificar Notícias</a></div>
+    </div>
+    <div class="ciencia"><b>🌍 Padrão mundial:</b> a <b>UNESCO</b> diz que alfabetização midiática ajuda crianças a pensar antes de acreditar e antes de postar — isso protege vocês e a internet.</div>
+
+    <h2>🎯 Quiz rápido</h2>
+    <div class="quiz" id="quiz"></div>
+
+    <div class="links">
+      <a href="/laboratorio-tech-social/trilhas/criancas/06-historia-computacao.html">🕰️ História da Computação</a>
+      <a href="/laboratorio-tech-social/certificado/historia.html">🏅 Certificado de História</a>
+      <a href="/laboratorio-tech-social/exercicios.html">🧪 Todos os Exercícios</a>
+      <a href="/laboratorio-tech-social/trilhas.html">🧭 Todas as Trilhas</a>
+    </div>
+  </main>
+
+  <footer>Licença MIT — projeto social gratuito.</footer>
+  <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+  <script src="https://vlibras.gov.br/app.js"></script>
+  <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+  <script>
+    const perguntas = [
+      { q:"Onde ficam os dedos da 'casa' na digitação?", o:["Na fileira do meio (A S D F / J K L)","Só no mouse","No teto"], a:0 },
+      { q:"O que faz um processador de texto (Word)?", o:["Escreve e formata textos","Frita um ovo","Apaga o computador"], a:0 },
+      { q:"Para saber se uma notícia é verdade, o melhor é...", o:["Conferir em outro site","Acreditar na primeira página","Não contar para ninguém"], a:0 },
+      { q:"O que NUNCA devemos compartilhar na internet?", o:["Nosso endereço e telefone","Uma piada","Um desenho"], a:0 }
+    ];
+    const quiz = document.getElementById("quiz");
+    perguntas.forEach((p, idx) => {
+      const d = document.createElement("div");
+      d.innerHTML = `<div class="perg" style="margin-top:10px;font-weight:700;">${idx+1}. ${p.q}</div>`;
+      p.o.forEach((op, oi) => {
+        const b = document.createElement("button");
+        b.textContent = op;
+        b.onclick = () => {
+          if (b.disabled) return;
+          d.querySelectorAll("button").forEach(x => x.disabled = true);
+          b.classList.add(oi === p.a ? "certo" : "errado");
+          if (oi !== p.a) d.querySelectorAll("button")[p.a].classList.add("certo");
+          const fb = document.createElement("div"); fb.className = "fb";
+          fb.style.color = (oi===p.a) ? "#22c55e" : "#ef4444";
+          fb.textContent = (oi===p.a) ? "🎉 Isso mesmo!" : "🤔 Não era esse. O certo está em verde.";
+          d.appendChild(fb);
+        };
+        d.appendChild(b);
+      });
+      quiz.appendChild(d);
+    });
+  </script>
+</body>
+</html>

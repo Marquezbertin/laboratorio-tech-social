@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Detetive de Notícias — Lab Tech</title>
+  <style>
+    :root { --azul:#38bdf8; --rosa:#ff6f61; --fundo:#0f172a; --texto:#e2e8f0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--fundo); color: var(--texto); line-height: 1.6; }
+    header { background: #1e293b; padding: 16px 20px; border-bottom: 1px solid #334155; }
+    nav { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    nav .logo { font-weight: 700; color: var(--azul); margin-right: auto; }
+    nav a { color: var(--texto); text-decoration: none; font-size: 0.9rem; }
+    nav a:hover { color: var(--azul); }
+    main { max-width: 820px; margin: 0 auto; padding: 34px 20px 60px; }
+    .voltar { color: var(--azul); text-decoration: none; font-size: 0.9rem; }
+    h1 { color: var(--azul); margin: 14px 0; }
+    .faixa { color: var(--rosa); font-weight: 600; }
+    .card { background: #1e293b; border: 1px solid #334155; border-radius: 14px; padding: 16px; margin: 14px 0; }
+    .noticia { font-size: 1.1rem; font-weight: 700; margin-bottom: 8px; }
+    .card button { background: #0f172a; color: var(--texto); border: 1px solid #334155; padding: 9px 16px; border-radius: 8px; cursor: pointer; margin: 4px 6px 0 0; }
+    .card button.certo { background: #14532d; border-color:#22c55e; color:#fff; }
+    .card button.errado { background: #7f1d1d; border-color:#ef4444; color:#fff; }
+    .card button:disabled { opacity: .95; cursor: default; }
+    .fb { margin-top: 8px; font-size: .95rem; }
+    .dica { background: #11251f; border-left: 5px solid #22c55e; border-radius: 10px; padding: 12px 16px; margin: 16px 0; font-size: .95rem; }
+    .dica b { color: #4ade80; }
+    .links a { display: inline-block; margin: 6px 8px 0 0; color: var(--azul); border: 1px solid #334155; border-radius: 999px; padding: 6px 14px; text-decoration: none; }
+    footer { text-align: center; padding: 26px; color: #64748b; border-top: 1px solid #334155; }
+  </style>
+  <link rel="icon" href="/laboratorio-tech-social/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <header>
+    <nav>
+      <span class="logo"><img src="/laboratorio-tech-social/logo.svg" alt="Logo" height="22" style="vertical-align:middle;margin-right:6px;" /> 🚀 Lab Tech Social</span>
+      <a href="/laboratorio-tech-social/index.html">Início</a>
+      <a href="/laboratorio-tech-social/trilhas.html">Trilhas</a>
+      <a href="/laboratorio-tech-social/exercicios.html">Exercícios</a>
+      <a href="/laboratorio-tech-social/blog.html">Blog</a>
+      <a href="/laboratorio-tech-social/calendario.html">Calendário</a>
+      <a href="/laboratorio-tech-social/voluntarios.html">Voluntários</a>
+      <a href="/laboratorio-tech-social/slides.html">Slides</a>
+      <a href="/laboratorio-tech-social/inscricao/">Inscrição</a>
+      <a href="/laboratorio-tech-social/certificado/">Certificados</a>
+      <a href="/laboratorio-tech-social/sobre.html">Sobre</a>
+      <a href="/laboratorio-tech-social/index_en.html" style="color:var(--azul);">EN</a>
+    </nav>
+  </header>
+
+  <main>
+    <a class="voltar" href="/laboratorio-tech-social/exercicios.html">← Voltar aos Exercícios</a>
+    <h1>🧐 Detetive de Notícias</h1>
+    <p class="faixa">Pesquisa e Mídias Digitais — para crianças e adolescentes</p>
+    <p>Leia cada notícia e decida: é <b>Real</b> ou <b>Fake</b>. Depois veja a dica de verificação.</p>
+
+    <div class="dica">
+      <b>🔬 Como a ciência verifica notícias:</b> use a <b>leitura lateral</b> (Stanford) — abra outra aba e confira a fonte; e o <b>teste CRAAP</b>: a informação é <b>C</b>orrente, <b>R</b>elevante, de <b>A</b>utoridade, <b>A</b>corrável e tem <b>P</b>ropósito claro? A UNESCO reforça: pensar antes de acreditar e antes de compartilhar.
+    </div>
+
+    <div id="cards"></div>
+
+    <div class="links">
+      <a href="/laboratorio-tech-social/trilhas/criancas/07-informatica.html">👧 Aula (crianças)</a>
+      <a href="/laboratorio-tech-social/trilhas/adolescentes/08-informatica.html">🧑 Aula (adolescentes)</a>
+      <a href="/laboratorio-tech-social/exercicios/quiz-ciberseguranca.html">🛡️ Quiz Cibersegurança</a>
+    </div>
+  </main>
+
+  <footer>Licença MIT — projeto social gratuito.</footer>
+  <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+  <script src="https://vlibras.gov.br/app.js"></script>
+  <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+  <script>
+    const itens = [
+      { n:"'Coma esta semente e nunca mais ficará doente, diz estudo secreto de hospital famoso.'", fake:true, fb:"🚩 Sem nome de hospital, sem link de estudo e promessa milagrosa = sinais clássicos de fake. Busque o nome do hospital em site oficial." },
+      { n:"'Prefeitura publica novo horário de ônibus no site oficial gov.br.'", fake:false, fb:"✅ Fonte oficial e verificável. Abrir o site da prefeitura confirma." },
+      { n:"Foto de 'tubarão na rua' após tempestade, sem local nem data.", fake:true, fb:"🚩 Imagens velhas são reusadas. Faça busca reversa da imagem e procure a data/original." },
+      { n:"'Alunos da escola X ganham olimpíada de robótica, segundo jornal local.'", fake:false, fb:"✅ Notícia específica com lugar e fonte (jornal). Dá para confirmar no site do jornal." },
+      { n:"'Cientistas descobrem que celular carrega sozinho no escuro.'", fake:true, fb:"🚩 Soa incrível e não cita laboratório. Desconfie de 'descobertas' sem instituição e sem reportagem em veículo sério." },
+      { n:"'Ministério da Saúde alerta: vacina disponível em postos esta semana.'", fake:false, fb:"✅ Instituição pública e ação concreta. Confirme no site do ministério." }
+    ];
+    const wrap = document.getElementById("cards");
+    itens.forEach((it, idx) => {
+      const c = document.createElement("div"); c.className = "card";
+      c.innerHTML = `<div class="noticia">${idx+1}. ${it.n}</div>`;
+      const bR = document.createElement("button"); bR.textContent = "✅ Real";
+      const bF = document.createElement("button"); bF.textContent = "❌ Fake";
+      bR.onclick = () => responde(true); bF.onclick = () => responde(false);
+      function responde(escolha){
+        bR.disabled = bF.disabled = true;
+        const acertou = escolha === !it.fake ? false : (escolha === (it.fake?false:true));
+        const certo = escolha === (it.fake ? false : true);
+        bR.classList.add(certo && escolha===true ? "certo" : (escolha===true&&!certo?"errado":""));
+        bF.classList.add(certo && escolha===false ? "certo" : (escolha===false&&!certo?"errado":""));
+        if(!certo) (escolha? bF:bR).classList.add("certo");
+        const fb = document.createElement("div"); fb.className = "fb";
+        fb.style.color = certo ? "#22c55e" : "#ef4444";
+        fb.textContent = (certo ? "🎉 Acertou! " : "🤔 Era "+(it.fake?"Fake":"Real")+". ") + it.fb;
+        c.appendChild(fb);
+      }
+      c.appendChild(bR); c.appendChild(bF); wrap.appendChild(c);
+    });
+  </script>
+</body>
+</html>

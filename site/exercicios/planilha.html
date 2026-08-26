@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Planilha Interativa — Lab Tech</title>
+  <style>
+    :root { --azul:#38bdf8; --rosa:#ff6f61; --fundo:#0f172a; --texto:#e2e8f0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--fundo); color: var(--texto); line-height: 1.6; }
+    header { background: #1e293b; padding: 16px 20px; border-bottom: 1px solid #334155; }
+    nav { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    nav .logo { font-weight: 700; color: var(--azul); margin-right: auto; }
+    nav a { color: var(--texto); text-decoration: none; font-size: 0.9rem; }
+    nav a:hover { color: var(--azul); }
+    main { max-width: 760px; margin: 0 auto; padding: 34px 20px 60px; }
+    .voltar { color: var(--azul); text-decoration: none; font-size: 0.9rem; }
+    h1 { color: var(--azul); margin: 14px 0; }
+    .faixa { color: var(--rosa); font-weight: 600; }
+    .painel { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 18px; margin-top: 18px; overflow-x:auto; }
+    table { border-collapse: collapse; margin: 0 auto; }
+    td, th { border: 1px solid #334155; width: 64px; height: 34px; text-align: center; padding: 0; }
+    th { background: #0f172a; color: var(--azul); font-weight: 700; }
+    td.ce { background: #fff; color: #111; }
+    td.ce[contenteditable] { outline: none; }
+    td.ce:focus { box-shadow: 0 0 0 2px var(--azul) inset; }
+    .res { color: #4ade80; font-weight: 700; }
+    #barra { width: 100%; margin: 10px 0; padding: 8px; border-radius: 8px; border: 1px solid #334155; background: #020617; color: #93c5fd; font-family: Consolas, monospace; }
+    .dica { color: #94a3b8; font-size: .92rem; margin-top: 8px; }
+    .links a { display: inline-block; margin: 6px 8px 0 0; color: var(--azul); border: 1px solid #334155; border-radius: 999px; padding: 6px 14px; text-decoration: none; }
+    footer { text-align: center; padding: 26px; color: #64748b; border-top: 1px solid #334155; }
+  </style>
+  <link rel="icon" href="/laboratorio-tech-social/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <header>
+    <nav>
+      <span class="logo"><img src="/laboratorio-tech-social/logo.svg" alt="Logo" height="22" style="vertical-align:middle;margin-right:6px;" /> 🚀 Lab Tech Social</span>
+      <a href="/laboratorio-tech-social/index.html">Início</a>
+      <a href="/laboratorio-tech-social/trilhas.html">Trilhas</a>
+      <a href="/laboratorio-tech-social/exercicios.html">Exercícios</a>
+      <a href="/laboratorio-tech-social/blog.html">Blog</a>
+      <a href="/laboratorio-tech-social/calendario.html">Calendário</a>
+      <a href="/laboratorio-tech-social/voluntarios.html">Voluntários</a>
+      <a href="/laboratorio-tech-social/slides.html">Slides</a>
+      <a href="/laboratorio-tech-social/inscricao/">Inscrição</a>
+      <a href="/laboratorio-tech-social/certificado/">Certificados</a>
+      <a href="/laboratorio-tech-social/sobre.html">Sobre</a>
+      <a href="/laboratorio-tech-social/index_en.html" style="color:var(--azul);">EN</a>
+    </nav>
+  </header>
+
+  <main>
+    <a class="voltar" href="/laboratorio-tech-social/exercicios.html">← Voltar aos Exercícios</a>
+    <h1>📊 Planilha Interativa</h1>
+    <p class="faixa">Pratique como o Excel — com fórmulas de verdade</p>
+    <p>Clique nas células e digite. Comece uma célula com <code>=</code> para usar fórmulas:</p>
+    <p class="dica"><code>=SOMA(A1:A3)</code> · <code>=MEDIA(B1:B4)</code> · <code>=SOMA(A1,B1)</code> · <code>=A1*2</code> · <code>=A1+B1</code></p>
+
+    <div class="painel">
+      <input id="barra" placeholder="Ex: =SOMA(A1:A3)  (digite e Enter para calcular na célula selecionada)" />
+      <table id="grid"></table>
+      <p class="dica">Dica: digite números nas células e use =SOMA(...) numa célula vazia. Clique numa célula e aperte Enter na barra para aplicar a fórmula nela.</p>
+    </div>
+
+    <div class="links">
+      <a href="/laboratorio-tech-social/trilhas/criancas/07-informatica.html">👧 Aula (crianças)</a>
+      <a href="/laboratorio-tech-social/trilhas/adolescentes/08-informatica.html">🧑 Aula (adolescentes)</a>
+      <a href="/laboratorio-tech-social/exercicios/editor-texto.html">📝 Editor de Texto</a>
+    </div>
+  </main>
+
+  <footer>Licença MIT — projeto social gratuito.</footer>
+  <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+  <script src="https://vlibras.gov.br/app.js"></script>
+  <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+  <script>
+    const ROWS = 8, COLS = 6;
+    const cols = "ABCDEF";
+    const grid = document.getElementById("grid");
+    const cells = {};
+    let sel = "A1";
+
+    function build(){
+      const thead = document.createElement("tr");
+      thead.appendChild(document.createElement("th"));
+      for (let c=0;c<COLS;c++){ const th=document.createElement("th"); th.textContent=cols[c]; thead.appendChild(th); }
+      grid.appendChild(thead);
+      for (let r=0;r<ROWS;r++){
+        const tr=document.createElement("tr");
+        const rh=document.createElement("th"); rh.textContent=r+1; tr.appendChild(rh);
+        for (let c=0;c<COLS;c++){
+          const td=document.createElement("td");
+          td.className="ce"; td.contentEditable="true";
+          const id=cols[c]+(r+1); cells[id]=td;
+          td.onfocus = () => sel = id;
+          td.oninput = () => { cells[id].dataset.v = td.textContent; recalc(); };
+          tr.appendChild(td);
+        }
+        grid.appendChild(tr);
+      }
+    }
+    function val(id){
+      const t = (cells[id] && cells[id].textContent.trim()) || "";
+      if (t.startsWith("=")) return evalFormula(t);
+      const n = parseFloat(t.replace(",","."));
+      return isNaN(n) ? 0 : n;
+    }
+    function rangeVals(s){
+      if (s.includes(":")){
+        const [a,b]=s.split(":"); const ca=cols.indexOf(a[0]), ra=+a.slice(1)-1, cb=cols.indexOf(b[0]), rb=+b.slice(1)-1;
+        const out=[]; for(let r=ra;r<=rb;r++) for(let c=ca;c<=cb;c++) out.push(val(cols[c]+(r+1))); return out;
+      }
+      return s.split(",").map(x=>val(x.trim()));
+    }
+    function evalFormula(f){
+      f=f.trim(); if(!f.startsWith("=")) return f;
+      const expr=f.slice(1);
+      const m=expr.match(/^(SOMA|MEDIA)\((.+)\)$/i);
+      if(m){ const v=rangeVals(m[2]); return m[1].toUpperCase()==="SOMA" ? v.reduce((a,b)=>a+b,0) : v.reduce((a,b)=>a+b,0)/v.length; }
+      try { return evalFormulaMath(expr); } catch(e){ return "#ERRO"; }
+    }
+    function evalFormulaMath(expr){
+      const replaced = expr.replace(/[A-F]\d+/g, id => val(id));
+      if(/[^0-9+\-*/().\s]/.test(replaced)) return "#ERRO";
+      const r = Function('"use strict";return ('+replaced+')')();
+      return (typeof r==="number" && isFinite(r)) ? r : "#ERRO";
+    }
+    function recalc(){
+      for (const id in cells){
+        const t=cells[id].textContent.trim();
+        if (t.startsWith("=")) cells[id].textContent = fmt(evalFormula(t));
+      }
+    }
+    function fmt(n){ return (Math.round(n*100)/100).toString().replace(".",","); }
+
+    document.getElementById("barra").addEventListener("keydown", e => {
+      if (e.key==="Enter"){ const v=e.target.value.trim(); if(v){ cells[sel].textContent=v; cells[sel].dataset.v=v; e.target.value=""; recalc(); } }
+    });
+
+    build();
+    // exemplo inicial
+    cells["A1"].textContent="Maçãs"; cells["B1"].textContent="3";
+    cells["A2"].textContent="Bananas"; cells["B2"].textContent="5";
+    cells["A3"].textContent="Total"; cells["B3"].textContent="=SOMA(B1:B2)";
+    recalc();
+  </script>
+</body>
+</html>
