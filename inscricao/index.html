@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Inscrição - Laboratório de Tecnologia Social</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background: #0f172a; color: #e2e8f0; margin: 0; padding: 30px; }
+    .box { max-width: 560px; margin: 0 auto; background: #1e293b; padding: 30px; border-radius: 16px; border: 1px solid #334155; }
+    h1 { color: #38bdf8; text-align: center; }
+    label { display: block; margin: 14px 0 4px; font-weight: 600; }
+    input, select, textarea { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #334155; background: #0f172a; color: #e2e8f0; }
+    .consent { background: #0f172a; padding: 14px; border-radius: 8px; margin-top: 10px; font-size: 0.9rem; }
+    button { width: 100%; margin-top: 20px; background: #ff6f61; color: #fff; border: none; padding: 14px; border-radius: 999px; font-size: 16px; cursor: pointer; font-weight: 600; }
+    button:hover { background: #e85b4f; }
+    .msg { text-align: center; color: #38bdf8; margin-top: 16px; display: none; }
+  </style>
+</head>
+<body>
+  <div class="box">
+    <h1>🚀 Inscreva-se</h1>
+    <p style="text-align:center;color:#94a3b8;">Laboratório de Tecnologia Social — 100% gratuito</p>
+
+    <!-- TROQUE O action PELO SEU ENDPOINT (Formspree/Google Forms) -->
+    <form id="formInscricao" action="mailto:bertinmarquez84@gmail.com" method="post" enctype="text/plain">
+      <label>Nome do aluno *</label>
+      <input name="aluno_nome" required />
+
+      <label>Idade *</label>
+      <input name="aluno_idade" type="number" min="8" max="20" required />
+
+      <label>Trilha de interesse *</label>
+      <select name="trilha" required>
+        <option value="">Selecione...</option>
+        <option>Exploradores (8–12 anos)</option>
+        <option>Makers/Devs (13–20 anos)</option>
+        <option>Ainda não sei</option>
+      </select>
+
+      <label>Nome do responsável *</label>
+      <input name="resp_nome" required />
+
+      <label>E-mail do responsável *</label>
+      <input name="resp_email" type="email" required />
+
+      <label>Telefone / WhatsApp</label>
+      <input name="resp_tel" />
+
+      <div class="consent">
+        <strong>Consentimento (LGPD / ECA)</strong><br />
+        <label style="font-weight:400;">
+          <input type="checkbox" name="consentimento" required style="width:auto;" />
+          Autorizo a participação e o tratamento dos dados acima, e o uso de imagem do aluno em materiais do projeto, conforme a Política de Privacidade.
+        </label>
+      </div>
+
+      <button type="submit">Enviar inscrição 💙</button>
+      <p class="msg" id="msg">Obrigado! Sua inscrição foi enviada. Entraremos em contato. 🎉</p>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("formInscricao").addEventListener("submit", function (e) {
+      // Se usar mailto, o navegador abrirá o e-mail; esta mensagem aparece como reforço.
+      document.getElementById("msg").style.display = "block";
+    });
+  </script>
+</body>
+</html>
