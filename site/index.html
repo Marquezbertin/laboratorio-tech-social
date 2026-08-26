@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Laboratório de Tecnologia Social</title>
+  <style>
+    :root {
+      --azul: #38bdf8;
+      --rosa: #ff6f61;
+      --fundo: #0f172a;
+      --texto: #e2e8f0;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--fundo);
+      color: var(--texto);
+      line-height: 1.6;
+    }
+    header {
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+    }
+    header h1 { font-size: 2.5rem; color: var(--azul); }
+    header p { max-width: 640px; margin: 16px auto; color: #94a3b8; }
+    .badges { margin-top: 10px; }
+    .badge {
+      display: inline-block;
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 999px;
+      padding: 6px 14px;
+      margin: 4px;
+      font-size: 0.85rem;
+    }
+    main { max-width: 1000px; margin: 0 auto; padding: 40px 20px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+    .card {
+      background: #1e293b;
+      border: 1px solid #334155;
+      border-radius: 16px;
+      padding: 24px;
+      transition: transform .2s;
+    }
+    .card:hover { transform: translateY(-4px); border-color: var(--azul); }
+    .card h3 { color: var(--azul); margin-bottom: 8px; }
+    .card span { font-size: 2rem; }
+    .section-title { text-align: center; margin: 40px 0 20px; color: var(--rosa); }
+    .cta {
+      text-align: center;
+      margin: 50px 0;
+    }
+    .btn {
+      background: var(--rosa);
+      color: #fff;
+      text-decoration: none;
+      padding: 14px 30px;
+      border-radius: 999px;
+      font-weight: 600;
+      display: inline-block;
+    }
+    .btn:hover { background: #e85b4f; }
+    footer { text-align: center; padding: 30px; color: #64748b; border-top: 1px solid #334155; }
+    footer a { color: var(--azul); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🚀 Laboratório de Tecnologia Social</h1>
+    <p>Um projeto <strong>gratuito</strong> e <strong>aberto</strong> que ensina tecnologia para crianças (8–12) e adolescentes (13–20). Aulas livres, comunidade e impacto social.</p>
+    <div class="badges">
+      <span class="badge">💙 100% Gratuito</span>
+      <span class="badge">🌍 Open Source (MIT)</span>
+      <span class="badge">🧒 8–12 anos</span>
+      <span class="badge">🧑‍💻 13–20 anos</span>
+    </div>
+  </header>
+
+  <main>
+    <h2 class="section-title">Trilhas de Aprendizagem</h2>
+    <div class="grid">
+      <div class="card">
+        <span>🧒</span>
+        <h3>Exploradores (8–12)</h3>
+        <p>Lógica, Scratch, robótica/IoT, primeiro site e cidadania digital. Aprender brincando!</p>
+        <p><a href="https://github.com/Marquezbertin/laboratorio-tech-social/tree/main/trilhas/criancas-8-12" style="color:var(--azul)">Ver trilha →</a></p>
+      </div>
+      <div class="card">
+        <span>🧑‍💻</span>
+        <h3>Makers/Devs (13–20)</h3>
+        <p>Python, Web, QA, Ciência de Dados, IoT/Nuvem e projeto social open source.</p>
+        <p><a href="https://github.com/Marquezbertin/laboratorio-tech-social/tree/main/trilhas/adolescentes-13-20" style="color:var(--azul)">Ver trilha →</a></p>
+      </div>
+      <div class="card">
+        <span>🤝</span>
+        <h3>Seja Voluntário</h3>
+        <p>Ensine, crie material ou mentorias. Todo mundo pode ajudar a mudar vidas.</p>
+        <p><a href="https://github.com/Marquezbertin/laboratorio-tech-social/blob/main/docs/guia-do-voluntario.md" style="color:var(--azul)">Saiba como →</a></p>
+      </div>
+    </div>
+
+    <h2 class="section-title">Por que existe?</h2>
+    <div class="grid">
+      <div class="card"><h3>🌟 Democratizar</h3><p>Levar educação tecnológica de qualidade a quem não tem acesso.</p></div>
+      <div class="card"><h3>🛡 Cidadania</h3><p>Ensinar segurança, ética e respeito no mundo digital.</p></div>
+      <div class="card"><h3>💡 Prática</h3><p>Aprender fazendo, com projetos reais de impacto na comunidade.</p></div>
+    </div>
+
+    <div class="cta">
+      <a class="btn" href="https://github.com/Marquezbertin/laboratorio-tech-social">⭐ Conheça o repositório</a>
+    </div>
+  </main>
+
+  <footer>
+    <p>Projeto social gratuito criado por <a href="https://github.com/Marquezbertin">Bruno Bertin Marquez</a>.</p>
+    <p>Sites irmãos: <a href="https://esportesaopedro.com.br/">Esporte São Pedro</a> · <a href="https://www.despertarqa.net/">Despertar QA</a></p>
+    <p>Licença MIT — use, compartilhe e ensine. 💙</p>
+  </footer>
+</body>
+</html>
