@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Módulo 05 — IoT & Nuvem | Lab Tech</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/sky.css" />
+</head>
+<body>
+  <div class="reveal"><div class="slides">
+    <section><h1>☁️ IoT & Nuvem</h1><h3>Makers/Devs · Módulo 05</h3></section>
+    <section><h2>Conceitos</h2><ul><li><strong>IoT</strong>: objetos com sensores na internet</li><li><strong>Nuvem</strong>: computadores que processam dados</li><li><strong>API</strong>: "porteiro" entre apps</li></ul></section>
+    <section><h2>Ler uma API</h2><pre><code>import requests
+r = requests.get("https://api.github.com/repos/Marquezbertin/laboratorio-tech-social")
+print(r.json()["stargazers_count"])</code></pre></section>
+    <section><h2>Projeto</h2><p>Estação meteorológica: sensor → nuvem → painel em tempo real.</p></section>
+  </div></div>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+  <script>Reveal.initialize({ hash: true, slideNumber: true });</script>
+</body></html>

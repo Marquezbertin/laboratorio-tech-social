@@ -1,18 +1,29 @@
 # 📝 Formulário de Inscrição de Alunos
 
-Formulário para inscrever crianças e adolescentes no Laboratório de Tecnologia Social.
+Formulário para inscrever crianças e adolescentes no Laboratório de Tecnologia Social, com **consentimento LGPD/ECA** do responsável.
 
-## O que tem no formulário
-- Dados do aluno (nome, idade, trilha de interesse).
-- Dados do responsável (obrigatório para menores de 18 anos).
-- **Consentimento LGPD / ECA** para participação e uso de imagem.
+## Backend de recebimento (já integrado)
+O formulário (`index.html`) envia os dados via **AJAX** para o [Formspree](https://formspree.io) (gratuito).
 
-## Como publicar
-1. O arquivo `index.html` é o formulário pronto.
-2. Para receber as inscrições, conecte a um backend gratuito:
-   - **Google Forms** (mais simples): crie o formulário em forms.google.com e incorpora o link, ou
-   - **Formspree** (formspree.io): grátis para poucos envios; cole o endpoint no `action` do form.
-3. Hospede em `inscricao/` e ele já fica acessível pelo GitHub Pages em:
-   `https://marquezbertin.github.io/laboratorio-tech-social/inscricao/`
+### Passos para ativar (1 minuto)
+1. Acesse https://formspree.io e crie uma conta gratuita.
+2. Clique em **New form** e copie a URL (ex: `https://formspree.io/f/xblrgara`).
+3. No arquivo `inscricao/index.html`, localize no início do `<script>`:
+   ```js
+   const FORM_ENDPOINT = "https://formspree.io/f/SEU_ENDPOINT_AQUI";
+   ```
+4. Substitua `SEU_ENDPOINT_AQUI` pela sua URL.
+5. Faça commit/push. Pronto — as inscrições chegam por e-mail.
 
-> Por padrão o formulário abre o cliente de e-mail (mailto) para envio manual. Edite o `action` para automatizar.
+> Sem configurar o endpoint, o formulário avisa o erro na tela. Nenhum dado é enviado a lugar nenhum até você colar o endpoint.
+
+## Alternativa: Google Forms
+1. Crie o formulário em https://forms.google.com (nome, idade, trilha, responsável, e-mail, consentimento).
+2. Em **Envio**, copie o link e compartilhe, ou incorpore no `index.html` via `<iframe>`.
+
+## Onde fica publicado
+GitHub Pages: `https://marquezbertin.github.io/laboratorio-tech-social/inscricao/`
+
+## Privacidade
+- Coletamos o mínimo necessário, com consentimento dos responsáveis.
+- Dados de menores não são repassados a terceiros para marketing (LGPD / ECA).

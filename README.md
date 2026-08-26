@@ -77,6 +77,9 @@ Foco em habilidades profissionais reais, com projetos de portfólio.
 ## 🤝 Como participar
 
 - **Aluno:** escolha uma trilha e comece pelos materiais. Tudo gratuito.
+  - 📝 Inscreva-se: [`inscricao/`](inscricao/) (formulário com consentimento dos responsáveis)
+  - 📊 Slides das aulas: [`materiais/slides/`](materiais/slides/)
+  - 🏅 Certificados: [`materiais/templates/certificado/`](materiais/templates/certificado/)
 - **Voluntário/Professor:** leia o [`docs/guia-do-voluntario.md`](docs/guia-do-voluntario.md) e abra uma *issue* ou *pull request*.
 - **Instituições:** entre em contato para levar o laboratório para sua comunidade.
 

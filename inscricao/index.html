@@ -13,7 +13,9 @@
     .consent { background: #0f172a; padding: 14px; border-radius: 8px; margin-top: 10px; font-size: 0.9rem; }
     button { width: 100%; margin-top: 20px; background: #ff6f61; color: #fff; border: none; padding: 14px; border-radius: 999px; font-size: 16px; cursor: pointer; font-weight: 600; }
     button:hover { background: #e85b4f; }
-    .msg { text-align: center; color: #38bdf8; margin-top: 16px; display: none; }
+    .msg { text-align: center; margin-top: 16px; display: none; padding: 12px; border-radius: 8px; }
+    .ok { background: #064e3b; color: #6ee7b7; }
+    .erro { background: #7f1d1d; color: #fecaca; }
   </style>
 </head>
 <body>
@@ -21,8 +23,16 @@
     <h1>🚀 Inscreva-se</h1>
     <p style="text-align:center;color:#94a3b8;">Laboratório de Tecnologia Social — 100% gratuito</p>
 
-    <!-- TROQUE O action PELO SEU ENDPOINT (Formspree/Google Forms) -->
-    <form id="formInscricao" action="mailto:bertinmarquez84@gmail.com" method="post" enctype="text/plain">
+    <!-- ============================================================
+         BACKEND: cole aqui o endpoint do Formspree (grátis).
+         Crie em https://formspree.io  ->  "New form"  -> cole a URL abaixo.
+         Exemplo: https://formspree.io/f/xblrgara
+         ============================================================ -->
+    <script>
+      const FORM_ENDPOINT = "https://formspree.io/f/SEU_ENDPOINT_AQUI";
+    </script>
+
+    <form id="formInscricao">
       <label>Nome do aluno *</label>
       <input name="aluno_nome" required />
 
@@ -55,14 +65,44 @@
       </div>
 
       <button type="submit">Enviar inscrição 💙</button>
-      <p class="msg" id="msg">Obrigado! Sua inscrição foi enviada. Entraremos em contato. 🎉</p>
+      <div class="msg" id="msg"></div>
     </form>
   </div>
 
   <script>
-    document.getElementById("formInscricao").addEventListener("submit", function (e) {
-      // Se usar mailto, o navegador abrirá o e-mail; esta mensagem aparece como reforço.
-      document.getElementById("msg").style.display = "block";
+    const form = document.getElementById("formInscricao");
+    const msg = document.getElementById("msg");
+
+    form.addEventListener("submit", async function (e) {
+      e.preventDefault();
+      msg.style.display = "none";
+
+      if (FORM_ENDPOINT.includes("SEU_ENDPOINT_AQUI")) {
+        msg.className = "msg erro";
+        msg.textContent = "⚠️ Configure o FORM_ENDPOINT no código (veja o comentário no início do arquivo).";
+        msg.style.display = "block";
+        return;
+      }
+
+      const data = Object.fromEntries(new FormData(form).entries());
+      try {
+        const res = await fetch(FORM_ENDPOINT, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(data)
+        });
+        if (res.ok) {
+          msg.className = "msg ok";
+          msg.textContent = "✅ Inscrição enviada! Entraremos em contato. 🎉";
+          form.reset();
+        } else {
+          throw new Error("Falha no envio");
+        }
+      } catch (err) {
+        msg.className = "msg erro";
+        msg.textContent = "❌ Não foi possível enviar. Tente novamente ou fale conosco por e-mail.";
+      }
+      msg.style.display = "block";
     });
   </script>
 </body>
