@@ -22,13 +22,21 @@
     p, li, td, th { color: #cbd5e1; }
     ul, ol { padding-left: 22px; }
     .atividade { background: #1e293b; border: 1px solid #334155; border-left: 4px solid var(--azul); border-radius: 10px; padding: 16px 18px; margin-top: 14px; }
+    .story { background: #1e293b; border-radius: 10px; padding: 16px 18px; margin-top: 14px; border-left: 4px solid var(--azul); }
+    .person { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 14px; }
+    .person .p { flex: 1 1 200px; background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 14px; text-align: center; }
+    .person .p .e { font-size: 2.2rem; }
+    .person .p b { color: var(--azul); display: block; margin-top: 6px; }
     .timeline { background: #1e293b; border-radius: 10px; padding: 14px 18px; margin-top: 14px; }
     .timeline div { padding: 8px 0; border-bottom: 1px dashed #334155; }
     .timeline div:last-child { border-bottom: none; }
     .timeline b { color: var(--azul); }
-    table { width: 100%; border-collapse: collapse; margin-top: 14px; background: #1e293b; border-radius: 10px; overflow: hidden; }
-    th, td { padding: 10px 12px; border-bottom: 1px solid #334155; text-align: left; }
-    th { background: #0f172a; color: var(--rosa); }
+    .ordena { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 16px 18px; margin-top: 14px; }
+    .ordena button { background: #0f172a; color: var(--texto); border: 1px solid #334155; padding: 10px 12px; border-radius: 10px; cursor: pointer; margin: 6px 6px 0 0; font-size: .95rem; }
+    .ordena button.certo { background: #14532d; color: #fff; border-color: #22c55e; }
+    .ordena button.errado { background: #7f1d1d; color: #fff; border-color: #ef4444; }
+    .ordena button:disabled { opacity: .85; cursor: default; }
+    .ordena .fb { margin-top: 10px; font-weight: 700; }
     .quiz { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 16px 18px; margin-top: 14px; }
     .quiz .perg { margin-top: 14px; font-weight: 600; color: #f1f5f9; }
     .quiz button { background: #0f172a; color: var(--texto); border: 1px solid #334155; padding: 8px 12px; border-radius: 8px; cursor: pointer; margin: 6px 6px 0 0; }
@@ -65,37 +73,54 @@
     <p class="faixa">🧒 Exploradores · 8–12 anos</p>
     <h1>Módulo 06 — A História da Computação 🕰️</h1>
 
-    <p><strong>Duração:</strong> 60 min · <strong>Sem computador obrigatório</strong> (dá para fazer no papel e depois testar no site!).</p>
+    <p><strong>Duração:</strong> 60 min · <strong>Sem computador obrigatório</strong> (depois você testa o jogo no site!).</p>
 
     <h2>Objetivo</h2>
-    <p>Descobrir como as pessoas contavam e calculavam ANTES dos computadores e como chegamos até os celulares e à inteligência artificial que usamos hoje.</p>
+    <p>Descobrir como as pessoas contavam e calculavam <strong>ANTES</strong> dos computadores e como chegamos até os celulares e à inteligência artificial que usamos hoje. A história é importante: ela mostra que a tecnologia foi criada por pessoas curiosas, aos pouquinhos!</p>
 
-    <h2>Conceito: o que é computação?</h2>
-    <p><strong>Computar</strong> vem de <em>computar</em>, que significa calcular ou contar. A computação é a arte de usar máquinas e ideias para <strong>processar informação</strong> e resolver problemas. Um computador é só a ferramenta mais famosa dessa ideia — mas a vontade de contar e organizar coisas é muito, muito antiga!</p>
+    <h2>Uma história que começou há muito tempo 📜</h2>
+    <div class="story">
+      <p>Era uma vez um mundo <strong>sem celular e sem computador</strong>. As pessoas precisavam contar rebanhos, moedas e tempo. Para isso, usavam as mãos, pedrinhas e cordas com nós.</p>
+      <p>Com o tempo, inventaram o <strong>ábaco</strong> — uma "calculadora de botões" feita de contas. Séculos depois, inventores sonharam com máquinas que pensavam. Uma mulher chamada <strong>Ada</strong> escreveu o primeiro programa. Um homem chamado <strong>Alan Turing</strong> desenhou como um computador deveria funcionar. E só depois surgiu o primeiro computador grande, o <strong>ENIAC</strong>. Hoje, tudo isso cabe no seu bolso! 📱</p>
+    </div>
+
+    <h2>Os personagens da história 🌟</h2>
+    <div class="person">
+      <div class="p"><div class="e">🧮</div><b>Ábaco</b>Contar com pedrinhas, há milhares de anos.</div>
+      <div class="p"><div class="e">⚙️</div><b>Charles Babbage</b>Desenhou uma máquina mecânica em 1837.</div>
+      <div class="p"><div class="e">👩‍💻</div><b>Ada Lovelace</b>Escreveu o 1º programa em 1843.</div>
+      <div class="p"><div class="e">🧠</div><b>Alan Turing</b>Explicou como um computador pensa (1936).</div>
+      <div class="p"><div class="e">🖥️</div><b>ENIAC</b>Primeiro computador elétrico gigante (1945).</div>
+      <div class="p"><div class="e">📱</div><b>Celular + IA</b>O computador de hoje, no bolso.</div>
+    </div>
 
     <h2>Linha do tempo 📜</h2>
     <div class="timeline">
-      <div><b>Há milhares de anos</b> — Povos antigos usavam o <b>ábaco</b>: contas e pedrinhas para somar e subtrair.</div>
-      <div><b>1837</b> — Charles Babbage desenha uma "máquina diferencial" mecânica (não chegou a terminar!).</div>
-      <div><b>1843</b> — Ada Lovelace escreve o que muitos chamam de <b>primeiro programa da história</b>.</div>
-      <div><b>1936</b> — Alan Turing imagina uma "máquina" que pode calcular qualquer coisa seguindo regras.</div>
-      <div><b>1945</b> — ENIAC, um dos primeiros computadores elétricos grandes, ocupava um salão inteiro!</div>
+      <div><b>Há milhares de anos</b> — Ábaco: contas e pedrinhas para somar.</div>
+      <div><b>1837</b> — Babbage desenha a máquina analítica (não chegou a terminar!).</div>
+      <div><b>1843</b> — Ada Lovelace escreve o que chamam de <b>primeiro programa</b>.</div>
+      <div><b>1936</b> — Alan Turing imagina uma máquina que calcula seguindo regras.</div>
+      <div><b>1945</b> — ENIAC: computador elétrico grande, ocupava um salão!</div>
       <div><b>1970–80</b> — O <b>computador pessoal</b> chega às casas e escolas.</div>
-      <div><b>Hoje</b> — Celulares, internet, nuvens e <b>inteligência artificial</b> cabem no bolso.</div>
+      <div><b>Hoje</b> — Celulares, internet, nuvens e <b>inteligência artificial</b>.</div>
     </div>
 
-    <h2>Atividade 1 — Monte sua linha do tempo 🖍️</h2>
-    <p>Em um papel, desenhe 6 quadradinhos e cole (ou escreva) os fatos acima na <strong>ordem certa</strong>, do mais antigo para o mais novo. Depois compare com a turma.</p>
+    <h2>Jogue: monte a ordem certa 🧩</h2>
+    <p>Clique nos fatos <strong>do mais antigo para o mais novo</strong>. Acertou a ordem? Você é um historiador da tecnologia!</p>
+    <div class="ordena" id="ordena"></div>
+
+    <h2>Atividade 1 — Desenhe a história 🖍️</h2>
+    <p>Em um papel, faça 6 quadradinhos e desenhe um personagem para cada fato da linha do tempo (uma pedrinha para o ábaco, uma menina para Ada...). Depois conte a história para alguém de casa.</p>
 
     <h2>Atividade 2 — Entrevista 🎤</h2>
-    <p>Pergunte a alguém de casa ou a um professor: <em>"Como era fazer contas ou pesquisar antes dos celulares e do Google?"</em> Anote 3 diferenças.</p>
+    <p>Pergunte a um adulto: <em>"Como era fazer contas ou pesquisar antes dos celulares e do Google?"</em> Anote 3 diferenças.</p>
 
     <h2>Para refletir 💭</h2>
     <ul>
-      <li>Se Ada Lovelace já programava em 1843, por que demorou tanto para termos computadores em casa?</li>
-      <li>O ENIAC ocupava um salão. Seu celular é milhões de vezes mais rápido e cabe no bolso. O que mudou?</li>
-      <li>Se hoje temos inteligência artificial, o que <strong>você</strong> acha que vai existir daqui a 20 anos?</li>
-      <li>A tecnologia ajuda muito, mas também gasta energia e muda o planeta. Como usar com responsabilidade?</li>
+      <li>Ada já programava em 1843, mas os computadores só chegaram às casas bem depois. Por que demorou tanto?</li>
+      <li>O ENIAC ocupava um salão. Seu celular é milhões de vezes mais rápido. O que mudou?</li>
+      <li>Se hoje temos IA, o que <strong>você</strong> acha que vai existir daqui a 20 anos?</li>
+      <li>Tecnologia ajuda, mas usa energia e muda o planeta. Como usá-la com cuidado?</li>
     </ul>
 
     <h2>Quiz divertido 🎮</h2>
@@ -105,7 +130,7 @@
       <h3>🎯 Pratique o que aprendeu</h3>
       <p>Experimente: <a href="../../exercicios/pensamento-computacional.html">Pensamento Computacional</a>, <a href="../../exercicios/memoria-conceitos.html">Jogo da Memória de Conceitos</a> e <a href="../../exercicios/quiz-criancas.html">Quiz Exploradores</a>.</p>
       <h3>💡 Curiosidade</h3>
-      <p>O ábaco ainda é usado em algunhas escolas para ensinar matemática rápida — e algumas pessoas conseguem somar mais velozes no ábaco do que na calculadora!</p>
+      <p>O ábaco ainda é usado em algumas escolas para ensinar matemática rápida — e tem gente que soma mais veloz no ábaco do que na calculadora!</p>
     </div>
 
     <div class="links">
@@ -121,11 +146,46 @@
   <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
 
   <script>
+    // Jogo de ordenar a linha do tempo
+    const evt = [
+      { y:"Há muito tempo", t:"🧮 Ábaco: contar com pedrinhas" },
+      { y:"1837", t:"⚙️ Babbage: máquina mecânica" },
+      { y:"1843", t:"👩‍💻 Ada Lovelace: primeiro programa" },
+      { y:"1936", t:"🧠 Alan Turing: ideia do computador" },
+      { y:"1945", t:"🖥️ ENIAC: computador gigante" },
+      { y:"Hoje", t:"📱 Celular com inteligência artificial" }
+    ];
+    const ordem = evt.map((_, i) => i);
+    const embaralhados = ordem.slice().sort(() => Math.random() - 0.5);
+    const box = document.getElementById("ordena");
+    let prox = 0, travado = false;
+    embaralhados.forEach(idx => {
+      const b = document.createElement("button");
+      b.textContent = evt[idx].t;
+      b.dataset.i = idx;
+      b.onclick = () => {
+        if (travado || b.disabled) return;
+        if (+b.dataset.i === ordem[prox]) {
+          b.classList.add("certo"); b.disabled = true; prox++;
+          if (prox === ordem.length) {
+            const fb = document.createElement("div"); fb.className = "fb"; fb.style.color = "#22c55e";
+            fb.textContent = "🎉 Mandou bem! Você montou a história certinha!";
+            box.appendChild(fb);
+          }
+        } else {
+          b.classList.add("errado");
+          setTimeout(() => b.classList.remove("errado"), 600);
+        }
+      };
+      box.appendChild(b);
+    });
+
+    // Quiz
     const perguntas = [
-      { q:"O que é o ábaco?", o:["Um tipo de computador moderno","Uma ferramenta antiga de contar com pedrinhas","Um robô da Idade Média"], a:1 },
+      { q:"O que é o ábaco?", o:["Um computador moderno","Uma ferramenta antiga de contar","Um robô da Idade Média"], a:1 },
       { q:"Quem escreveu o primeiro programa da história?", o:["Ada Lovelace","Alan Turing","Steve Jobs"], a:0 },
-      { q:"O ENIAC era...", o:["Um celular pequenino","Um computador gigante que ocupava um salão","Uma caneta inteligente"], a:1 },
-      { q:"O que temos hoje que cabe no bolso?", o:["Um computador pessoal com IA","Um ábaco de pedra","Nada disso"], a:0 }
+      { q:"O ENIAC era...", o:["Um celular pequenino","Um computador gigante","Uma caneta"], a:1 },
+      { q:"O que temos hoje que cabe no bolso?", o:["Computador com IA","Ábaco de pedra","Nada disso"], a:0 }
     ];
     const quiz = document.getElementById("quiz");
     let acertos = 0, feitas = 0;
@@ -139,17 +199,15 @@
           if (b.disabled) return;
           feitas++;
           if (oi === p.a) { b.classList.add("certo"); acertos++; }
-          else { b.classList.add("errado"); }
+          else { b.classList.add("errado"); d.querySelectorAll("button")[p.a].classList.add("certo"); }
           d.querySelectorAll("button").forEach(x => x.disabled = true);
           const fb = document.createElement("div"); fb.className = "fb";
-          fb.textContent = (oi === p.a) ? "🎉 Certo!" : "🤔 Não era esse. A resposta certa está marcada em verde.";
+          fb.textContent = (oi === p.a) ? "🎉 Certo!" : "🤔 Não era esse. A certa está em verde.";
           fb.style.color = (oi === p.a) ? "#22c55e" : "#ef4444";
-          if (oi !== p.a) d.querySelectorAll("button")[p.a].classList.add("certo");
           d.appendChild(fb);
           if (feitas === perguntas.length) {
-            const r = document.createElement("div"); r.className = "fb";
-            r.style.marginTop = "12px"; r.style.fontWeight = "700";
-            r.textContent = "Seu resultado: " + acertos + " de " + perguntas.length + " acertos!";
+            const r = document.createElement("div"); r.className = "fb"; r.style.marginTop = "12px"; r.style.fontWeight = "700";
+            r.textContent = "Resultado: " + acertos + " de " + perguntas.length + " acertos!";
             quiz.appendChild(r);
           }
         };
