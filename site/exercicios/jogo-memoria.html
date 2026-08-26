@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jogo da Memória | Lab Tech</title>
+  <style>
+    :root { --azul:#38bdf8; --rosa:#ff6f61; --fundo:#0f172a; --texto:#e2e8f0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--fundo); color: var(--texto); line-height: 1.6; }
+    header { background: #1e293b; padding: 16px 20px; border-bottom: 1px solid #334155; }
+    nav { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    nav .logo { font-weight: 700; color: var(--azul); margin-right: auto; }
+    nav a { color: var(--texto); text-decoration: none; font-size: 0.9rem; }
+    nav a:hover { color: var(--azul); }
+    main { max-width: 900px; margin: 0 auto; padding: 34px 20px 60px; }
+    .voltar { color: var(--azul); text-decoration: none; font-size: 0.9rem; }
+    h1 { color: var(--azul); margin: 14px 0; }
+    .faixa { color: var(--rosa); font-weight: 600; }
+    .painel { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 22px; margin-top: 20px; text-align: center; }
+    #grid { display: grid; grid-template-columns: repeat(4, 70px); gap: 8px; justify-content: center; margin: 10px auto; }
+    .card { width: 70px; height: 70px; border-radius: 10px; background: #0f172a; display: flex; align-items: center; justify-content: center; font-size: 2rem; cursor: pointer; user-select: none; }
+    .card.virado { background: #334155; }
+    .card.par { background: #14532d; cursor: default; }
+    #msg { font-size: 1.2rem; margin-top: 12px; min-height: 28px; }
+    button { background: var(--azul); color: #0f172a; border: none; padding: 10px 18px; border-radius: 10px; cursor: pointer; font-weight: 700; margin: 6px; }
+    .links { margin-top: 26px; }
+    .links a { display: inline-block; margin: 6px 8px 0 0; color: var(--azul); border: 1px solid #334155; border-radius: 999px; padding: 6px 14px; text-decoration: none; }
+    footer { text-align: center; padding: 26px; color: #64748b; border-top: 1px solid #334155; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <span class="logo"><img src="/laboratorio-tech-social/logo.svg" alt="Logo" height="22" style="vertical-align:middle;margin-right:6px;" /> Lab Tech Social</span>
+      <a href="/laboratorio-tech-social/index.html">Início</a>
+      <a href="/laboratorio-tech-social/trilhas.html">Trilhas</a>
+      <a href="/laboratorio-tech-social/exercicios.html">Exercícios</a>
+      <a href="/laboratorio-tech-social/blog.html">Blog</a>
+      <a href="/laboratorio-tech-social/calendario.html">Calendário</a>
+      <a href="/laboratorio-tech-social/voluntarios.html">Voluntários</a>
+      <a href="/laboratorio-tech-social/slides.html">Slides</a>
+      <a href="/laboratorio-tech-social/inscricao/">Inscrição</a>
+      <a href="/laboratorio-tech-social/certificado/">Certificados</a>
+      <a href="/laboratorio-tech-social/sobre.html">Sobre</a>
+      <a href="/laboratorio-tech-social/index_en.html" style="color:var(--azul);">EN</a>
+    </nav>
+  </header>
+
+  <main>
+    <a class="voltar" href="/laboratorio-tech-social/exercicios.html">← Voltar aos Exercícios</a>
+    <h1>🃏 Jogo da Memória</h1>
+    <p class="faixa">Para todos</p>
+    <p>Ache os pares! Clique para virar as cartas e memorize as posições.</p>
+
+    <div class="painel">
+      <div id="grid"></div>
+      <div id="msg">Movimentos: <strong id="mv">0</strong></div>
+      <button id="reset">♻️ Embaralhar</button>
+    </div>
+
+    <div class="links">
+      <a href="lista-tarefas.html">✅ Lista de Tarefas</a>
+      <a href="moeda-dado.html">🎲 Moeda & Dado</a>
+      <a href="verdadeiro-falso.html">✅ Verdadeiro/Falso</a>
+      <a href="jogo-da-velha.html">⭕ Jogo da Velha</a>
+    </div>
+  </main>
+
+  <footer>Licença MIT — projeto social gratuito.</footer>
+  <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+  <script src="https://vlibras.gov.br/app.js"></script>
+  <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+
+  <script>
+    const $ = id => document.getElementById(id);
+    const emojis = ["🍎","🚀","🌟","🐱","🎮","📚","⚡","💡"];
+    let deck = [], virados = [], matchIds = [], pares = 0, mov = 0, bloq = false;
+    function novo(){
+      deck = [...emojis, ...emojis].sort(() => Math.random()-0.5);
+      virados = []; matchIds = []; pares = 0; mov = 0; bloq = false;
+      $("mv").textContent = 0; $("msg").textContent = "Movimentos: 0"; desenha();
+    }
+    function desenha(){
+      const g = $("grid"); g.innerHTML = "";
+      deck.forEach((e, i) => {
+        const c = document.createElement("div"); c.className = "card";
+        if (matchIds.includes(i)) { c.textContent = e; c.classList.add("virado","par"); }
+        else if (virados.some(x => x.i === i)) { c.textContent = e; c.classList.add("virado"); }
+        else { c.textContent = "❓"; c.onclick = () => virar(i, e); }
+        g.appendChild(c);
+      });
+    }
+    function virar(i, e){
+      if (bloq || matchIds.includes(i) || virados.some(x=>x.i===i) || virados.length === 2) return;
+      virados.push({i, e}); desenha();
+      if (virados.length === 2){
+        mov++; $("mv").textContent = mov; bloq = true;
+        if (virados[0].e === virados[1].e){
+          matchIds.push(virados[0].i, virados[1].i); pares++; virados = []; bloq = false;
+          if (pares === emojis.length) $("msg").textContent = "🎉 Você venceu em " + mov + " movimentos!";
+          else desenha();
+        } else {
+          setTimeout(() => { virados = []; desenha(); bloq = false; }, 800);
+        }
+      }
+    }
+    $("reset").onclick = novo;
+    novo();
+  </script>
+</body>
+</html>

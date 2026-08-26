@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Robô no Labirinto | Lab Tech</title>
+  <style>
+    :root { --azul:#38bdf8; --rosa:#ff6f61; --fundo:#0f172a; --texto:#e2e8f0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--fundo); color: var(--texto); line-height: 1.6; }
+    header { background: #1e293b; padding: 16px 20px; border-bottom: 1px solid #334155; }
+    nav { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    nav .logo { font-weight: 700; color: var(--azul); margin-right: auto; }
+    nav a { color: var(--texto); text-decoration: none; font-size: 0.9rem; }
+    nav a:hover { color: var(--azul); }
+    main { max-width: 900px; margin: 0 auto; padding: 34px 20px 60px; }
+    .voltar { color: var(--azul); text-decoration: none; font-size: 0.9rem; }
+    h1 { color: var(--azul); margin: 14px 0; }
+    .faixa { color: var(--rosa); font-weight: 600; }
+    .painel { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 22px; margin-top: 20px; }
+    #grid { display: grid; grid-template-columns: repeat(8, 38px); grid-template-rows: repeat(8, 38px); gap: 2px; margin: 0 auto; width: max-content; }
+    .cell { background: #0f172a; border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+    .cell.wall { background: #475569; }
+    .cell.robot { background: #38bdf8; color: #0f172a; }
+    .cell.goal { background: #22c55e; }
+    textarea { width: 100%; height: 110px; background: #020617; color: #93c5fd; border: 1px solid #334155; border-radius: 10px; padding: 10px; font-family: Consolas, monospace; }
+    button { background: var(--azul); color: #0f172a; border: none; padding: 9px 14px; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: .9rem; margin: 4px 4px 0 0; }
+    button.rosa { background: var(--rosa); color: #fff; }
+    button.verde { background: #22c55e; color: #0f172a; }
+    .dica { color: #94a3b8; font-size: .92rem; }
+    .links { margin-top: 26px; }
+    .links a { display: inline-block; margin: 6px 8px 0 0; color: var(--azul); border: 1px solid #334155; border-radius: 999px; padding: 6px 14px; text-decoration: none; }
+    footer { text-align: center; padding: 26px; color: #64748b; border-top: 1px solid #334155; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <span class="logo"><img src="/laboratorio-tech-social/logo.svg" alt="Logo" height="22" style="vertical-align:middle;margin-right:6px;" /> Lab Tech Social</span>
+      <a href="/laboratorio-tech-social/index.html">Início</a>
+      <a href="/laboratorio-tech-social/trilhas.html">Trilhas</a>
+      <a href="/laboratorio-tech-social/exercicios.html">Exercícios</a>
+      <a href="/laboratorio-tech-social/blog.html">Blog</a>
+      <a href="/laboratorio-tech-social/calendario.html">Calendário</a>
+      <a href="/laboratorio-tech-social/voluntarios.html">Voluntários</a>
+      <a href="/laboratorio-tech-social/slides.html">Slides</a>
+      <a href="/laboratorio-tech-social/inscricao/">Inscrição</a>
+      <a href="/laboratorio-tech-social/certificado/">Certificados</a>
+      <a href="/laboratorio-tech-social/sobre.html">Sobre</a>
+      <a href="/laboratorio-tech-social/index_en.html" style="color:var(--azul);">EN</a>
+    </nav>
+  </header>
+
+  <main>
+    <a class="voltar" href="/laboratorio-tech-social/exercicios.html">← Voltar aos Exercícios</a>
+    <h1>🤖 Robô no Labirinto</h1>
+    <p class="faixa">Para crianças e adolescentes</p>
+    <p>Programe o robô (🤖) para chegar à saída (🎯). Um comando por linha:</p>
+    <p class="dica"><code>CIMA</code> · <code>BAIXO</code> · <code>ESQ</code> · <code>DIR</code> · <code>REPETIR 3 CIMA</code> (repete o próximo comando N vezes).</p>
+
+    <div class="painel">
+      <div id="grid"></div>
+      <p class="dica" id="status" style="text-align:center;margin-top:10px;">Use os botões ou escreva um programa abaixo.</p>
+      <div style="text-align:center;margin-top:8px;">
+        <button id="up">⬆️ Cima</button> <button id="down">⬇️ Baixo</button>
+        <button id="left">⬅️ Esquerda</button> <button id="right">➡️ Direita</button>
+        <button class="rosa" id="reset">♻️ Recomeçar</button>
+      </div>
+      <h3 style="color:var(--azul);margin-top:14px;">📜 Programa</h3>
+      <textarea id="prog">REPETIR 2 DIR
+BAIXO
+DIR
+BAIXO
+DIR
+BAIXO</textarea>
+      <div>
+        <button class="verde" id="run">▶ Rodar</button>
+        <button class="rosa" id="stop" disabled>⏹ Parar</button>
+      </div>
+    </div>
+
+    <div class="links">
+      <a href="simulador-robotica.html">🤖 Simulador Robótica</a>
+      <a href="code-builder.html">💻 Construtor de Código</a>
+      <a href="casa-inteligente.html">🏠 Casa Inteligente</a>
+    </div>
+  </main>
+
+  <footer>Licença MIT — projeto social gratuito.</footer>
+  <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+  <script src="https://vlibras.gov.br/app.js"></script>
+  <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+
+  <script>
+    const $ = id => document.getElementById(id);
+    const N = 8;
+    const maze = [
+      "S.......",
+      ".#####.",
+      ".#...#.",
+      ".#.#.#.",
+      ".#.#.#.",
+      ".#...#.",
+      ".#####.",
+      "......G"
+    ].map(r => r.padEnd(N, ".").split(""));
+    let rx = 0, ry = 0, stopFlag = false;
+
+    function draw(){
+      const g = $("grid"); g.innerHTML = "";
+      for (let y=0; y<N; y++) for (let x=0; x<N; x++){
+        const c = document.createElement("div"); c.className = "cell";
+        const ch = maze[y][x];
+        if (ch === "#") c.classList.add("wall");
+        else if (ch === "G") c.classList.add("goal");
+        if (x===rx && y===ry) { c.classList.add("robot"); c.textContent = "🤖"; }
+        else if (ch === "G") c.textContent = "🎯";
+        g.appendChild(c);
+      }
+    }
+    function move(dx, dy){
+      const nx = rx+dx, ny = ry+dy;
+      if (nx<0||ny<0||nx>=N||ny>=N) return false;
+      if (maze[ny][nx] === "#") return false;
+      rx = nx; ry = ny; draw();
+      if (maze[ry][rx] === "G") { $("status").textContent = "🎉 Você chegou na saída! Parabéns!"; }
+      else if (maze[ry][rx] === "S") { /* start */ }
+      return true;
+    }
+    function reset(){ rx=0; ry=0; stopFlag=false; $("status").textContent="Recomeçou!"; draw(); }
+
+    $("up").onclick = () => move(0,-1);
+    $("down").onclick = () => move(0,1);
+    $("left").onclick = () => move(-1,0);
+    $("right").onclick = () => move(1,0);
+    $("reset").onclick = reset;
+
+    const sleep = ms => new Promise(r => setTimeout(r, ms));
+    async function execLine(line){
+      const p = line.trim().split(/\s+/);
+      const cmd = (p[0]||"").toUpperCase();
+      if (cmd === "REPETIR"){
+        const n = +p[1]||1; const sub = p.slice(2).join(" ");
+        for (let i=0;i<n;i++){ if(stopFlag) return; await execLine(sub); await sleep(250); }
+      } else if (cmd === "CIMA") move(0,-1);
+      else if (cmd === "BAIXO") move(0,1);
+      else if (cmd === "ESQ") move(-1,0);
+      else if (cmd === "DIR") move(1,0);
+    }
+    async function run(){
+      stopFlag = false; $("run").disabled = true; $("stop").disabled = false;
+      reset();
+      for (const raw of $("prog").value.split("\n")){
+        if (stopFlag) break;
+        if (!raw.trim() || raw.trim().startsWith("#")) continue;
+        await execLine(raw); await sleep(350);
+        if ($("status").textContent.includes("chegou")) break;
+      }
+      $("run").disabled = false; $("stop").disabled = true;
+    }
+    $("run").onclick = run;
+    $("stop").onclick = () => stopFlag = true;
+
+    draw();
+  </script>
+</body>
+</html>

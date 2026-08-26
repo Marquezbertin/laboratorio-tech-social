@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cobrinha | Lab Tech</title>
+  <style>
+    :root { --azul:#38bdf8; --rosa:#ff6f61; --fundo:#0f172a; --texto:#e2e8f0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--fundo); color: var(--texto); line-height: 1.6; }
+    header { background: #1e293b; padding: 16px 20px; border-bottom: 1px solid #334155; }
+    nav { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    nav .logo { font-weight: 700; color: var(--azul); margin-right: auto; }
+    nav a { color: var(--texto); text-decoration: none; font-size: 0.9rem; }
+    nav a:hover { color: var(--azul); }
+    main { max-width: 900px; margin: 0 auto; padding: 34px 20px 60px; }
+    .voltar { color: var(--azul); text-decoration: none; font-size: 0.9rem; }
+    h1 { color: var(--azul); margin: 14px 0; }
+    .faixa { color: var(--rosa); font-weight: 600; }
+    .painel { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 22px; margin-top: 20px; text-align: center; }
+    canvas { background: #020617; border-radius: 12px; display: block; margin: 0 auto; }
+    .score { font-size: 1.3rem; margin-top: 10px; }
+    button { background: var(--azul); color: #0f172a; border: none; padding: 10px 18px; border-radius: 10px; cursor: pointer; font-weight: 700; margin: 6px; }
+    .dica { color: #94a3b8; font-size: .92rem; }
+    .links { margin-top: 26px; }
+    .links a { display: inline-block; margin: 6px 8px 0 0; color: var(--azul); border: 1px solid #334155; border-radius: 999px; padding: 6px 14px; text-decoration: none; }
+    footer { text-align: center; padding: 26px; color: #64748b; border-top: 1px solid #334155; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <span class="logo"><img src="/laboratorio-tech-social/logo.svg" alt="Logo" height="22" style="vertical-align:middle;margin-right:6px;" /> Lab Tech Social</span>
+      <a href="/laboratorio-tech-social/index.html">Início</a>
+      <a href="/laboratorio-tech-social/trilhas.html">Trilhas</a>
+      <a href="/laboratorio-tech-social/exercicios.html">Exercícios</a>
+      <a href="/laboratorio-tech-social/blog.html">Blog</a>
+      <a href="/laboratorio-tech-social/calendario.html">Calendário</a>
+      <a href="/laboratorio-tech-social/voluntarios.html">Voluntários</a>
+      <a href="/laboratorio-tech-social/slides.html">Slides</a>
+      <a href="/laboratorio-tech-social/inscricao/">Inscrição</a>
+      <a href="/laboratorio-tech-social/certificado/">Certificados</a>
+      <a href="/laboratorio-tech-social/sobre.html">Sobre</a>
+      <a href="/laboratorio-tech-social/index_en.html" style="color:var(--azul);">EN</a>
+    </nav>
+  </header>
+
+  <main>
+    <a class="voltar" href="/laboratorio-tech-social/exercicios.html">← Voltar aos Exercícios</a>
+    <h1>🐍 Jogo da Cobrinha</h1>
+    <p class="faixa">Para crianças</p>
+    <p>Use as <b>setas do teclado</b> para mover. Coma a comidinha e cresça sem bater nas paredes!</p>
+
+    <div class="painel">
+      <canvas id="cv" width="400" height="400"></canvas>
+      <div class="score">Pontos: <strong id="pts">0</strong></div>
+      <p class="dica" id="msg">Clique em Iniciar e use as setas.</p>
+      <button id="start">▶ Iniciar</button>
+    </div>
+
+    <div class="links">
+      <a href="pintura-pixel.html">🎨 Pintura Pixel</a>
+      <a href="piano-virtual.html">🎹 Piano Virtual</a>
+      <a href="calculadora.html">🔢 Calculadora</a>
+      <a href="misturador-cores.html">🌈 Misturador de Cores</a>
+    </div>
+  </main>
+
+  <footer>Licença MIT — projeto social gratuito.</footer>
+  <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+  <script src="https://vlibras.gov.br/app.js"></script>
+  <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+
+  <script>
+    const cv = document.getElementById("cv"), ctx = cv.getContext("2d");
+    const S = 20, N = 20;
+    let snake, dir, food, pts, timer, over;
+    function reset(){
+      snake = [{x:8,y:10},{x:7,y:10},{x:6,y:10}]; dir = {x:1,y:0};
+      food = {x: Math.floor(Math.random()*N), y: Math.floor(Math.random()*N)};
+      pts = 0; over = false; document.getElementById("pts").textContent = 0; document.getElementById("msg").textContent = "Boa sorte!";
+    }
+    function loop(){
+      const head = {x: snake[0].x+dir.x, y: snake[0].y+dir.y};
+      if (head.x<0||head.y<0||head.x>=N||head.y>=N || snake.some(s=>s.x===head.x&&s.y===head.y)) { over = true; clearInterval(timer); document.getElementById("msg").textContent = "💥 Fim de jogo! Pontos: " + pts; return; }
+      snake.unshift(head);
+      if (head.x===food.x && head.y===food.y){ pts++; document.getElementById("pts").textContent = pts; food = {x: Math.floor(Math.random()*N), y: Math.floor(Math.random()*N)}; }
+      else snake.pop();
+      desenha();
+    }
+    function desenha(){
+      ctx.fillStyle = "#020617"; ctx.fillRect(0,0,400,400);
+      ctx.fillStyle = "#fde047"; ctx.fillRect(food.x*S, food.y*S, S, S);
+      ctx.fillStyle = "#22c55e"; snake.forEach(s => ctx.fillRect(s.x*S, s.y*S, S, S));
+    }
+    document.addEventListener("keydown", e => {
+      const k = e.key;
+      if (k==="ArrowUp" && dir.y===0) dir={x:0,y:-1};
+      else if (k==="ArrowDown" && dir.y===0) dir={x:0,y:1};
+      else if (k==="ArrowLeft" && dir.x===0) dir={x:-1,y:0};
+      else if (k==="ArrowRight" && dir.x===0) dir={x:1,y:0};
+    });
+    document.getElementById("start").onclick = () => { reset(); desenha(); if (timer) clearInterval(timer); timer = setInterval(loop, 130); };
+    reset(); desenha();
+  </script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Conversor de Bases | Lab Tech</title>
+  <style>
+    :root { --azul:#38bdf8; --rosa:#ff6f61; --fundo:#0f172a; --texto:#e2e8f0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--fundo); color: var(--texto); line-height: 1.6; }
+    header { background: #1e293b; padding: 16px 20px; border-bottom: 1px solid #334155; }
+    nav { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    nav .logo { font-weight: 700; color: var(--azul); margin-right: auto; }
+    nav a { color: var(--texto); text-decoration: none; font-size: 0.9rem; }
+    nav a:hover { color: var(--azul); }
+    main { max-width: 900px; margin: 0 auto; padding: 34px 20px 60px; }
+    .voltar { color: var(--azul); text-decoration: none; font-size: 0.9rem; }
+    h1 { color: var(--azul); margin: 14px 0; }
+    .faixa { color: var(--rosa); font-weight: 600; }
+    .painel { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 22px; margin-top: 20px; }
+    input, select { width: 100%; padding: 10px; border-radius: 8px; border: 1px solid #334155; background: #0f172a; color: var(--texto); font-size: 1rem; }
+    .resultados { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 12px; margin-top: 16px; }
+    .res { background: #0f172a; padding: 14px; border-radius: 12px; }
+    .res .l { color: #94a3b8; font-size: .85rem; }
+    .res .v { font-size: 1.3rem; color: var(--azul); font-family: Consolas, monospace; word-break: break-all; }
+    .links { margin-top: 26px; }
+    .links a { display: inline-block; margin: 6px 8px 0 0; color: var(--azul); border: 1px solid #334155; border-radius: 999px; padding: 6px 14px; text-decoration: none; }
+    footer { text-align: center; padding: 26px; color: #64748b; border-top: 1px solid #334155; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <span class="logo"><img src="/laboratorio-tech-social/logo.svg" alt="Logo" height="22" style="vertical-align:middle;margin-right:6px;" /> Lab Tech Social</span>
+      <a href="/laboratorio-tech-social/index.html">Início</a>
+      <a href="/laboratorio-tech-social/trilhas.html">Trilhas</a>
+      <a href="/laboratorio-tech-social/exercicios.html">Exercícios</a>
+      <a href="/laboratorio-tech-social/blog.html">Blog</a>
+      <a href="/laboratorio-tech-social/calendario.html">Calendário</a>
+      <a href="/laboratorio-tech-social/voluntarios.html">Voluntários</a>
+      <a href="/laboratorio-tech-social/slides.html">Slides</a>
+      <a href="/laboratorio-tech-social/inscricao/">Inscrição</a>
+      <a href="/laboratorio-tech-social/certificado/">Certificados</a>
+      <a href="/laboratorio-tech-social/sobre.html">Sobre</a>
+      <a href="/laboratorio-tech-social/index_en.html" style="color:var(--azul);">EN</a>
+    </nav>
+  </header>
+
+  <main>
+    <a class="voltar" href="/laboratorio-tech-social/exercicios.html">← Voltar aos Exercícios</a>
+    <h1>🔢 Conversor de Bases</h1>
+    <p class="faixa">Para adolescentes</p>
+    <p>Converta números entre Decimal, Binário, Octal e Hexadecimal.</p>
+
+    <div class="painel">
+      <label>Digite o número:</label>
+      <input id="num" value="42" />
+      <label>Base de entrada:</label>
+      <select id="base">
+        <option value="10">Decimal (10)</option>
+        <option value="2">Binário (2)</option>
+        <option value="8">Octal (8)</option>
+        <option value="16">Hexadecimal (16)</option>
+      </select>
+      <div class="resultados" id="res"></div>
+      <p class="dica" id="erro" style="color:var(--rosa);margin-top:10px;"></p>
+    </div>
+
+    <div class="links">
+      <a href="gerador-senhas.html">🔐 Gerador de Senhas</a>
+      <a href="cronometro.html">⏱️ Cronômetro</a>
+      <a href="notas.html">📝 Notas</a>
+      <a href="flashcards.html">🧠 Flashcards</a>
+    </div>
+  </main>
+
+  <footer>Licença MIT — projeto social gratuito.</footer>
+  <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+  <script src="https://vlibras.gov.br/app.js"></script>
+  <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+
+  <script>
+    const $ = id => document.getElementById(id);
+    function conv(){
+      const base = +$("base").value, txt = $("num").value.trim();
+      $("erro").textContent = "";
+      let dec;
+      try { dec = parseInt(txt, base); } catch(e){ dec = NaN; }
+      if (isNaN(dec)) { $("erro").textContent = "Número inválido para a base " + base; $("res").innerHTML = ""; return; }
+      const out = [
+        ["Decimal", dec.toString(10)],
+        ["Binário", dec.toString(2)],
+        ["Octal", dec.toString(8)],
+        ["Hexadecimal", dec.toString(16).toUpperCase()]
+      ];
+      $("res").innerHTML = out.map(([l,v]) => `<div class="res"><div class="l">${l}</div><div class="v">${v}</div></div>`).join("");
+    }
+    $("num").oninput = conv; $("base").onchange = conv; conv();
+  </script>
+</body>
+</html>

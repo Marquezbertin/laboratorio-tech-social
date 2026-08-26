@@ -13,28 +13,44 @@
     nav .logo { font-weight: 700; color: var(--azul); margin-right: auto; }
     nav a { color: var(--texto); text-decoration: none; font-size: 0.9rem; }
     nav a:hover { color: var(--azul); }
-    main { max-width: 860px; margin: 0 auto; padding: 34px 20px 60px; }
+    main { max-width: 880px; margin: 0 auto; padding: 34px 20px 60px; }
     .voltar { color: var(--azul); text-decoration: none; font-size: 0.9rem; }
     h1 { color: var(--azul); margin: 14px 0; }
     .faixa { color: var(--rosa); font-weight: 600; }
-    .placa { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 24px; margin-top: 20px; text-align: center; }
-    .led { width: 90px; height: 90px; border-radius: 50%; background: #334155; margin: 10px auto; border: 4px solid #0f172a; transition: all .2s; }
-    .led.on { background: #fde047; box-shadow: 0 0 30px #fde047; }
-    .controles { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 16px; }
-    button { background: var(--azul); color: #0f172a; border: none; padding: 10px 18px; border-radius: 10px; cursor: pointer; font-weight: 600; }
+    .placa { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 24px; margin-top: 20px; }
+    .linha { display: flex; flex-wrap: wrap; gap: 24px; align-items: flex-start; }
+    .col { flex: 1 1 240px; }
+    .led { width: 70px; height: 70px; border-radius: 50%; background: #334155; margin: 8px auto; border: 4px solid #0f172a; transition: all .2s; }
+    .led.r.on { background: #ef4444; box-shadow: 0 0 26px #ef4444; }
+    .led.y.on { background: #fde047; box-shadow: 0 0 26px #fde047; }
+    .led.g.on { background: #22c55e; box-shadow: 0 0 26px #22c55e; }
+    .led.rgb { background: #334155; }
+    .mini { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-top: 6px; }
+    button { background: var(--azul); color: #0f172a; border: none; padding: 9px 14px; border-radius: 10px; cursor: pointer; font-weight: 600; font-size: .9rem; }
     button.rosa { background: var(--rosa); color: #fff; }
-    label { display: block; margin-top: 14px; }
-    input[type=range] { width: 70%; }
-    .modo { margin-top: 18px; }
-    .nuvem { background: #0f172a; border: 1px solid #334155; border-radius: 14px; padding: 18px; margin-top: 20px; display: none; }
+    button.verde { background: #22c55e; color: #0f172a; }
+    button:disabled { opacity: .5; cursor: default; }
+    label { display: block; margin-top: 12px; font-size: .92rem; }
+    input[type=range] { width: 100%; }
+    .rgbrow { display: flex; gap: 10px; }
+    .rgbrow > div { flex: 1; text-align: center; }
+    .vent { font-size: 2.4rem; filter: grayscale(1) opacity(.4); transition: all .2s; }
+    .vent.on { filter: none; animation: girar 1s linear infinite; }
+    @keyframes girar { to { transform: rotate(360deg); } }
+    .modo { margin-top: 14px; font-size: .9rem; }
+    .prog { background: #0f172a; border: 1px solid #334155; border-radius: 14px; padding: 18px; margin-top: 20px; }
+    .prog textarea { width: 100%; height: 140px; background: #020617; color: #93c5fd; border: 1px solid #334155; border-radius: 10px; padding: 10px; font-family: Consolas, monospace; font-size: .9rem; }
+    .prog pre { background: #020617; color: #a7f3d0; padding: 10px; border-radius: 10px; margin-top: 10px; max-height: 180px; overflow: auto; font-size: .85rem; white-space: pre-wrap; }
+    .nuvem { background: #0f172a; border: 1px solid #334155; border-radius: 14px; padding: 18px; margin-top: 20px; }
     .nuvem h3 { color: var(--azul); }
-    pre { background: #0f172a; padding: 12px; border-radius: 10px; overflow: auto; color: #93c5fd; margin-top: 10px; }
+    pre.json { background: #020617; padding: 12px; border-radius: 10px; overflow: auto; color: #93c5fd; margin-top: 10px; }
     table { width: 100%; border-collapse: collapse; margin-top: 12px; }
-    th, td { padding: 8px 10px; border-bottom: 1px solid #334155; text-align: left; font-size: 0.9rem; }
+    th, td { padding: 8px 10px; border-bottom: 1px solid #334155; text-align: left; font-size: .85rem; }
     th { color: var(--rosa); }
     .links { margin-top: 26px; }
-    .links a { display: inline-block; margin-right: 10px; color: var(--azul); border: 1px solid #334155; border-radius: 999px; padding: 6px 14px; text-decoration: none; }
+    .links a { display: inline-block; margin: 6px 8px 0 0; color: var(--azul); border: 1px solid #334155; border-radius: 999px; padding: 6px 14px; text-decoration: none; }
     footer { text-align: center; padding: 26px; color: #64748b; border-top: 1px solid #334155; }
+    .dica { color: #94a3b8; font-size: .9rem; }
   </style>
 </head>
 <body>
@@ -61,34 +77,90 @@
     <p class="faixa">Para crianças e adolescentes</p>
 
     <div class="placa">
-      <h3>💡 LED virtual</h3>
-      <div class="led" id="led"></div>
-      <div class="controles">
-        <button id="btnOn">Acender</button>
-        <button id="btnOff" class="rosa">Apagar</button>
-      </div>
-      <label>Nível de luz do ambiente: <strong id="luzVal">80</strong></label>
-      <input type="range" id="luz" min="0" max="100" value="80" />
-      <div class="modo">
-        <label><input type="checkbox" id="auto" /> Modo automático (se luz &lt; 30, acende sozinho)</label>
+      <div class="linha">
+        <div class="col">
+          <h3 style="color:#fde047;">💡 LEDs de sinal</h3>
+          <div class="led r" id="ledR"></div>
+          <div class="mini">
+            <button data-led="R">🔴 Acender</button>
+            <button class="rosa" data-ledoff="R">Apagar</button>
+          </div>
+          <div class="led y" id="ledY"></div>
+          <div class="mini">
+            <button data-led="Y">🟡 Acender</button>
+            <button class="rosa" data-ledoff="Y">Apagar</button>
+          </div>
+          <div class="led g" id="ledG"></div>
+          <div class="mini">
+            <button data-led="G">🟢 Acender</button>
+            <button class="rosa" data-ledoff="G">Apagar</button>
+          </div>
+        </div>
+
+        <div class="col">
+          <h3 style="color:#a78bfa;">🌈 LED inteligente (RGB)</h3>
+          <div class="led rgb" id="ledRGB"></div>
+          <div class="rgbrow">
+            <div>R<input type="range" id="rR" min="0" max="255" value="56"></div>
+            <div>G<input type="range" id="rG" min="0" max="255" value="189"></div>
+            <div>B<input type="range" id="rB" min="0" max="255" value="248"></div>
+          </div>
+        </div>
+
+        <div class="col">
+          <h3 style="color:#38bdf8;">🌡️ Sensores</h3>
+          <label>Temperatura: <strong id="tempVal">22</strong> °C</label>
+          <input type="range" id="temp" min="0" max="50" value="22" />
+          <div class="vent" id="vent">💨</div>
+          <p class="dica" id="ventTxt">Ventoinha desligada (liga sozinha acima de 28°C).</p>
+          <label>Luz do ambiente: <strong id="luzVal">80</strong></label>
+          <input type="range" id="luz" min="0" max="100" value="80" />
+          <div class="modo">
+            <label><input type="checkbox" id="auto" /> Automático: LED verde acende se luz &lt; 30</label>
+          </div>
+          <button class="rosa" id="buzzer" style="margin-top:10px;">🔊 Buzzer (bip)</button>
+        </div>
       </div>
     </div>
 
-    <div class="nuvem" id="nuvem">
-      <h3>☁️ Enviar para a Nuvem (simulado)</h3>
-      <p style="color:#94a3b8;">Adolescentes: cada leitura vira um dado enviado para a "nuvem" (aqui, só uma simulação local).</p>
+    <div class="prog">
+      <h3 style="color:var(--azul);">🧑‍💻 Programação do robô (sequência de comandos)</h3>
+      <p class="dica">Escreva um comando por linha. Exemplos:<br>
+        <code>LED R ON</code> · <code>LED G OFF</code> · <code>RGB 255 0 0</code> · <code>FAN ON</code> · <code>BUZZ</code> · <code>LUZ 10</code> · <code>TEMP 30</code> · <code>WAIT 1</code> (segundos). Linhas com # são ignoradas.</p>
+      <textarea id="prog"># exemplo: semáforo
+LED R ON
+WAIT 1
+LED R OFF
+LED G ON
+WAIT 1
+LED G OFF
+LED Y ON
+WAIT 1
+LED Y OFF</textarea>
+      <div class="mini" style="justify-content:flex-start;">
+        <button class="verde" id="run">▶ Rodar</button>
+        <button class="rosa" id="stop" disabled>⏹ Parar</button>
+      </div>
+      <pre id="log">Pronto. Clique em Rodar.</pre>
+    </div>
+
+    <div class="nuvem">
+      <h3>☁️ Enviar para a Nuvem (simulado de IoT)</h3>
+      <p class="dica">Adolescentes: cada leitura vira um dado enviado para a "nuvem" (aqui é só simulação local, mostrando como IoT funciona).</p>
       <button class="rosa" id="btnNuvem">📡 Enviar leitura atual</button>
-      <pre id="json">{}</pre>
+      <pre class="json" id="json">{}</pre>
       <h3 style="margin-top:14px;">Histórico de dados</h3>
-      <table><thead><tr><th>#</th><th>Sensor (luz)</th><th>LED</th><th>Hora</th></tr></thead>
+      <table><thead><tr><th>#</th><th>Luz</th><th>Temp</th><th>LEDs</th><th>Fan</th><th>Hora</th></tr></thead>
         <tbody id="hist"></tbody></table>
     </div>
 
-    <p style="margin-top:18px;color:#94a3b8;">👦 Crianças: brinque de acender/apagar e ver o que acontece com pouca luz.<br/>
-       🧑‍💻 Adolescentes: ative o "Enviar para a Nuvem" para ver IoT em ação (dados → nuvem).</p>
+    <p style="margin-top:18px;color:#94a3b8;">👦 Crianças: brinque de acender/apagar LEDs e ver o que acontece com pouca luz ou muito calor.<br>
+       🧑‍💻 Adolescentes: use a "Programação do robô" e o "Enviar para a Nuvem" para ver IoT e lógica de programação em ação.</p>
 
     <div class="links">
-      <a href="quiz-criancas.html">🧪 Quiz Crianças</a>
+      <a href="casa-inteligente.html">🏠 Casa Inteligente</a>
+      <a href="robo-labirinto.html">🤖 Robô no Labirinto</a>
+      <a href="estacao-meteo.html">🌦️ Estação Meteorológica</a>
       <a href="quiz-teens.html">🧪 Quiz Teens</a>
       <a href="code-builder.html">💻 Construtor de Código</a>
     </div>
@@ -100,44 +172,85 @@
   <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
 
   <script>
-    const led = document.getElementById("led");
-    const luz = document.getElementById("luz");
-    const luzVal = document.getElementById("luzVal");
-    const auto = document.getElementById("auto");
+    const $ = id => document.getElementById(id);
+    const ledR = $("ledR"), ledY = $("ledY"), ledG = $("ledG"), ledRGB = $("ledRGB");
+    const luz = $("luz"), luzVal = $("luzVal"), auto = $("auto");
+    const temp = $("temp"), tempVal = $("tempVal"), vent = $("vent"), ventTxt = $("ventTxt");
+    const state = { R:false, Y:false, G:false, fan:false, rgb:[56,189,248], buzzed:false };
 
-    function render() {
-      luzVal.textContent = luz.value;
-      const autoOn = auto.checked && +luz.value < 30;
-      const ligado = document.getElementById("btnOn").dataset.on === "1" || autoOn;
-      led.classList.toggle("on", ligado);
-      document.getElementById("btnOn").dataset.on = autoOn ? "1" : (document.getElementById("btnOn").dataset.on || "0");
-      if (autoOn) document.getElementById("btnOn").dataset.on = "1";
-      // in auto mode keep led on; manual off resets
+    function setLed(c, v){ state[c] = v; ({R:ledR,Y:ledY,G:ledG})[c].classList.toggle("on", v); }
+    function setRGB(r,g,b){ state.rgb=[r,g,b]; ledRGB.style.background = `rgb(${r},${g},${b})`; ledRGB.style.boxShadow = `0 0 26px rgb(${r},${g},${b})`; }
+    function setFan(v){ state.fan = v; vent.classList.toggle("on", v); ventTxt.textContent = v ? "Ventoinha ligada!" : "Ventoinha desligada (liga sozinha acima de 28°C)."; }
+
+    document.querySelectorAll("[data-led]").forEach(b => b.onclick = () => setLed(b.dataset.led, true));
+    document.querySelectorAll("[data-ledoff]").forEach(b => b.onclick = () => setLed(b.dataset.ledoff, false));
+
+    function renderLuz(){ luzVal.textContent = luz.value; if (auto.checked && +luz.value < 30) setLed("G", true); }
+    function renderTemp(){ tempVal.textContent = temp.value; if (+temp.value > 28) setFan(true); else if (!state.fanManual) setFan(false); }
+    luz.oninput = renderLuz; temp.oninput = renderTemp; auto.onchange = renderLuz;
+
+    ["rR","rG","rB"].forEach((id,i) => $(id).oninput = () => { const r=+$("rR").value,g=+$("rG").value,b=+$("rB").value; setRGB(r,g,b); });
+
+    let audioCtx;
+    function beep(){ try { audioCtx = audioCtx || new (window.AudioContext||window.webkitAudioContext)(); const o=audioCtx.createOscillator(), g=audioCtx.createGain(); o.connect(g); g.connect(audioCtx.destination); o.frequency.value=880; g.gain.value=0.08; o.start(); setTimeout(()=>o.stop(),200); } catch(e){} state.buzzed = true; }
+
+    $("buzzer").onclick = beep;
+
+    // Programação por comandos
+    const prog = $("prog"), logEl = $("log"), runBtn = $("run"), stopBtn = $("stop");
+    const sleep = ms => new Promise(r => setTimeout(r, ms));
+    let stopFlag = false;
+
+    async function exec(line){
+      const p = line.split(/\s+/); const cmd = (p[0]||"").toUpperCase();
+      if (cmd==="LED"){ const c=(p[1]||"").toUpperCase(); const v=(p[2]||"").toUpperCase()==="ON"; if(["R","Y","G"].includes(c)) setLed(c,v); }
+      else if (cmd==="RGB"){ setRGB(+p[1]||0, +p[2]||0, +p[3]||0); }
+      else if (cmd==="FAN"){ state.fanManual = (p[1]||"").toUpperCase()==="ON"; setFan(state.fanManual); }
+      else if (cmd==="BUZZ"){ beep(); }
+      else if (cmd==="WAIT"){ await sleep(Math.max(200, (+p[1]||1)*1000)); }
+      else if (cmd==="LUZ"){ luz.value = Math.max(0, Math.min(100, +p[1]||0)); renderLuz(); }
+      else if (cmd==="TEMP"){ temp.value = Math.max(0, Math.min(50, +p[1]||0)); renderTemp(); }
+      else { logEl.textContent += "  ⚠ comando não reconhecido: " + cmd + "\n"; }
     }
-    document.getElementById("btnOn").onclick = () => { document.getElementById("btnOn").dataset.on = "1"; render(); };
-    document.getElementById("btnOff").onclick = () => { document.getElementById("btnOn").dataset.on = "0"; auto.checked = false; render(); };
-    luz.oninput = render;
-    auto.onchange = render;
 
-    // Teen: cloud simulation
-    const nuvem = document.getElementById("nuvem");
-    const json = document.getElementById("json");
-    const hist = document.getElementById("hist");
+    async function runProg(){
+      stopFlag = false; runBtn.disabled = true; stopBtn.disabled = false; logEl.textContent = "";
+      const lines = prog.value.split("\n");
+      for (const raw of lines){
+        if (stopFlag) { logEl.textContent += "⏹ parado.\n"; break; }
+        const line = raw.trim();
+        if (!line || line.startsWith("#")) continue;
+        logEl.textContent += "> " + line + "\n";
+        await exec(line);
+        await sleep(500);
+      }
+      if (!stopFlag) logEl.textContent += "✅ Fim do programa.\n";
+      runBtn.disabled = false; stopBtn.disabled = true;
+    }
+    runBtn.onclick = runProg;
+    stopBtn.onclick = () => { stopFlag = true; };
+
+    // IoT cloud
     let n = 0;
-    // reveal cloud section for teens (and everyone can try)
-    nuvem.style.display = "block";
-    document.getElementById("btnNuvem").onclick = () => {
+    $("btnNuvem").onclick = () => {
+      renderLuz(); renderTemp();
       const d = {
-        sensor_luz: +luz.value,
-        led: led.classList.contains("on"),
-        timestamp: new Date().toLocaleTimeString("pt-BR")
+        luz: +luz.value, temperatura: +temp.value,
+        leds: (["R","Y","G"].filter(c=>state[c]).join("") || "nenhum"),
+        fan: state.fan, buzzer: state.buzzed,
+        hora: new Date().toLocaleTimeString("pt-BR")
       };
-      json.textContent = JSON.stringify(d, null, 2);
+      $("json").textContent = JSON.stringify(d, null, 2);
       n++;
       const tr = document.createElement("tr");
-      tr.innerHTML = `<td>${n}</td><td>${d.sensor_luz}</td><td>${d.led ? "aceso" : "apagado"}</td><td>${d.timestamp}</td>`;
-      hist.prepend(tr);
+      tr.innerHTML = `<td>${n}</td><td>${d.luz}</td><td>${d.temperatura}</td><td>${d.leds}</td><td>${d.fan?"sim":"não"}</td><td>${d.hora}</td>`;
+      $("hist").prepend(tr);
+      state.buzzed = false;
     };
+
+    // init
+    setRGB(+$("rR").value, +$("rG").value, +$("rB").value);
+    renderLuz(); renderTemp();
   </script>
 </body>
 </html>

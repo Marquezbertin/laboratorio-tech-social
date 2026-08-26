@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verdadeiro ou Falso | Lab Tech</title>
+  <style>
+    :root { --azul:#38bdf8; --rosa:#ff6f61; --fundo:#0f172a; --texto:#e2e8f0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--fundo); color: var(--texto); line-height: 1.6; }
+    header { background: #1e293b; padding: 16px 20px; border-bottom: 1px solid #334155; }
+    nav { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    nav .logo { font-weight: 700; color: var(--azul); margin-right: auto; }
+    nav a { color: var(--texto); text-decoration: none; font-size: 0.9rem; }
+    nav a:hover { color: var(--azul); }
+    main { max-width: 900px; margin: 0 auto; padding: 34px 20px 60px; }
+    .voltar { color: var(--azul); text-decoration: none; font-size: 0.9rem; }
+    h1 { color: var(--azul); margin: 14px 0; }
+    .faixa { color: var(--rosa); font-weight: 600; }
+    .painel { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 22px; margin-top: 20px; }
+    .q { font-size: 1.2rem; margin-bottom: 12px; }
+    button { background: var(--azul); color: #0f172a; border: none; padding: 9px 16px; border-radius: 10px; cursor: pointer; font-weight: 700; margin: 6px; }
+    button.rosa { background: var(--rosa); color: #fff; }
+    .fb { margin-top: 10px; font-weight: 700; }
+    .placar { text-align: right; color: #94a3b8; }
+    .links { margin-top: 26px; }
+    .links a { display: inline-block; margin: 6px 8px 0 0; color: var(--azul); border: 1px solid #334155; border-radius: 999px; padding: 6px 14px; text-decoration: none; }
+    footer { text-align: center; padding: 26px; color: #64748b; border-top: 1px solid #334155; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <span class="logo"><img src="/laboratorio-tech-social/logo.svg" alt="Logo" height="22" style="vertical-align:middle;margin-right:6px;" /> Lab Tech Social</span>
+      <a href="/laboratorio-tech-social/index.html">Início</a>
+      <a href="/laboratorio-tech-social/trilhas.html">Trilhas</a>
+      <a href="/laboratorio-tech-social/exercicios.html">Exercícios</a>
+      <a href="/laboratorio-tech-social/blog.html">Blog</a>
+      <a href="/laboratorio-tech-social/calendario.html">Calendário</a>
+      <a href="/laboratorio-tech-social/voluntarios.html">Voluntários</a>
+      <a href="/laboratorio-tech-social/slides.html">Slides</a>
+      <a href="/laboratorio-tech-social/inscricao/">Inscrição</a>
+      <a href="/laboratorio-tech-social/certificado/">Certificados</a>
+      <a href="/laboratorio-tech-social/sobre.html">Sobre</a>
+      <a href="/laboratorio-tech-social/index_en.html" style="color:var(--azul);">EN</a>
+    </nav>
+  </header>
+
+  <main>
+    <a class="voltar" href="/laboratorio-tech-social/exercicios.html">← Voltar aos Exercícios</a>
+    <h1>✅ Verdadeiro ou Falso</h1>
+    <p class="faixa">Para todos</p>
+    <p class="placar">Acertos: <strong id="pts">0</strong> / <span id="tot">0</span></p>
+
+    <div class="painel">
+      <div class="q" id="q"></div>
+      <button id="v">✅ Verdadeiro</button>
+      <button class="rosa" id="f">❌ Falso</button>
+      <div class="fb" id="fb"></div>
+      <button id="next" hidden>➡️ Próxima</button>
+    </div>
+
+    <div class="links">
+      <a href="lista-tarefas.html">✅ Lista de Tarefas</a>
+      <a href="moeda-dado.html">🎲 Moeda & Dado</a>
+      <a href="jogo-da-velha.html">⭕ Jogo da Velha</a>
+      <a href="jogo-memoria.html">🃏 Jogo da Memória</a>
+    </div>
+  </main>
+
+  <footer>Licença MIT — projeto social gratuito.</footer>
+  <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+  <script src="https://vlibras.gov.br/app.js"></script>
+  <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+
+  <script>
+    const $ = id => document.getElementById(id);
+    const questoes = [
+      ["O computador entende linguagem de máquina (0 e 1).", true],
+      ["Compartilhar sua senha com um amigo é seguro.", false],
+      ["A LGPD protege os dados pessoais no Brasil.", true],
+      ["WiFi significa que não precisamos de fios para a internet local.", true],
+      ["Um vírus de computador pode danificar arquivos.", true],
+      ["Clicar em qualquer link recebido por e-mail é seguro.", false],
+      ["Algoritmo é um passo a passo para resolver algo.", true],
+      ["IoT significa 'Internet das Coisas'.", true]
+    ];
+    let i = 0, pontos = 0;
+    function render(){
+      if (i >= questoes.length){ $("q").textContent = "🏆 Fim! Você acertou " + pontos + " de " + questoes.length; $("v").hidden = $("f").hidden = true; $("next").hidden = true; return; }
+      $("q").textContent = (i+1) + ". " + questoes[i][0];
+      $("v").hidden = $("f").hidden = false; $("next").hidden = true; $("fb").textContent = "";
+    }
+    function responder(resp){
+      const ok = resp === questoes[i][1];
+      if (ok) { pontos++; $("pts").textContent = pontos; $("fb").textContent = "✅ Acertou!"; $("fb").style.color = "#22c55e"; }
+      else { $("fb").textContent = "❌ Errou! A resposta era " + (questoes[i][1] ? "Verdadeiro" : "Falso"); $("fb").style.color = "#ef4444"; }
+      $("v").hidden = $("f").hidden = true; $("next").hidden = false;
+    }
+    $("v").onclick = () => responder(true);
+    $("f").onclick = () => responder(false);
+    $("next").onclick = () => { i++; render(); };
+    $("tot").textContent = questoes.length; render();
+  </script>
+</body>
+</html>
