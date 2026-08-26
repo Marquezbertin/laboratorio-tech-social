@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Desafios Python | Lab Tech</title>
+  <style>
+    :root { --azul:#38bdf8; --rosa:#ff6f61; --fundo:#0f172a; --texto:#e2e8f0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--fundo); color: var(--texto); line-height: 1.6; }
+    header { background: #1e293b; padding: 16px 20px; border-bottom: 1px solid #334155; }
+    nav { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    nav .logo { font-weight: 700; color: var(--azul); margin-right: auto; }
+    nav a { color: var(--texto); text-decoration: none; font-size: 0.9rem; }
+    nav a:hover { color: var(--azul); }
+    main { max-width: 880px; margin: 0 auto; padding: 34px 20px 60px; }
+    .voltar { color: var(--azul); text-decoration: none; font-size: 0.9rem; }
+    h1 { color: var(--azul); margin: 14px 0; }
+    .faixa { color: var(--rosa); font-weight: 600; }
+    .desafio { background: #1e293b; border: 1px solid #334155; border-radius: 14px; padding: 20px; margin-top: 18px; }
+    .desafio h3 { color: #f1f5f9; }
+    textarea { width: 100%; min-height: 120px; background: #0f172a; color: #93c5fd; border: 1px solid #334155; border-radius: 10px; padding: 12px; font-family: Consolas, monospace; margin-top: 10px; }
+    .bar { margin-top: 10px; display: flex; gap: 10px; flex-wrap: wrap; }
+    button { background: var(--azul); color: #0f172a; border: none; padding: 8px 16px; border-radius: 8px; cursor: pointer; font-weight: 700; }
+    button.rosa { background: var(--rosa); color: #fff; }
+    .out { background: #0f172a; border: 1px solid #334155; border-radius: 10px; padding: 10px; margin-top: 10px; min-height: 44px; font-family: Consolas, monospace; white-space: pre-wrap; color: #6ee7b7; }
+    .verdict { margin-top: 8px; font-weight: 700; }
+    .links { margin-top: 26px; }
+    .links a { display: inline-block; margin-right: 10px; color: var(--azul); border: 1px solid #334155; border-radius: 999px; padding: 6px 14px; text-decoration: none; }
+    footer { text-align: center; padding: 26px; color: #64748b; border-top: 1px solid #334155; }
+    #status { color: #94a3b8; margin-top: 8px; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <span class="logo"><img src="/laboratorio-tech-social/logo.svg" alt="Logo" height="22" style="vertical-align:middle;margin-right:6px;" /> Lab Tech Social</span>
+      <a href="../index.html">Início</a>
+      <a href="../trilhas.html">Trilhas</a>
+      <a href="../exercicios.html">Exercícios</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../calendario.html">Calendário</a>
+      <a href="../voluntarios.html">Voluntários</a>
+      <a href="../slides.html">Slides</a>
+      <a href="../inscricao/">Inscrição</a>
+      <a href="../certificado/">Certificados</a>
+      <a href="../sobre.html">Sobre</a>
+      <a href="../index_en.html" style="color:var(--azul);">EN</a>
+    </nav>
+  </header>
+
+  <main>
+    <a class="voltar" href="../exercicios.html">← Voltar aos Exercícios</a>
+    <p class="faixa">🧑‍💻 Makers/Devs · 13–20 anos · Python</p>
+    <h1>💻 Desafios de Python</h1>
+    <p style="color:#94a3b8;">Escreva o código em Python e clique em <strong>Verificar</strong>. O sistema confere o resultado. (Primeira execução carrega o Python no navegador.)</p>
+    <div id="status">⏳ Python pronto para uso.</div>
+    <div id="desafios"></div>
+    <div class="links">
+      <a href="../exercicios/caca-bugs.html">🐞 Caça-Bugs</a>
+      <a href="../exercicios/code-builder.html">🤖 Robô no labirinto</a>
+    </div>
+  </main>
+
+  <footer>Licença MIT — projeto social gratuito.</footer>
+  <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+  <script src="https://vlibras.gov.br/app.js"></script>
+  <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+
+  <script>
+    const desafios = [
+      { tit: "Desafio 1 — Soma de 1 a 10",
+        desc: "Imprima a soma dos números de 1 a 10.",
+        starter: "soma = 0\nfor i in range(1, 11):\n    soma += i\nprint(soma)",
+        esperado: "55" },
+      { tit: "Desafio 2 — Maior valor",
+        desc: "Imprima o maior valor da lista [4, 9, 2, 7, 5].",
+        starter: "lista = [4, 9, 2, 7, 5]\n# escreva aqui\nprint()",
+        esperado: "9" },
+      { tit: "Desafio 3 — Pares",
+        desc: "Conte quantos números pares há em [1,2,3,4,5,6,7,8] e imprima o total.",
+        starter: "nums = [1,2,3,4,5,6,7,8]\ntotal = 0\n# escreva aqui\nprint(total)",
+        esperado: "4" }
+    ];
+
+    const wrap = document.getElementById("desafios");
+    desafios.forEach((d, i) => {
+      const c = document.createElement("div");
+      c.className = "desafio";
+      c.innerHTML = `<h3>${d.tit}</h3><p style="color:#cbd5e1;">${d.desc}</p>
+        <textarea>${d.starter}</textarea>
+        <div class="bar">
+          <button data-i="${i}">▶ Rodar</button>
+          <button class="rosa" data-i="${i}">✅ Verificar</button>
+        </div>
+        <div class="out" id="out${i}"></div>
+        <div class="verdict" id="v${i}"></div>`;
+      wrap.appendChild(c);
+    });
+
+    let pyodide = null, pyReady = false;
+    async function ensurePy() {
+      const st = document.getElementById("status");
+      if (pyReady) return;
+      st.textContent = "⏳ Carregando Python (pode demorar na primeira vez)…";
+      if (!window.loadPyodide) {
+        await new Promise((res, rej) => {
+          const s = document.createElement("script");
+          s.src = "https://cdn.jsdelivr.net/pyodide/v0.26.2/full/pyodide.js";
+          s.onload = res; s.onerror = rej; document.head.appendChild(s);
+        });
+      }
+      pyodide = await loadPyodide();
+      pyReady = true;
+      st.textContent = "✅ Python pronto! Resolva os desafios.";
+    }
+    ensurePy().catch(e => document.getElementById("status").textContent = "❌ Erro ao carregar Python: " + e.message);
+
+    function norm(s){ return (s||"").trim().replace(/\s+/g, " "); }
+
+    wrap.addEventListener("click", async e => {
+      const b = e.target.closest("button");
+      if (!b) return;
+      const i = +b.dataset.i;
+      const card = b.closest(".desafio");
+      const code = card.querySelector("textarea").value;
+      const out = card.querySelector(".out");
+      const v = card.querySelector(".verdict");
+      await ensurePy();
+      out.textContent = "";
+      let buf = "";
+      pyodide.setStdout({ batched: s => buf += s });
+      try { await pyodide.runPythonAsync(code); }
+      catch (err) { out.textContent = "❌ " + err.message; v.textContent = ""; return; }
+      out.textContent = buf || "(sem saída)";
+      if (b.classList.contains("rosa")) {
+        if (norm(buf) === norm(desafios[i].esperado)) {
+          v.style.color = "#6ee7b7"; v.textContent = "🎉 Correto! Você resolveu o desafio!";
+        } else {
+          v.style.color = "#fca5a5"; v.textContent = "🤔 Ainda não. Saída esperada: " + desafios[i].esperado + ". Ajuste o código e tente de novo.";
+        }
+      }
+    });
+  </script>
+</body>
+</html>
