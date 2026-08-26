@@ -72,6 +72,7 @@
         <div class="tabs">
           <button data-tab="content" class="active">📝 Conteúdo</button>
           <button data-tab="style">🎨 Estilo</button>
+          <button data-tab="js">⚡ JavaScript</button>
           <button data-tab="export">⬇️ Exportar</button>
         </div>
 
@@ -116,6 +117,13 @@
           <button class="cmd" id="open">🔗 Abrir em nova aba</button>
           <button class="cmd" id="reset" style="background:#475569;color:#fff;">♻️ Recomeçar</button>
         </div>
+
+        <div id="tab-js" class="tab" hidden>
+          <p style="color:#94a3b8;">Escreva JavaScript para tornar o site interativo (rode no navegador). Exemplos prontos:</p>
+          <div class="presets" id="jsEx"></div>
+          <label>Código JavaScript (opcional)</label>
+          <textarea id="jsCode" rows="9" style="font-family:Consolas,monospace;"></textarea>
+        </div>
       </div>
 
       <div class="panel">
@@ -143,8 +151,8 @@
 
   <script>
     const SCHEMAS = {
-      hero: { label: "Hero (topo)", fields: [ {k:"subtitle",l:"Subtítulo",t:"text"}, {k:"btn",l:"Texto do botão",t:"text"} ] },
-      about: { label: "Sobre", fields: [ {k:"heading",l:"Título",t:"text"}, {k:"text",l:"Texto",t:"area"} ] },
+      hero: { label: "Hero (topo)", fields: [ {k:"subtitle",l:"Subtítulo",t:"text"}, {k:"btn",l:"Texto do botão",t:"text"} ], image: true },
+      about: { label: "Sobre", fields: [ {k:"heading",l:"Título",t:"text"}, {k:"text",l:"Texto",t:"area"} ], image: true },
       cards: { label: "Cards / Recursos", fields: [ {k:"heading",l:"Título da seção",t:"text"} ], cards: true },
       contact: { label: "Contato", fields: [ {k:"heading",l:"Título",t:"text"}, {k:"email",l:"E-mail de contato",t:"text"} ] },
       footer: { label: "Rodapé", fields: [ {k:"text",l:"Texto do rodapé",t:"text"} ] }
@@ -162,6 +170,7 @@
     function defaultSite(){
       return {
         title: "Meu Site Top", emoji: "🚀",
+        js: "",
         theme: { bg:"#0f172a", fg:"#e2e8f0", ac:"#ff6f61", font:"Segoe UI" },
         sections: [
           { type:"hero", subtitle:"Bem-vindo ao meu site!", btn:"Entrar" },
@@ -188,9 +197,11 @@
       let body = "";
       s.sections.forEach((sec, i) => {
         if (sec.type === "hero") {
-          body += `<section class="hero" id="sec${i}" style="background:${bg};color:${fg}"><h1>${E} ${T}</h1><p style="font-size:1.2rem;opacity:.9">${escapeHtml(sec.subtitle)}</p><button>${escapeHtml(sec.btn || "Entrar")}</button></section>`;
+          const hstyle = sec.image ? `background:#000 url('${sec.image}') center/cover no-repeat;color:#fff` : `background:${bg};color:${fg}`;
+          body += `<section class="hero" id="sec${i}" style="${hstyle}"><h1>${E} ${T}</h1><p style="font-size:1.2rem;opacity:.92">${escapeHtml(sec.subtitle)}</p><button id="heroBtn">${escapeHtml(sec.btn || "Entrar")}</button></section>`;
         } else if (sec.type === "about") {
-          body += `<section id="sec${i}"><h2>${escapeHtml(sec.heading)}</h2><p>${escapeHtml(sec.text)}</p></section>`;
+          const img = sec.image ? `<img src="${sec.image}" alt="" style="max-width:100%;border-radius:12px;margin:12px 0">` : "";
+          body += `<section id="sec${i}">${img}<h2>${escapeHtml(sec.heading)}</h2><p>${escapeHtml(sec.text)}</p></section>`;
         } else if (sec.type === "cards") {
           let cards = "";
           (sec.cards || []).forEach(c => { cards += `<div class="card"><h3>${escapeHtml(c.t)}</h3><p>${escapeHtml(c.d)}</p></div>`; });
@@ -211,7 +222,8 @@ button{background:${ac};color:#fff;border:none;padding:12px 24px;border-radius:9
 .card{flex:1 1 220px;border:1px solid ${ac};border-radius:12px;padding:16px;background:rgba(255,255,255,.06)}
 form input,form textarea{width:100%;padding:8px;margin:6px 0;border-radius:8px;border:1px solid #aaa}
 footer{text-align:center;padding:24px;border-top:1px solid rgba(128,128,128,.4)}`;
-      return `<!DOCTYPE html>\n<html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">\n<title>${T}</title>\n<style>${css}</style></head>\n<body>\n<header><nav><strong>${E} ${T}</strong>${nav}</nav></header>\n${body}\n</body></html>`;
+      const jsFinal = (s.js && s.js.trim()) ? s.js.replace(/<\/script>/gi, "<\\/script>") : "var hb=document.getElementById('heroBtn'); if(hb){hb.onclick=function(){alert('Obrigado por visitar! 💙');}};";
+      return `<!DOCTYPE html>\n<html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">\n<title>${T}</title>\n<style>${css}</style></head>\n<body>\n<header><nav><strong>${E} ${T}</strong>${nav}</nav></header>\n${body}\n<script>${jsFinal}<\/script>\n</body></html>`;
     }
 
     function renderPreview(){
@@ -261,6 +273,23 @@ footer{text-align:center;padding:24px;border-top:1px solid rgba(128,128,128,.4)}
           add.addEventListener("click", () => { site.sections[si].cards.push({t:"", d:""}); buildForm(); renderPreview(); });
           box.appendChild(add);
         }
+        if (sch.image) {
+          const labI = document.createElement("label"); labI.textContent = "Imagem de fundo (opcional)"; box.appendChild(labI);
+          if (sec.image) { const av = document.createElement("div"); av.style.cssText = "margin-top:4px;font-size:.8rem;color:#34d399"; av.textContent = "✅ imagem carregada"; box.appendChild(av); }
+          const fi = document.createElement("input"); fi.type = "file"; fi.accept = "image/*";
+          fi.addEventListener("change", () => {
+            const file = fi.files[0]; if (!file) return;
+            const r = new FileReader();
+            r.onload = () => { site.sections[si].image = r.result; buildForm(); renderPreview(); };
+            r.readAsDataURL(file);
+          });
+          box.appendChild(fi);
+          if (sec.image) {
+            const clr = document.createElement("button"); clr.textContent = "🗑️ Remover imagem"; clr.style.cssText = "background:#7f1d1d;color:#fff;border:none;border-radius:8px;cursor:pointer;padding:6px 10px;margin-top:6px";
+            clr.onclick = () => { site.sections[si].image = ""; buildForm(); renderPreview(); };
+            box.appendChild(clr);
+          }
+        }
         wrap.appendChild(box);
       });
       wrap.querySelectorAll("[data-rm]").forEach(b => b.onclick = () => { site.sections.splice(+b.dataset.rm, 1); buildForm(); renderPreview(); });
@@ -293,6 +322,22 @@ footer{text-align:center;padding:24px;border-top:1px solid rgba(128,128,128,.4)}
       };
       pc.appendChild(b);
     });
+
+    // exemplos de JavaScript
+    const jsExamples = {
+      "Botão avisa 💬": "var b=document.getElementById('heroBtn'); if(b){ b.onclick=function(){ alert('Olá! Obrigado por visitar 💙'); }; }",
+      "Contador de cliques 🔢": "var n=0; var b=document.getElementById('heroBtn'); if(b){ b.onclick=function(){ n++; alert('Você clicou '+n+' vez(es)!'); }; }",
+      "Relógio ao vivo 🕒": "var c=document.createElement('div'); c.id='relogio'; document.body.prepend(c); function t(){ c.textContent='🕒 '+new Date().toLocaleTimeString(); } t(); setInterval(t,1000);",
+      "Trocar cor ao clicar 🎨": "document.body.addEventListener('click',function(){ var cores=['#0f172a','#ff6f61','#38bdf8','#34d399']; document.body.style.background=cores[Math.floor(Math.random()*cores.length)]; });"
+    };
+    const jx = document.getElementById("jsEx");
+    Object.keys(jsExamples).forEach(name => {
+      const b = document.createElement("button"); b.className = "preset"; b.textContent = name; b.style.background = "#475569";
+      b.onclick = () => { site.js = jsExamples[name]; document.getElementById("jsCode").value = site.js; renderPreview(); };
+      jx.appendChild(b);
+    });
+    document.getElementById("jsCode").value = site.js || "";
+    document.getElementById("jsCode").addEventListener("input", e => { site.js = e.target.value; renderPreview(); });
 
     // export
     document.getElementById("dl").onclick = () => {
