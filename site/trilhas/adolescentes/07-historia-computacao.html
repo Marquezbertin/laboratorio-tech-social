@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Módulo 07 — Conceito e História da Computação 🕰️ | Lab Tech Social</title>
+  <style>
+    :root { --azul:#38bdf8; --rosa:#ff6f61; --fundo:#0f172a; --texto:#e2e8f0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--fundo); color: var(--texto); line-height: 1.7; }
+    header { background: #1e293b; padding: 16px 20px; border-bottom: 1px solid #334155; }
+    nav { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    nav .logo { font-weight: 700; color: var(--azul); margin-right: auto; }
+    nav a { color: var(--texto); text-decoration: none; font-size: 0.9rem; }
+    nav a:hover { color: var(--azul); }
+    main { max-width: 820px; margin: 0 auto; padding: 34px 20px 60px; }
+    .voltar { color: var(--azul); text-decoration: none; font-size: 0.9rem; }
+    h1 { color: var(--azul); margin: 14px 0; }
+    .faixa { color: var(--rosa); font-weight: 600; }
+    h2 { color: #f1f5f9; margin-top: 28px; border-bottom: 1px solid #334155; padding-bottom: 6px; }
+    h3 { color: #f1f5f9; margin-top: 16px; }
+    p, li, td, th { color: #cbd5e1; }
+    ul, ol { padding-left: 22px; }
+    .atividade { background: #1e293b; border: 1px solid #334155; border-left: 4px solid var(--azul); border-radius: 10px; padding: 16px 18px; margin-top: 14px; }
+    .timeline { background: #1e293b; border-radius: 10px; padding: 14px 18px; margin-top: 14px; }
+    .timeline div { padding: 7px 0; border-bottom: 1px dashed #334155; }
+    .timeline div:last-child { border-bottom: none; }
+    .timeline b { color: var(--azul); }
+    table { width: 100%; border-collapse: collapse; margin-top: 14px; background: #1e293b; border-radius: 10px; overflow: hidden; }
+    th, td { padding: 10px 12px; border-bottom: 1px solid #334155; text-align: left; }
+    th { background: #0f172a; color: var(--rosa); }
+    .quiz { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 16px 18px; margin-top: 14px; }
+    .quiz .perg { margin-top: 14px; font-weight: 600; color: #f1f5f9; }
+    .quiz button { background: #0f172a; color: var(--texto); border: 1px solid #334155; padding: 8px 12px; border-radius: 8px; cursor: pointer; margin: 6px 6px 0 0; }
+    .quiz button.certo { background: #14532d; color: #fff; border-color: #22c55e; }
+    .quiz button.errado { background: #7f1d1d; color: #fff; border-color: #ef4444; }
+    .quiz .fb { margin-top: 6px; font-size: .92rem; }
+    .links { margin-top: 26px; }
+    .links a { display: inline-block; margin-right: 10px; color: var(--azul); border: 1px solid #334155; padding: 6px 14px; border-radius: 999px; text-decoration: none; }
+    .links a:hover { border-color: var(--azul); }
+    footer { text-align: center; padding: 26px; color: #64748b; border-top: 1px solid #334155; }
+  </style>
+  <link rel="icon" href="/laboratorio-tech-social/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <header>
+    <nav>
+      <span class="logo"><img src="/laboratorio-tech-social/logo.svg" alt="Logo" height="22" style="vertical-align:middle;margin-right:6px;" /> 🚀 Lab Tech Social</span>
+      <a href="/laboratorio-tech-social/index.html">Início</a>
+      <a href="/laboratorio-tech-social/trilhas.html">Trilhas</a>
+      <a href="/laboratorio-tech-social/exercicios.html">Exercícios</a>
+      <a href="/laboratorio-tech-social/blog.html">Blog</a>
+      <a href="/laboratorio-tech-social/calendario.html">Calendário</a>
+      <a href="/laboratorio-tech-social/voluntarios.html">Voluntários</a>
+      <a href="/laboratorio-tech-social/slides.html">Slides</a>
+      <a href="/laboratorio-tech-social/inscricao/">Inscrição</a>
+      <a href="/laboratorio-tech-social/certificado/">Certificados</a>
+      <a href="/laboratorio-tech-social/sobre.html">Sobre</a>
+      <a href="/laboratorio-tech-social/index_en.html" style="color:var(--azul);">EN</a>
+    </nav>
+  </header>
+
+  <main>
+    <a class="voltar" href="/laboratorio-tech-social/trilhas.html">← Voltar às Trilhas</a>
+    <p class="faixa">🧑‍💻 Makers/Devs · 13–20 anos</p>
+    <h1>Módulo 07 — Conceito e História da Computação 🕰️</h1>
+
+    <p><strong>Duração:</strong> 90 min · <strong>Conceito + linha do tempo + reflexão sobre o presente.</strong></p>
+
+    <h2>Objetivo</h2>
+    <p>Compreender o que é computação como ciência da informação e percorrer a história — de contas com pedras à inteligência artificial — para entender <strong>como começou</strong> e <strong>onde estamos agora</strong>.</p>
+
+    <h2>Conceito: o que é computação?</h2>
+    <p>Computação é a ciência de <strong>processar informação</strong> de forma automática e confiável. Ela junta três ideias:</p>
+    <ul>
+      <li><strong>Hardware:</strong> a parte física (circuitos, chips, fios).</li>
+      <li><strong>Software:</strong> as instruções (programas, algoritmos) que dizem o que fazer.</li>
+      <li><strong>Algoritmo:</strong> uma sequência finita de passos que resolve um problema.</li>
+    </ul>
+    <p>Um computador é a máquina que executa esses algoritmos muito rápido. Mas a ideia de "seguir regras para calcular" é muito anterior às máquinas.</p>
+
+    <h2>Linha do tempo 📜</h2>
+    <div class="timeline">
+      <div><b>~2500 a.C.</b> — Ábaco: primeiras ferramentas de contar.</div>
+      <div><b>1837</b> — Charles Babbage projeta a "máquina analítica" (mecânica, programável).</div>
+      <div><b>1843</b> — Ada Lovelace descreve o <b>primeiro algoritmo</b> para aquela máquina.</div>
+      <div><b>1936</b> — Alan Turing cria o modelo teórico da "Máquina de Turing": a base de tudo.</div>
+      <div><b>1945</b> — ENIAC: computador eletrônico de válvulas, enorme e lento para o padrão de hoje.</div>
+      <div><b>1947</b> — Transistor; <b>1958</b> — circuito integrado: a miniaturização começa.</div>
+      <div><b>1957+</b> — Linguagens (FORTRAN, C, Python...) traduzem ideias humanas para a máquina.</div>
+      <div><b>1969/1991</b> — ARPANET e, depois, a <b>World Wide Web</b> conectam o mundo.</div>
+      <div><b>Hoje</b> — Smartphones, nuvem, big data e <b>IA/ML</b> estão em quase tudo.</div>
+    </div>
+
+    <h2>Exercício 1 — Ordene a história ✏️</h2>
+    <p>Escreva as 9 datas acima em uma folha, do mais antigo ao mais novo. Depois, pesquise e adicione <strong>você mesmo</strong> mais 2 marcos importantes (ex: lançamento de uma linguagem ou da web).</p>
+
+    <h2>Exercício 2 — Hardware × Software</h2>
+    <p>Liste 5 objetos do seu dia e diga qual é a parte de <b>hardware</b> e qual é o <b>software</b> que neles roda (ex: celular = hardware; WhatsApp = software).</p>
+
+    <h2>Para refletir 💭</h2>
+    <ul>
+      <li>Turing criou um modelo em 1936 que previa computadores antes de existirem. Por que a <em>teoria</em> veio antes da máquina?</li>
+      <li>O transistor e o circuito integrado tornaram tudo menor. O que acontece quando a tecnologia fica "invisível" e onipresente?</li>
+      <li>Estamos na era da IA. Quais problemas a IA resolve bem — e onde ela ainda erra ou pode prejudicar?</li>
+      <li>Se "onde estamos" é a IA, para onde <strong>você</strong> acha que vamos? E qual seu papel nisso?</li>
+    </ul>
+
+    <h2>Quiz de história 🎮</h2>
+    <div class="quiz" id="quiz"></div>
+
+    <div class="atividade" style="border-left-color:var(--rosa);">
+      <h3>🎯 Pratique o que aprendeu</h3>
+      <p>Experimente: <a href="../../exercicios/pensamento-computacional.html">Pensamento Computacional</a>, <a href="../../exercicios/conversor-bases.html">Conversor de Bases</a> e <a href="../../exercicios/flashcards.html">Flashcards de Programação</a>.</p>
+      <h3>💡 Curiosidade</h3>
+      <p>A "Lei de Moore" observou que a capacidade dos chips dobrava a cada ~2 anos. Essa corrida de miniaturização é o que fez seu celular ser mais poderoso que os computadores que levaram o ser humano à Lua.</p>
+    </div>
+
+    <div class="links">
+      <a href="../../slides/aula-teens-07-historia-computacao.html">📊 Ver slides desta aula</a>
+      <a href="/laboratorio-tech-social/trilhas.html">🧭 Todas as aulas</a>
+      <a href="../../exercicios.html">🧪 Pratique nesta aula</a>
+    </div>
+  </main>
+
+  <footer>Licença MIT — projeto social gratuito.</footer>
+  <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+  <script src="https://vlibras.gov.br/app.js"></script>
+  <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+
+  <script>
+    const perguntas = [
+      { q:"A Máquina de Turing (1936) foi...", o:["Um computador real que existia na época","Um modelo teórico que define o que é computável","Um videogame antigo"], a:1 },
+      { q:"Ada Lovelace é famosa por...", o:["Ter inventado o transistor","Ter descrito o primeiro algoritmo","Ter criado a internet"], a:1 },
+      { q:"O que tornou os computadores pequenos e baratos?", o:["O circuito integrado e o transistor","A invenção do papel","A eletricidade"], a:0 },
+      { q:"A World Wide Web surgiu em...", o:["1991","1843","1945"], a:0 },
+      { q:"Hoje vivemos muito a era da...", o:["Máquinas a vapor","Inteligência Artificial e nuvem","Cartões perfurados"], a:1 }
+    ];
+    const quiz = document.getElementById("quiz");
+    let acertos = 0, feitas = 0;
+    perguntas.forEach((p, idx) => {
+      const d = document.createElement("div");
+      d.innerHTML = `<div class="perg">${idx+1}. ${p.q}</div>`;
+      p.o.forEach((op, oi) => {
+        const b = document.createElement("button");
+        b.textContent = op;
+        b.onclick = () => {
+          if (b.disabled) return;
+          feitas++;
+          if (oi === p.a) { b.classList.add("certo"); acertos++; }
+          else { b.classList.add("errado"); }
+          d.querySelectorAll("button").forEach(x => x.disabled = true);
+          const fb = document.createElement("div"); fb.className = "fb";
+          fb.textContent = (oi === p.a) ? "🎉 Certo!" : "🤔 Não era esse. A resposta certa está em verde.";
+          fb.style.color = (oi === p.a) ? "#22c55e" : "#ef4444";
+          if (oi !== p.a) d.querySelectorAll("button")[p.a].classList.add("certo");
+          d.appendChild(fb);
+          if (feitas === perguntas.length) {
+            const r = document.createElement("div"); r.className = "fb";
+            r.style.marginTop = "12px"; r.style.fontWeight = "700";
+            r.textContent = "Seu resultado: " + acertos + " de " + perguntas.length + " acertos!";
+            quiz.appendChild(r);
+          }
+        };
+        d.appendChild(b);
+      });
+      quiz.appendChild(d);
+    });
+  </script>
+</body>
+</html>

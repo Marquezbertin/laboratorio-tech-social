@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Módulo 06 — A História da Computação 🕰️ | Lab Tech Social</title>
+  <style>
+    :root { --azul:#38bdf8; --rosa:#ff6f61; --fundo:#0f172a; --texto:#e2e8f0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--fundo); color: var(--texto); line-height: 1.7; }
+    header { background: #1e293b; padding: 16px 20px; border-bottom: 1px solid #334155; }
+    nav { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    nav .logo { font-weight: 700; color: var(--azul); margin-right: auto; }
+    nav a { color: var(--texto); text-decoration: none; font-size: 0.9rem; }
+    nav a:hover { color: var(--azul); }
+    main { max-width: 820px; margin: 0 auto; padding: 34px 20px 60px; }
+    .voltar { color: var(--azul); text-decoration: none; font-size: 0.9rem; }
+    h1 { color: var(--azul); margin: 14px 0; }
+    .faixa { color: var(--rosa); font-weight: 600; }
+    h2 { color: #f1f5f9; margin-top: 28px; border-bottom: 1px solid #334155; padding-bottom: 6px; }
+    h3 { color: #f1f5f9; margin-top: 16px; }
+    p, li, td, th { color: #cbd5e1; }
+    ul, ol { padding-left: 22px; }
+    .atividade { background: #1e293b; border: 1px solid #334155; border-left: 4px solid var(--azul); border-radius: 10px; padding: 16px 18px; margin-top: 14px; }
+    .timeline { background: #1e293b; border-radius: 10px; padding: 14px 18px; margin-top: 14px; }
+    .timeline div { padding: 8px 0; border-bottom: 1px dashed #334155; }
+    .timeline div:last-child { border-bottom: none; }
+    .timeline b { color: var(--azul); }
+    table { width: 100%; border-collapse: collapse; margin-top: 14px; background: #1e293b; border-radius: 10px; overflow: hidden; }
+    th, td { padding: 10px 12px; border-bottom: 1px solid #334155; text-align: left; }
+    th { background: #0f172a; color: var(--rosa); }
+    .quiz { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 16px 18px; margin-top: 14px; }
+    .quiz .perg { margin-top: 14px; font-weight: 600; color: #f1f5f9; }
+    .quiz button { background: #0f172a; color: var(--texto); border: 1px solid #334155; padding: 8px 12px; border-radius: 8px; cursor: pointer; margin: 6px 6px 0 0; }
+    .quiz button.certo { background: #14532d; color: #fff; border-color: #22c55e; }
+    .quiz button.errado { background: #7f1d1d; color: #fff; border-color: #ef4444; }
+    .quiz .fb { margin-top: 6px; font-size: .92rem; }
+    .links { margin-top: 26px; }
+    .links a { display: inline-block; margin-right: 10px; color: var(--azul); border: 1px solid #334155; padding: 6px 14px; border-radius: 999px; text-decoration: none; }
+    .links a:hover { border-color: var(--azul); }
+    footer { text-align: center; padding: 26px; color: #64748b; border-top: 1px solid #334155; }
+  </style>
+  <link rel="icon" href="/laboratorio-tech-social/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <header>
+    <nav>
+      <span class="logo"><img src="/laboratorio-tech-social/logo.svg" alt="Logo" height="22" style="vertical-align:middle;margin-right:6px;" /> 🚀 Lab Tech Social</span>
+      <a href="/laboratorio-tech-social/index.html">Início</a>
+      <a href="/laboratorio-tech-social/trilhas.html">Trilhas</a>
+      <a href="/laboratorio-tech-social/exercicios.html">Exercícios</a>
+      <a href="/laboratorio-tech-social/blog.html">Blog</a>
+      <a href="/laboratorio-tech-social/calendario.html">Calendário</a>
+      <a href="/laboratorio-tech-social/voluntarios.html">Voluntários</a>
+      <a href="/laboratorio-tech-social/slides.html">Slides</a>
+      <a href="/laboratorio-tech-social/inscricao/">Inscrição</a>
+      <a href="/laboratorio-tech-social/certificado/">Certificados</a>
+      <a href="/laboratorio-tech-social/sobre.html">Sobre</a>
+      <a href="/laboratorio-tech-social/index_en.html" style="color:var(--azul);">EN</a>
+    </nav>
+  </header>
+
+  <main>
+    <a class="voltar" href="/laboratorio-tech-social/trilhas.html">← Voltar às Trilhas</a>
+    <p class="faixa">🧒 Exploradores · 8–12 anos</p>
+    <h1>Módulo 06 — A História da Computação 🕰️</h1>
+
+    <p><strong>Duração:</strong> 60 min · <strong>Sem computador obrigatório</strong> (dá para fazer no papel e depois testar no site!).</p>
+
+    <h2>Objetivo</h2>
+    <p>Descobrir como as pessoas contavam e calculavam ANTES dos computadores e como chegamos até os celulares e à inteligência artificial que usamos hoje.</p>
+
+    <h2>Conceito: o que é computação?</h2>
+    <p><strong>Computar</strong> vem de <em>computar</em>, que significa calcular ou contar. A computação é a arte de usar máquinas e ideias para <strong>processar informação</strong> e resolver problemas. Um computador é só a ferramenta mais famosa dessa ideia — mas a vontade de contar e organizar coisas é muito, muito antiga!</p>
+
+    <h2>Linha do tempo 📜</h2>
+    <div class="timeline">
+      <div><b>Há milhares de anos</b> — Povos antigos usavam o <b>ábaco</b>: contas e pedrinhas para somar e subtrair.</div>
+      <div><b>1837</b> — Charles Babbage desenha uma "máquina diferencial" mecânica (não chegou a terminar!).</div>
+      <div><b>1843</b> — Ada Lovelace escreve o que muitos chamam de <b>primeiro programa da história</b>.</div>
+      <div><b>1936</b> — Alan Turing imagina uma "máquina" que pode calcular qualquer coisa seguindo regras.</div>
+      <div><b>1945</b> — ENIAC, um dos primeiros computadores elétricos grandes, ocupava um salão inteiro!</div>
+      <div><b>1970–80</b> — O <b>computador pessoal</b> chega às casas e escolas.</div>
+      <div><b>Hoje</b> — Celulares, internet, nuvens e <b>inteligência artificial</b> cabem no bolso.</div>
+    </div>
+
+    <h2>Atividade 1 — Monte sua linha do tempo 🖍️</h2>
+    <p>Em um papel, desenhe 6 quadradinhos e cole (ou escreva) os fatos acima na <strong>ordem certa</strong>, do mais antigo para o mais novo. Depois compare com a turma.</p>
+
+    <h2>Atividade 2 — Entrevista 🎤</h2>
+    <p>Pergunte a alguém de casa ou a um professor: <em>"Como era fazer contas ou pesquisar antes dos celulares e do Google?"</em> Anote 3 diferenças.</p>
+
+    <h2>Para refletir 💭</h2>
+    <ul>
+      <li>Se Ada Lovelace já programava em 1843, por que demorou tanto para termos computadores em casa?</li>
+      <li>O ENIAC ocupava um salão. Seu celular é milhões de vezes mais rápido e cabe no bolso. O que mudou?</li>
+      <li>Se hoje temos inteligência artificial, o que <strong>você</strong> acha que vai existir daqui a 20 anos?</li>
+      <li>A tecnologia ajuda muito, mas também gasta energia e muda o planeta. Como usar com responsabilidade?</li>
+    </ul>
+
+    <h2>Quiz divertido 🎮</h2>
+    <div class="quiz" id="quiz"></div>
+
+    <div class="atividade" style="border-left-color:var(--rosa);">
+      <h3>🎯 Pratique o que aprendeu</h3>
+      <p>Experimente: <a href="../../exercicios/pensamento-computacional.html">Pensamento Computacional</a>, <a href="../../exercicios/memoria-conceitos.html">Jogo da Memória de Conceitos</a> e <a href="../../exercicios/quiz-criancas.html">Quiz Exploradores</a>.</p>
+      <h3>💡 Curiosidade</h3>
+      <p>O ábaco ainda é usado em algunhas escolas para ensinar matemática rápida — e algumas pessoas conseguem somar mais velozes no ábaco do que na calculadora!</p>
+    </div>
+
+    <div class="links">
+      <a href="../../slides/aula-criancas-06-historia-computacao.html">📊 Ver slides desta aula</a>
+      <a href="/laboratorio-tech-social/trilhas.html">🧭 Todas as aulas</a>
+      <a href="../../exercicios.html">🧪 Pratique nesta aula</a>
+    </div>
+  </main>
+
+  <footer>Licença MIT — projeto social gratuito.</footer>
+  <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+  <script src="https://vlibras.gov.br/app.js"></script>
+  <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+
+  <script>
+    const perguntas = [
+      { q:"O que é o ábaco?", o:["Um tipo de computador moderno","Uma ferramenta antiga de contar com pedrinhas","Um robô da Idade Média"], a:1 },
+      { q:"Quem escreveu o primeiro programa da história?", o:["Ada Lovelace","Alan Turing","Steve Jobs"], a:0 },
+      { q:"O ENIAC era...", o:["Um celular pequenino","Um computador gigante que ocupava um salão","Uma caneta inteligente"], a:1 },
+      { q:"O que temos hoje que cabe no bolso?", o:["Um computador pessoal com IA","Um ábaco de pedra","Nada disso"], a:0 }
+    ];
+    const quiz = document.getElementById("quiz");
+    let acertos = 0, feitas = 0;
+    perguntas.forEach((p, idx) => {
+      const d = document.createElement("div");
+      d.innerHTML = `<div class="perg">${idx+1}. ${p.q}</div>`;
+      p.o.forEach((op, oi) => {
+        const b = document.createElement("button");
+        b.textContent = op;
+        b.onclick = () => {
+          if (b.disabled) return;
+          feitas++;
+          if (oi === p.a) { b.classList.add("certo"); acertos++; }
+          else { b.classList.add("errado"); }
+          d.querySelectorAll("button").forEach(x => x.disabled = true);
+          const fb = document.createElement("div"); fb.className = "fb";
+          fb.textContent = (oi === p.a) ? "🎉 Certo!" : "🤔 Não era esse. A resposta certa está marcada em verde.";
+          fb.style.color = (oi === p.a) ? "#22c55e" : "#ef4444";
+          if (oi !== p.a) d.querySelectorAll("button")[p.a].classList.add("certo");
+          d.appendChild(fb);
+          if (feitas === perguntas.length) {
+            const r = document.createElement("div"); r.className = "fb";
+            r.style.marginTop = "12px"; r.style.fontWeight = "700";
+            r.textContent = "Seu resultado: " + acertos + " de " + perguntas.length + " acertos!";
+            quiz.appendChild(r);
+          }
+        };
+        d.appendChild(b);
+      });
+      quiz.appendChild(d);
+    });
+  </script>
+</body>
+</html>
