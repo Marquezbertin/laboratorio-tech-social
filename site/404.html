@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Redirecionando… | Lab Tech Social</title>
+  <style>
+    body { font-family: system-ui, 'Segoe UI', sans-serif; background:#0f172a; color:#e2e8f0; text-align:center; padding-top:22vh; margin:0; }
+    h1 { color:#38bdf8; }
+    p { color:#94a3b8; }
+  </style>
+</head>
+<body>
+  <h1>🔄 Redirecionando…</h1>
+  <p>Esta página foi movida. Você será levado ao lugar certo.</p>
+  <script>
+    const name = location.pathname.split('/').pop();
+    const candidatos = ['exercicios/', 'trilhas/criancas/', 'trilhas/adolescentes/', 'slides/'];
+    (async () => {
+      for (const c of candidatos) {
+        try {
+          const r = await fetch(c + name, { method: 'HEAD' });
+          if (r.ok) { location.replace(c + name); return; }
+        } catch (e) {}
+      }
+      location.replace('/laboratorio-tech-social/');
+    })();
+  </script>
+</body>
+</html>
