@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Slides | Laboratório de Tecnologia Social</title>
+  <style>
+    :root { --azul:#38bdf8; --rosa:#ff6f61; --fundo:#0f172a; --texto:#e2e8f0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--fundo); color: var(--texto); line-height: 1.6; }
+    header { background: #1e293b; padding: 18px 20px; border-bottom: 1px solid #334155; }
+    nav { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+    nav .logo { font-weight: 700; color: var(--azul); margin-right: auto; }
+    nav a { color: var(--texto); text-decoration: none; font-size: 0.95rem; }
+    nav a:hover { color: var(--azul); }
+    main { max-width: 1000px; margin: 0 auto; padding: 40px 20px 60px; }
+    h1 { text-align:center; color: var(--azul); }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-top: 30px; }
+    .card { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 20px; }
+    .card h3 { color: var(--azul); margin-bottom: 6px; }
+    .card a { display: inline-block; margin-top: 10px; color: var(--rosa); text-decoration: none; font-weight: 600; }
+    .group { margin-top: 30px; }
+    .group h2 { color: var(--rosa); border-bottom: 1px solid #334155; padding-bottom: 6px; }
+    footer { text-align: center; padding: 30px; color: #64748b; border-top: 1px solid #334155; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <span class="logo">🚀 Lab Tech Social</span>
+      <a href="index.html">Início</a>
+      <a href="trilhas.html">Trilhas</a>
+      <a href="slides.html">Slides</a>
+      <a href="inscricao/">Inscrição</a>
+      <a href="certificado/">Certificados</a>
+      <a href="sobre.html">Sobre</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1>📊 Slides das Aulas</h1>
+    <p style="text-align:center;color:#94a3b8;">Decks prontos (Reveal.js). Abra e projetue em sala. Pressione F para tela cheia.</p>
+
+    <div class="group">
+      <h2>🧒 Exploradores (8–12)</h2>
+      <div class="grid">
+        <div class="card"><h3>Pensamento Computacional</h3><a href="slides/aula-criancas-01-pensamento.html">Abrir deck →</a></div>
+        <div class="card"><h3>Scratch</h3><a href="slides/aula-criancas-02-scratch.html">Abrir deck →</a></div>
+        <div class="card"><h3>Robótica & IoT</h3><a href="slides/aula-criancas-03-robotica.html">Abrir deck →</a></div>
+        <div class="card"><h3>Meu Primeiro Site</h3><a href="slides/aula-criancas-04-primeiro-site.html">Abrir deck →</a></div>
+        <div class="card"><h3>Cidadania Digital</h3><a href="slides/aula-criancas-05-cidadania.html">Abrir deck →</a></div>
+      </div>
+    </div>
+
+    <div class="group">
+      <h2>🧑‍💻 Makers/Devs (13–20)</h2>
+      <div class="grid">
+        <div class="card"><h3>Python & Lógica</h3><a href="slides/aula-teens-01-python.html">Abrir deck →</a></div>
+        <div class="card"><h3>Desenvolvimento Web</h3><a href="slides/aula-teens-02-web.html">Abrir deck →</a></div>
+        <div class="card"><h3>Qualidade de Software (QA)</h3><a href="slides/aula-teens-03-qa.html">Abrir deck →</a></div>
+        <div class="card"><h3>Ciência de Dados</h3><a href="slides/aula-teens-04-dados.html">Abrir deck →</a></div>
+        <div class="card"><h3>IoT & Nuvem</h3><a href="slides/aula-teens-05-iot.html">Abrir deck →</a></div>
+        <div class="card"><h3>Projeto Social</h3><a href="slides/aula-teens-06-projeto.html">Abrir deck →</a></div>
+      </div>
+    </div>
+
+    <div class="group">
+      <h2>Geral</h2>
+      <div class="grid">
+        <div class="card"><h3>Aula de Abertura</h3><a href="slides/aula-01-boas-vindas.html">Abrir deck →</a></div>
+        <div class="card"><h3>Modelo em branco</h3><a href="slides/template-slides.html">Abrir template →</a></div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <p>Licença MIT — projeto social gratuito.</p>
+  </footer>
+</body>
+</html>

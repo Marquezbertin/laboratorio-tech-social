@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Módulo 04 — Ciência de Dados | Lab Tech</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/theme/sky.css" />
+</head>
+<body>
+  <div class="reveal"><div class="slides">
+    <section><h1>📊 Ciência de Dados</h1><h3>Makers/Devs · Módulo 04</h3></section>
+    <section><h2>Ler dados (Pandas)</h2><pre><code>import pandas as pd
+dados = pd.DataFrame({...})
+print(dados)</code></pre></section>
+    <section><h2>Analisar</h2><pre><code>dados["media"] = dados["gols"]/dados["jogos"]
+print(dados.sort_values("media"))</code></pre></section>
+    <section><h2>Visualizar</h2><pre><code>plt.bar(dados["time"], dados["gols"])
+plt.show()</code></pre></section>
+    <section><h2>Desafio</h2><p>Colete 10 linhas sobre sua cidade e gere um gráfico no Google Colab.</p></section>
+  </div></div>
+  <script src="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.js"></script>
+  <script>Reveal.initialize({ hash: true, slideNumber: true });</script>
+</body></html>
