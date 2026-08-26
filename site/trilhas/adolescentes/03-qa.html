@@ -55,7 +55,6 @@
     <a class="voltar" href="../trilhas.html">← Voltar às Trilhas</a>
     <p class="faixa">🧑‍💻 Makers/Devs · 13–20 anos</p>
     <h1>Módulo 03 — Qualidade de Software (QA) ✅</h1>
-<h1>Módulo 03 — Qualidade de Software (QA) ✅</h1>
 
 <p><strong>Duração:</strong> 90 min · <strong>Inspirado em:</strong> <a href="https://www.despertarqa.net/" style="color:var(--azul)">Despertar QA</a>.</p>
 
@@ -94,11 +93,31 @@ def test_soma():
 <h2>3. Desafio — Bugs caçados</h2>
 <p>No repositório <a href="https://github.com/Marquezbertin/listadetarefas_qualityAssurance" style="color:var(--azul)">listadetarefas_qualityAssurance</a> há uma app de lista de tarefas com erros propositais. Encontre 3 bugs e descreva como corrigir.</p>
 
-<h2>Próximo passo</h2>
-<p>Vá para o <a href="modulo-04-ciencia-dados.md" style="color:var(--azul)"><code>Módulo 04 — Ciência de Dados</code></a>.</p>
+<h2>4. Casos de teste de verdade (app de login)</h2>
+<p>Pensando em uma tela com campos "usuário" e "senha" e o botão "Entrar", veja os casos que um QA real escreveria (baseado em projetos reais de testes):</p>
+<table><thead><tr><th>Tipo</th><th>Caso</th><th>Esperado</th></tr></thead><tbody>
+<tr><td>Positivo</td><td>Usuário e senha corretos</td><td>Entra no sistema</td></tr>
+<tr><td>Positivo</td><td>Texto do botão aparece certo</td><td>"Entrar" visível e clicável</td></tr>
+<tr><td>Negativo</td><td>Enviar campos vazios</td><td>Mostra aviso "preencha tudo"</td></tr>
+<tr><td>Negativo</td><td>Senha errada</td><td>Aviso, sem vazar se a conta existe</td></tr>
+<tr><td>Negativo</td><td>Muitos caracteres (ex: 500)</td><td>Não trava, rejeita ou limita</td></tr>
+<tr><td>Criativo</td><td>Colar texto gigante</td><td>Lida com calma, sem quebrar</td></tr>
+<tr><td>Criativo</td><td>"Enter" sem digitar nada</td><td>Nada acontece ou avisa</td></tr>
+<tr><td>Criativo</td><td>Testar em tela de celular</td><td>Continua legível e funciona</td></tr>
+</tbody></table>
+<p>Dica: use o <a href="../../exercicios/plano-testes.html" style="color:var(--azul)">Planejador de Testes</a> para montar o seu próprio plano e depois caçar bugs no <a href="../../exercicios/caca-bugs.html" style="color:var(--azul)">Caça-Bugs</a>.</p>
 
+<h2>Próximo passo</h2>
+<p>Vá para o <a href="04-dados.html" style="color:var(--azul)"><code>Módulo 04 — Ciência de Dados</code></a>.</p>
+
+        <div class="atividade" style="border-left-color:var(--rosa);">
+      <h3>🎯 Pratique o que aprendeu</h3>
+      <p>Experimente agora: <a href="../../exercicios/plano-testes.html">Planejador de Testes</a>, <a href="../../exercicios/caca-bugs.html">Caça-Bugs</a> e <a href="../../exercicios/gerador-dados.html">Gerador de Dados</a>.</p>
+      <h3>💡 Curiosidade</h3>
+      <p>Empresas sérias têm times de QA (como o projeto Despertar QA) cujo único trabalho é garantir que nada quebra antes de chegar a você.</p>
+    </div>
     <div class="links">
-      <a href="../slides/aula-teens-03-qa.html">📊 Ver slides desta aula</a>
+      <a href="../../slides/aula-teens-03-qa.html">📊 Ver slides desta aula</a>
       <a href="../trilhas.html">🧭 Todas as aulas</a>
       <a href="../../exercicios.html">🧪 Pratique nesta aula</a>
     </div>

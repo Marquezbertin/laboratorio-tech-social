@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulador de APIs REST | Lab Tech</title>
+  <style>
+    :root { --azul:#38bdf8; --rosa:#ff6f61; --fundo:#0f172a; --texto:#e2e8f0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--fundo); color: var(--texto); line-height: 1.6; }
+    header { background: #1e293b; padding: 16px 20px; border-bottom: 1px solid #334155; }
+    nav { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    nav .logo { font-weight: 700; color: var(--azul); margin-right: auto; }
+    nav a { color: var(--texto); text-decoration: none; font-size: 0.9rem; }
+    nav a:hover { color: var(--azul); }
+    main { max-width: 880px; margin: 0 auto; padding: 34px 20px 60px; }
+    .voltar { color: var(--azul); text-decoration: none; font-size: 0.9rem; }
+    h1 { color: var(--azul); margin: 14px 0; }
+    .faixa { color: var(--rosa); font-weight: 600; }
+    .box { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 22px; margin-top: 18px; }
+    select, input, textarea { background: #0f172a; color: var(--texto); border: 1px solid #334155; border-radius: 10px; padding: 10px; font-size: 1rem; }
+    .linha { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
+    button { background: var(--azul); color: #0f172a; border: none; padding: 10px 18px; border-radius: 10px; cursor: pointer; font-weight: 700; margin-top: 12px; }
+    .res { background: #0f172a; border: 1px solid #334155; border-radius: 10px; padding: 14px; margin-top: 14px; font-family: Consolas, monospace; white-space: pre-wrap; }
+    .status { display:inline-block; padding: 4px 10px; border-radius: 999px; font-weight: 700; margin-bottom: 8px; }
+    .ok { background:#064e3b; color:#6ee7b7; }
+    .err { background:#7f1d1d; color:#fca5a5; }
+    .links { margin-top: 26px; }
+    .links a { display: inline-block; margin-right: 10px; color: var(--azul); border: 1px solid #334155; border-radius: 999px; padding: 6px 14px; text-decoration: none; }
+    footer { text-align: center; padding: 26px; color: #64748b; border-top: 1px solid #334155; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <span class="logo"><img src="/laboratorio-tech-social/logo.svg" alt="Logo" height="22" style="vertical-align:middle;margin-right:6px;" /> Lab Tech Social</span>
+      <a href="../index.html">Início</a>
+      <a href="../trilhas.html">Trilhas</a>
+      <a href="../exercicios.html">Exercícios</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../calendario.html">Calendário</a>
+      <a href="../voluntarios.html">Voluntários</a>
+      <a href="../slides.html">Slides</a>
+      <a href="../inscricao/">Inscrição</a>
+      <a href="../certificado/">Certificados</a>
+      <a href="../sobre.html">Sobre</a>
+      <a href="../index_en.html" style="color:var(--azul);">EN</a>
+    </nav>
+  </header>
+
+  <main>
+    <a class="voltar" href="../exercicios.html">← Voltar aos Exercícios</a>
+    <p class="faixa">🧑‍💻 Makers/Devs · 13–20 anos · Web/API</p>
+    <h1>🔌 Simulador de APIs REST</h1>
+    <p style="color:#94a3b8;">Uma API é como um garçom: você pede algo (requisição) e ela traz a resposta. Monte requisições e veja o que acontece — tudo simulado no navegador, sem servidor real.</p>
+
+    <div class="box">
+      <div class="linha">
+        <select id="metodo">
+          <option>GET</option><option>POST</option><option>PUT</option><option>DELETE</option>
+        </select>
+        <select id="endpoint">
+          <option>/cursos</option>
+          <option>/alunos</option>
+          <option>/alunos/novo</option>
+        </select>
+        <button id="enviar">📨 Enviar requisição</button>
+      </div>
+      <label style="display:block;margin-top:14px;font-weight:600;">Corpo (body) — use em POST/PUT, formato JSON:</label>
+      <textarea id="body" style="width:100%;min-height:70px;">{ "nome": "Ana", "idade": 14 }</textarea>
+      <div class="res" id="res">Clique em "Enviar requisição" para começar.</div>
+    </div>
+
+    <div class="links">
+      <a href="validador-regex.html">🔎 Validador de Regex</a>
+      <a href="gerador-dados.html">🧪 Gerador de Dados</a>
+      <a href="../trilhas/adolescentes/02-web.html">🌐 Aula de Web</a>
+    </div>
+  </main>
+
+  <footer>Licença MIT — projeto social gratuito.</footer>
+  <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+  <script src="https://vlibras.gov.br/app.js"></script>
+  <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+
+  <script>
+    const db = {
+      cursos: [
+        { id: 1, nome: "Python para Iniciantes", vagas: 20 },
+        { id: 2, nome: "Robótica com Arduino", vagas: 15 },
+        { id: 3, nome: "Ciência de Dados", vagas: 18 }
+      ],
+      alunos: [
+        { id: 1, nome: "Bruno", idade: 13 },
+        { id: 2, nome: "Luísa", idade: 15 }
+      ]
+    };
+    let nextId = 3;
+
+    function responder(metodo, ep, body) {
+      if (ep === "/cursos") {
+        if (metodo === "GET") return { status: 200, body: db.cursos };
+        return { status: 405, body: { erro: "Método não permitido para /cursos" } };
+      }
+      if (ep === "/alunos") {
+        if (metodo === "GET") return { status: 200, body: db.alunos };
+        if (metodo === "DELETE") return { status: 405, body: { erro: "Use /alunos/novo com POST para criar" } };
+        return { status: 405, body: { erro: "Use POST em /alunos/novo" } };
+      }
+      if (ep === "/alunos/novo") {
+        if (metodo === "POST") {
+          let obj;
+          try { obj = JSON.parse(body || "{}"); }
+          catch (e) { return { status: 400, body: { erro: "JSON inválido: " + e.message } }; }
+          obj.id = nextId++;
+          db.alunos.push(obj);
+          return { status: 201, body: { mensagem: "Aluno criado!", aluno: obj } };
+        }
+        return { status: 405, body: { erro: "Use POST para criar aluno" } };
+      }
+      return { status: 404, body: { erro: "Endpoint não encontrado" } };
+    }
+
+    document.getElementById("enviar").onclick = () => {
+      const m = document.getElementById("metodo").value;
+      const ep = document.getElementById("endpoint").value;
+      const b = document.getElementById("body").value;
+      const r = responder(m, ep, b);
+      const ok = r.status < 300;
+      const el = document.getElementById("res");
+      el.innerHTML = `<span class="status ${ok ? 'ok' : 'err'}">${r.status} ${ok ? 'OK' : 'ERRO'}</span>\n` +
+        JSON.stringify(r.body, null, 2);
+    };
+  </script>
+</body>
+</html>
