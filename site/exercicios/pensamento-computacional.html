@@ -61,8 +61,9 @@
       <p>🔹 <b>Decomposição</b> – dividir o problema em partes menores<br>
          🔹 <b>Reconhecimento de padrões</b> – achar semelhanças e repetições<br>
          🔹 <b>Abstração</b> – ignorar detalhes e focar no essencial<br>
-         🔹 <b>Algoritmos</b> – criar passos ordenados para a solução</p>
-      <p class="faixa">São 12 problemas. Confira os que têm resposta numérica e revele a solução modelo nos outros!</p>
+          🔹 <b>Algoritmos</b> – criar passos ordenados para a solução</p>
+       <p style="color:#94a3b8;font-size:.9rem;">📚 Baseado no Pensamento Computacional (Wing, 2006): competência cognitiva útil para a vida toda, não só para programar.</p>
+       <p class="faixa">São 16 problemas. Confira os que têm resposta numérica e revele a solução modelo nos outros!</p>
     </div>
 
     <div id="lista"></div>
@@ -140,7 +141,27 @@
       { t:"12. Decomposição de problema real", n:"Avançado",
         e:"Você vai criar um app que avisa quando regar as plantas. Liste 3 perguntas/sub-problemas que o app precisa resolver.",
         d:"Pense em sensores, regras e avisos.",
-        s:"Exemplos: 1) Como medir a umidade da terra? 2) Qual regra decide 'regar agora'? 3) Como avisar o dono (notificação)? Decompor problemas complexos em partes é como se cria software de verdade." }
+        s:"Exemplos: 1) Como medir a umidade da terra? 2) Qual regra decide 'regar agora'? 3) Como avisar o dono (notificação)? Decompor problemas complexos em partes é como se cria software de verdade." },
+
+      { t:"13. Sistema binário (Bits)", n:"Intermediário", num:8,
+        e:"No sistema binário só existem 0 e 1. Quantos valores diferentes dá para representar com 3 bits (ex: 000, 001, 010...)?",
+        d:"Use 2 elevado ao número de bits: 2³.",
+        s:"2³ = 8 valores (000 a 111). Cada bit dobra a quantidade de combinações — por isso 8 bits (1 byte) dão 256 valores." },
+
+      { t:"14. Depuração (Debug)", n:"Intermediário", num:5,
+        e:"Um algoritmo diz: inicie total=0; repita 5 vezes: total = total + 1. Qual o valor final de total?",
+        d:"Some 1, cinco vezes.",
+        s:"total = 5. Mas se o objetivo fosse somar 1+2+3+4+5, faltaria usar uma variável que cresce (total = total + i). Encontrar e corrigir erros assim é 'depurar' — habilidade essencial." },
+
+      { t:"15. Padrão em grade", n:"Intermediário", num:8,
+        e:"Num tabuleiro 4×4 (16 casas), pintamos as casas onde (linha + coluna) é par. Quantas casas ficam pintadas?",
+        d:"Conte as pares: metade das casas.",
+        s:"8 casas. Padrões espaciais ajudam a prever e a escrever algoritmos de desenho e jogos." },
+
+      { t:"16. Abstração em um app de rotas", n:"Avançado",
+        e:"Para um app que calcula rotas, quais destes detalhes SÃO importantes e quais podemos IGNORAR (abstrair)? (a) cor dos prédios (b) nomes das ruas (c) tipo de árvore (d) distância entre cruzamentos (e) formato das janelas.",
+        d:"Foque no que o algoritmo precisa para calcular o caminho.",
+        s:"Importam: (b) nomes das ruas e (d) distância entre cruzamentos. Abstrair: (a) cor dos prédios, (c) tipo de árvore, (e) formato das janelas. Abstração elimina o que não importa para o problema." }
     ];
 
     const lista = document.getElementById("lista");

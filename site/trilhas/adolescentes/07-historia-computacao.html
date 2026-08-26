@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Módulo 07 — Conceito e História da Computação 🕰️ | Lab Tech Social</title>
+  <title>Módulo 01 — Conceito & História da Computação 🕰️ | Lab Tech Social</title>
   <style>
     :root { --azul:#38bdf8; --rosa:#ff6f61; --fundo:#0f172a; --texto:#e2e8f0; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -13,7 +13,7 @@
     nav .logo { font-weight: 700; color: var(--azul); margin-right: auto; }
     nav a { color: var(--texto); text-decoration: none; font-size: 0.9rem; }
     nav a:hover { color: var(--azul); }
-    main { max-width: 820px; margin: 0 auto; padding: 34px 20px 60px; }
+    main { max-width: 880px; margin: 0 auto; padding: 34px 20px 60px; }
     .voltar { color: var(--azul); text-decoration: none; font-size: 0.9rem; }
     h1 { color: var(--azul); margin: 14px 0; }
     .faixa { color: var(--rosa); font-weight: 600; }
@@ -22,13 +22,14 @@
     p, li, td, th { color: #cbd5e1; }
     ul, ol { padding-left: 22px; }
     .atividade { background: #1e293b; border: 1px solid #334155; border-left: 4px solid var(--azul); border-radius: 10px; padding: 16px 18px; margin-top: 14px; }
+    .ciencia { background: #11251f; border-left: 5px solid #22c55e; border-radius: 10px; padding: 12px 16px; margin: 14px 0; font-size: 0.95rem; }
+    .ciencia b { color: #4ade80; }
     .timeline { background: #1e293b; border-radius: 10px; padding: 14px 18px; margin-top: 14px; }
     .timeline div { padding: 7px 0; border-bottom: 1px dashed #334155; }
     .timeline div:last-child { border-bottom: none; }
     .timeline b { color: var(--azul); }
-    table { width: 100%; border-collapse: collapse; margin-top: 14px; background: #1e293b; border-radius: 10px; overflow: hidden; }
-    th, td { padding: 10px 12px; border-bottom: 1px solid #334155; text-align: left; }
-    th { background: #0f172a; color: var(--rosa); }
+    .pilar { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 12px 14px; margin: 8px 0; }
+    .pilar b { color: var(--azul); }
     .quiz { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 16px 18px; margin-top: 14px; }
     .quiz .perg { margin-top: 14px; font-weight: 600; color: #f1f5f9; }
     .quiz button { background: #0f172a; color: var(--texto); border: 1px solid #334155; padding: 8px 12px; border-radius: 8px; cursor: pointer; margin: 6px 6px 0 0; }
@@ -63,64 +64,77 @@
   <main>
     <a class="voltar" href="/laboratorio-tech-social/trilhas.html">← Voltar às Trilhas</a>
     <p class="faixa">🧑‍💻 Makers/Devs · 13–20 anos</p>
-    <h1>Módulo 07 — Conceito e História da Computação 🕰️</h1>
+    <h1>Módulo 01 — Conceito & História da Computação 🕰️</h1>
+    <p><strong>Duração:</strong> 120 min · <strong>Nível:</strong> Fundamento · Este é o alicerce de todo o curso: antes de programar, você precisa entender o que é computação, como os dados são representados e como pensar como um computador.</p>
 
-    <p><strong>Duração:</strong> 90 min · <strong>Conceito + linha do tempo + reflexão sobre o presente.</strong></p>
+    <div class="ciencia"><b>🧠 Fundamento científico:</b> O <b>Pensamento Computacional</b> (Wing, 2006) — decompor, reconhecer padrões, abstrair e criar algoritmos — é uma competência cognitiva geral, não só de programação. Atividades "desplugadas" (CS Unplugged) comprovam que se aprende melhor fazendo.</div>
 
-    <h2>Objetivo</h2>
-    <p>Compreender o que é computação como ciência da informação e percorrer a história — de contas com pedras à inteligência artificial — para entender <strong>como começou</strong> e <strong>onde estamos agora</strong>.</p>
-
-    <h2>Conceito: o que é computação?</h2>
-    <p>Computação é a ciência de <strong>processar informação</strong> de forma automática e confiável. Ela junta três ideias:</p>
+    <h2>1. O que é computação?</h2>
+    <p>Computação é a ciência de <strong>processar informação</strong> de forma automática e confiável. Junta três ideias:</p>
     <ul>
-      <li><strong>Hardware:</strong> a parte física (circuitos, chips, fios).</li>
-      <li><strong>Software:</strong> as instruções (programas, algoritmos) que dizem o que fazer.</li>
+      <li><strong>Hardware:</strong> a parte física (circuitos, chips, memória).</li>
+      <li><strong>Software:</strong> as instruções (algoritmos, programas) que dizem o que fazer.</li>
       <li><strong>Algoritmo:</strong> uma sequência finita de passos que resolve um problema.</li>
     </ul>
-    <p>Um computador é a máquina que executa esses algoritmos muito rápido. Mas a ideia de "seguir regras para calcular" é muito anterior às máquinas.</p>
 
-    <h2>Linha do tempo 📜</h2>
+    <h2>2. Pensamento Computacional (os 4 pilares)</h2>
+    <div class="pilar"><b>🔹 Decomposição</b> — dividir o problema em partes menores e mais fáceis.</div>
+    <div class="pilar"><b>🔹 Reconhecimento de padrões</b> — achar semelhanças para reutilizar soluções.</div>
+    <div class="pilar"><b>🔹 Abstração</b> — ignorar detalhes irrelevantes e focar no essencial (ex: um "carro" vira apenas "veículo com destino").</div>
+    <div class="pilar"><b>🔹 Algoritmo</b> — definir os passos na ordem correta, com decisões e repetições.</div>
+
+    <h2>3. Como os dados são representados (bits & bytes)</h2>
+    <p>O computador só entende <strong>0 e 1</strong> (bits). Agrupando 8 bits temos 1 <strong>byte</strong>. Números, letras e imagens são codificados assim. Por isso usamos <strong>sistemas de numeração</strong>:</p>
+    <ul>
+      <li><strong>Decimal (base 10):</strong> o do dia a dia.</li>
+      <li><strong>Binário (base 2):</strong> a "língua" do hardware (0 e 1).</li>
+      <li><strong>Hexadecimal (base 16):</strong> usado para cores e endereços de memória.</li>
+    </ul>
+    <div class="atividade">
+      <h3>🔢 Pratique</h3>
+      <p>Converta 10, 25 e 255 para binário e veja como a mesma ideia vale para qualquer base.</p>
+      <div class="links" style="margin-top:8px;">
+        <a href="/laboratorio-tech-social/exercicios/conversor-bases.html">🔢 Conversor de Bases</a>
+      </div>
+    </div>
+
+    <h2>4. Linha do tempo 📜</h2>
     <div class="timeline">
       <div><b>~2500 a.C.</b> — Ábaco: primeiras ferramentas de contar.</div>
       <div><b>1837</b> — Charles Babbage projeta a "máquina analítica" (mecânica, programável).</div>
       <div><b>1843</b> — Ada Lovelace descreve o <b>primeiro algoritmo</b> para aquela máquina.</div>
       <div><b>1936</b> — Alan Turing cria o modelo teórico da "Máquina de Turing": a base de tudo.</div>
       <div><b>1945</b> — ENIAC: computador eletrônico de válvulas, enorme e lento para o padrão de hoje.</div>
-      <div><b>1947</b> — Transistor; <b>1958</b> — circuito integrado: a miniaturização começa.</div>
+      <div><b>1947/1958</b> — Transistor e circuito integrado: a miniaturização começa.</div>
       <div><b>1957+</b> — Linguagens (FORTRAN, C, Python...) traduzem ideias humanas para a máquina.</div>
       <div><b>1969/1991</b> — ARPANET e, depois, a <b>World Wide Web</b> conectam o mundo.</div>
       <div><b>Hoje</b> — Smartphones, nuvem, big data e <b>IA/ML</b> estão em quase tudo.</div>
     </div>
 
-    <h2>Exercício 1 — Ordene a história ✏️</h2>
-    <p>Escreva as 9 datas acima em uma folha, do mais antigo ao mais novo. Depois, pesquise e adicione <strong>você mesmo</strong> mais 2 marcos importantes (ex: lançamento de uma linguagem ou da web).</p>
-
-    <h2>Exercício 2 — Hardware × Software</h2>
-    <p>Liste 5 objetos do seu dia e diga qual é a parte de <b>hardware</b> e qual é o <b>software</b> que neles roda (ex: celular = hardware; WhatsApp = software).</p>
-
-    <h2>Para refletir 💭</h2>
+    <h2>5. Reflexão & ética 💭</h2>
     <ul>
       <li>Turing criou um modelo em 1936 que previa computadores antes de existirem. Por que a <em>teoria</em> veio antes da máquina?</li>
       <li>O transistor e o circuito integrado tornaram tudo menor. O que acontece quando a tecnologia fica "invisível" e onipresente?</li>
-      <li>Estamos na era da IA. Quais problemas a IA resolve bem — e onde ela ainda erra ou pode prejudicar?</li>
+      <li>Estamos na era da IA. Quais problemas a IA resolve bem — e onde ela ainda erra ou pode prejudicar pessoas?</li>
       <li>Se "onde estamos" é a IA, para onde <strong>você</strong> acha que vamos? E qual seu papel nisso?</li>
     </ul>
 
-    <h2>Quiz de história 🎮</h2>
+    <h2>6. Quiz de conceito 🎮</h2>
     <div class="quiz" id="quiz"></div>
 
     <div class="atividade" style="border-left-color:var(--rosa);">
       <h3>🎯 Pratique o que aprendeu</h3>
-      <p>Experimente: <a href="../../exercicios/pensamento-computacional.html">Pensamento Computacional</a>, <a href="../../exercicios/conversor-bases.html">Conversor de Bases</a> e <a href="../../exercicios/flashcards.html">Flashcards de Programação</a>.</p>
+      <p>Experimente: <a href="/laboratorio-tech-social/exercicios/pensamento-computacional.html" style="color:var(--azul)">Pensamento Computacional</a>, <a href="/laboratorio-tech-social/exercicios/conversor-bases.html" style="color:var(--azul)">Conversor de Bases</a> e <a href="/laboratorio-tech-social/exercicios/flashcards.html" style="color:var(--azul)">Flashcards de Programação</a>.</p>
       <h3>💡 Curiosidade</h3>
       <p>A "Lei de Moore" observou que a capacidade dos chips dobrava a cada ~2 anos. Essa corrida de miniaturização é o que fez seu celular ser mais poderoso que os computadores que levaram o ser humano à Lua.</p>
     </div>
 
     <div class="links">
-      <a href="../../slides/aula-teens-07-historia-computacao.html">📊 Ver slides desta aula</a>
+      <a href="/laboratorio-tech-social/slides/aula-teens-07-historia-computacao.html">📊 Ver slides desta aula</a>
       <a href="/laboratorio-tech-social/certificado/historia.html">🏅 Avaliação + Certificado</a>
-      <a href="/laboratorio-tech-social/trilhas.html">🧭 Todas as aulas</a>
-      <a href="../../exercicios.html">🧪 Pratique nesta aula</a>
+      <a href="/laboratorio-tech-social/trilhas/adolescentes/08-informatica.html">➡️ Próximo: Módulo 02 — Informática</a>
+      <a href="/laboratorio-tech-social/trilhas.html">🧭 Todas as Trilhas</a>
+      <a href="/laboratorio-tech-social/exercicios.html">🧪 Pratique nesta aula</a>
     </div>
   </main>
 
@@ -135,6 +149,8 @@
       { q:"Ada Lovelace é famosa por...", o:["Ter inventado o transistor","Ter descrito o primeiro algoritmo","Ter criado a internet"], a:1 },
       { q:"O que tornou os computadores pequenos e baratos?", o:["O circuito integrado e o transistor","A invenção do papel","A eletricidade"], a:0 },
       { q:"A World Wide Web surgiu em...", o:["1991","1843","1945"], a:0 },
+      { q:"Um byte é formado por...", o:["8 bits","1 bit","1000 bits"], a:0 },
+      { q:"Pensamento Computacional inclui...", o:["Decomposição, padrões, abstração e algoritmo","Só programar em Python","Apenas matemática"], a:0 },
       { q:"Hoje vivemos muito a era da...", o:["Máquinas a vapor","Inteligência Artificial e nuvem","Cartões perfurados"], a:1 }
     ];
     const quiz = document.getElementById("quiz");

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Módulo 01 — Pensamento Computacional 🧩 | Lab Tech Social</title>
+  <title>Módulo 01 — Conceito Computacional 💡 | Lab Tech Social</title>
   <style>
     :root { --azul:#38bdf8; --rosa:#ff6f61; --fundo:#0f172a; --texto:#e2e8f0; }
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -13,23 +13,25 @@
     nav .logo { font-weight: 700; color: var(--azul); margin-right: auto; }
     nav a { color: var(--texto); text-decoration: none; font-size: 0.9rem; }
     nav a:hover { color: var(--azul); }
-    main { max-width: 820px; margin: 0 auto; padding: 34px 20px 60px; }
+    main { max-width: 860px; margin: 0 auto; padding: 34px 20px 60px; }
     .voltar { color: var(--azul); text-decoration: none; font-size: 0.9rem; }
     h1 { color: var(--azul); margin: 14px 0; }
     .faixa { color: var(--rosa); font-weight: 600; }
-    h2 { color: #f1f5f9; margin-top: 28px; border-bottom: 1px solid #334155; padding-bottom: 6px; }
-    h3 { color: #f1f5f9; margin-top: 16px; }
-    p, li, td, th { color: #cbd5e1; }
+    h2 { color: var(--azul); margin: 26px 0 8px; border-bottom: 2px solid #334155; padding-bottom: 4px; }
+    h3 { color: #f1f5f9; margin: 12px 0 4px; }
+    p, li { color: #cbd5e1; }
     ul, ol { padding-left: 22px; }
-    .atividade { background: #1e293b; border: 1px solid #334155; border-left: 4px solid var(--azul); border-radius: 10px; padding: 16px 18px; margin-top: 14px; }
-    pre { background: #0f172a; padding: 14px; border-radius: 10px; overflow: auto; margin-top: 12px; }
-    code { font-family: Consolas, monospace; color: #93c5fd; }
-    table { width: 100%; border-collapse: collapse; margin-top: 14px; background: #1e293b; border-radius: 10px; overflow: hidden; }
-    th, td { padding: 10px 12px; border-bottom: 1px solid #334155; text-align: left; }
-    th { background: #0f172a; color: var(--rosa); }
-    .links { margin-top: 26px; }
-    .links a { display: inline-block; margin-right: 10px; color: var(--azul); border: 1px solid #334155; padding: 6px 14px; border-radius: 999px; text-decoration: none; }
-    .links a:hover { border-color: var(--azul); }
+    .atividade { background: #1e293b; border-left: 5px solid var(--azul); border-radius: 10px; padding: 14px 16px; margin: 14px 0; }
+    .ciencia { background: #11251f; border-left: 5px solid #22c55e; border-radius: 10px; padding: 12px 16px; margin: 14px 0; font-size: 0.95rem; }
+    .ciencia b { color: #4ade80; }
+    .pilar { background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 12px 14px; margin: 8px 0; }
+    .pilar b { color: var(--azul); }
+    .quiz button { background: #0f172a; color: var(--texto); border: 1px solid #334155; padding: 9px 13px; border-radius: 8px; cursor: pointer; margin: 6px 6px 0 0; }
+    .quiz button.certo { background: #14532d; color: #fff; border-color: #22c55e; }
+    .quiz button.errado { background: #7f1d1d; color: #fff; border-color: #ef4444; }
+    .quiz button:disabled { opacity: .95; cursor: default; }
+    .fb { margin-top: 6px; font-size: .92rem; }
+    .links a { display: inline-block; margin: 6px 8px 0 0; color: var(--azul); border: 1px solid #334155; border-radius: 999px; padding: 6px 14px; text-decoration: none; }
     footer { text-align: center; padding: 26px; color: #64748b; border-top: 1px solid #334155; }
   </style>
   <link rel="icon" href="/laboratorio-tech-social/favicon.svg" type="image/svg+xml" />
@@ -51,50 +53,113 @@
       <a href="/laboratorio-tech-social/index_en.html" style="color:var(--azul);">EN</a>
     </nav>
   </header>
+
   <main>
     <a class="voltar" href="/laboratorio-tech-social/trilhas.html">← Voltar às Trilhas</a>
     <p class="faixa">🧒 Exploradores · 8–12 anos</p>
-    <h1>Módulo 01 — Pensamento Computacional 🧩</h1>
+    <h1>Módulo 01 — Conceito Computacional 💡</h1>
+    <p><strong>Duração:</strong> 90 min · <strong>Nível:</strong> Iniciante · <strong>Sem computador obrigatório</strong> (várias atividades são "desplugadas").</p>
+    <p>Este é o <b>alicerce</b> de todo o curso. Antes de programar, a gente entende o que é computação, como o computador "pensa" e como resolver problemas como um computador — só que com criatividade humana.</p>
 
-<p><strong>Duração:</strong> 60 min · <strong>Sem computador obrigatório</strong> (dá para fazer no papel!).</p>
+    <div class="ciencia"><b>🧠 Por que este módulo é o primeiro?</b> O <b>Pensamento Computacional</b> (Wing, 2006) e o <b>construcionismo</b> de Seymour Papert mostram que a gente aprende melhor resolvendo problemas reais e construindo coisas. Esta base vale para a vida toda — não só para quem vai virar programador.</div>
 
-<h2>Objetivo</h2>
-<p>Aprender a quebrar um problema grande em passos pequenos — isso é o que computadores (e pessoas espertas) fazem.</p>
-
-<h2>Conceitos</h2>
-<ul><li><strong>Decomposição:</strong> dividir o problema em partes menores.</li><li><strong>Padrões:</strong> achar coisas que se repetem.</li><li><strong>Abstração:</strong> ignorar o que não importa agora.</li><li><strong>Algoritmo:</strong> a receita de passos para resolver.</li></ul>
-
-<h2>Atividade 1 — Receita do sanduíche 🥪</h2>
-<p>Escreva no papel a receita de montar um sanduíche, passo a passo, como se estivesse ensinando um robô que não sabe nada.</p>
-<p>&gt; Exemplo: "Pegue 2 fatias de pão. Coloque queijo em uma. Cubra com a outra."</p>
-
-<h2>Atividade 2 — Sequência secreta</h2>
-<p>O professor pensa em uma ação (ex: escovar os dentes). A turma tenta adivinhar a ordem certa dos passos. Quem acerta, cria o próximo desafio.</p>
-
-<h2>Atividade 3 — Labirinto de setas</h2>
-<p>Desenhe um labirinto e escreva a sequência de setas (⬆️⬇️⬅️➡️) que leva do início ao fim. Isso é um <strong>algoritmo</strong>!</p>
-
-<h2>Desafio final</h2>
-<p>Explique para alguém de casa como fazer uma tarefa simples (regar uma planta) em 5 passos exatos.</p>
-
-<h2>Material complementar</h2>
-<ul><li>Jogos de lógica: <a href="https://lightbot.com/" style="color:var(--azul)">Lightbot</a> (grátis).</li></ul>
-
-        <div class="atividade" style="border-left-color:var(--rosa);">
-      <h3>🎯 Pratique o que aprendeu</h3>
-      <p>Experimente agora: <a href="../../exercicios/desafio-logica.html">Desafio de Lógica</a> e <a href="../../exercicios/memoria-conceitos.html">Jogo de Memória de Conceitos</a>.</p>
-      <h3>💡 Curiosidade</h3>
-      <p>Pensamento computacional não serve só para computadores: ele ajuda a empacotar compras no mercado, a organizar o trânsito das cidades e até a montar uma festa!</p>
+    <h2>1. O que é um computador?</h2>
+    <p>Computador é uma máquina que <b>recebe dados</b>, <b>processa</b> e <b>devolve resultado</b>. Ele tem duas partes:</p>
+    <ul>
+      <li><b>Hardware:</b> o que você toca — tela, teclado, chip, bateria.</li>
+      <li><b>Software:</b> as instruções (programas) que mandam o hardware fazer algo.</li>
+    </ul>
+    <div class="atividade">
+      <h3>🔍 Caça-hardware/software</h3>
+      <p>Olhe ao redor: o celular é <b>hardware</b>; o aplicativo dele é <b>software</b>. Faça uma lista de 5 objetos e diga a parte física e a "inteligência" que neles roda.</p>
     </div>
+
+    <h2>2. Como o computador "pensa"? (0 e 1)</h2>
+    <p>Por dentro, o computador só entende <b>ligado (1)</b> ou <b>desligado (0)</b> — como uma lâmpada. Agrupando esses "bits", ele representa letras, números, fotos e vídeos. Tudo vira combinação de luzes liga/desliga!</p>
+    <div class="ciencia"><b>💡 Dado curioso:</b> 8 bits formam 1 <b>byte</b>. Uma letra (como "A") ocupa 1 byte. Seu nome completo já são vários bytes — e o computador guarda tudo assim, em sequências de 0 e 1.</div>
+
+    <h2>3. Pensamento Computacional (os 4 pilares)</h2>
+    <p>É a forma de pensar que usamos para resolver problemas. São 4 superpoderes:</p>
+    <div class="pilar"><b>🔹 Decomposição</b> — dividir um problema gigante em pedacinhos menores.</div>
+    <div class="pilar"><b>🔹 Reconhecimento de padrões</b> — achar o que se repete para não reinventar a roda.</div>
+    <div class="pilar"><b>🔹 Abstração</b> — esconder o que não importa agora e focar no essencial.</div>
+    <div class="pilar"><b>🔹 Algoritmo</b> — escrever a receita de passos na ordem certa.</div>
+
+    <h2>4. Atividades desplugadas</h2>
+    <div class="atividade">
+      <h3>🥪 Receita do robô</h3>
+      <p>Escreva como montar um sanduíche, passo a passo, para um robô que não sabe nada. Se faltar um passo, o robô erra — por isso o <b>algoritmo</b> precisa ser claro.</p>
+    </div>
+    <div class="atividade">
+      <h3>➡️ Labirinto de setas</h3>
+      <p>Desenhe um labirinto e anote a sequência de setas (⬆️⬇️⬅️➡️) do início ao fim. Isso é um algoritmo em ação!</p>
+    </div>
+    <div class="atividade">
+      <h3>🔎 Caça-padrões</h3>
+      <p>Na sua sala, ache 3 coisas que se repetem (azulejos, palavras, música). Reconhecer padrões ajuda a prever e automatizar.</p>
+    </div>
+
+    <h2>5. Uma história curta (e importante)</h2>
+    <p>A computação começou muito antes do seu celular: teve o ábaco, a primeira programadora (Ada Lovelace), Alan Turing e os computadores gigantes. Quer ver a versão divertida?</p>
     <div class="links">
-      <a href="../../slides/aula-criancas-01-pensamento.html">📊 Ver slides desta aula</a>
-      <a href="/laboratorio-tech-social/trilhas.html">🧭 Todas as aulas</a>
-      <a href="../../exercicios.html">🧪 Pratique nesta aula</a>
+      <a href="/laboratorio-tech-social/trilhas/criancas/06-historia-computacao.html">🕰️ Aula de História</a>
+      <a href="/laboratorio-tech-social/trilhas/criancas/06b-historia-quadrinhos.html">📖 Historinha em Quadrinhos</a>
+    </div>
+
+    <h2>6. Ser um bom cidadão digital</h2>
+    <p>Computação também é sobre <b>respeito</b>: não compartilhar dados pessoais, tratar bem os outros na internet e não acreditar em tudo que lê. Isso será reforçado no Módulo de Cidadania Digital.</p>
+
+    <h2>🎯 Quiz rápido</h2>
+    <div class="quiz" id="quiz"></div>
+
+    <h2>📚 Pratique (exercícios)</h2>
+    <div class="links">
+      <a href="/laboratorio-tech-social/exercicios/pensamento-computacional.html">🧠 Pensamento Computacional</a>
+      <a href="/laboratorio-tech-social/exercicios/desafio-logica.html">🧩 Desafio de Lógica</a>
+      <a href="/laboratorio-tech-social/exercicios/memoria-conceitos.html">🃏 Memória de Conceitos</a>
+      <a href="/laboratorio-tech-social/exercicios/flashcards.html">🗂️ Flashcards</a>
+    </div>
+
+    <div class="links">
+      <a href="/laboratorio-tech-social/trilhas/criancas/07-informatica.html">➡️ Próximo: Módulo 02 — Informática</a>
+      <a href="/laboratorio-tech-social/slides/aula-criancas-01-pensamento.html">📊 Slides</a>
+      <a href="/laboratorio-tech-social/trilhas.html">🧭 Todas as Trilhas</a>
     </div>
   </main>
+
   <footer>Licença MIT — projeto social gratuito.</footer>
   <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
   <script src="https://vlibras.gov.br/app.js"></script>
   <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+  <script>
+    const perguntas = [
+      { q:"Hardware é...", o:["A parte física (tela, teclado, chip)","Os programas","A internet"], a:0 },
+      { q:"Por dentro, o computador entende...", o:["Luz e sombra","Ligado (1) e desligado (0)","Cores"], a:1 },
+      { q:"Um algoritmo é...", o:["Uma receita de passos na ordem certa","Um desenho","Um vírus"], a:0 },
+      { q:"Reconhecer padrões serve para...", o:["Achar repetições e prever","Apagar arquivos","Comprar chips"], a:0 },
+      { q:"Quem foi a primeira programadora citada na história?", o:["Ada Lovelace","Alan Turing","Steve Jobs"], a:0 }
+    ];
+    const quiz = document.getElementById("quiz");
+    perguntas.forEach((p, idx) => {
+      const d = document.createElement("div");
+      d.innerHTML = `<div style="margin-top:10px;font-weight:700;">${idx+1}. ${p.q}</div>`;
+      p.o.forEach((op, oi) => {
+        const b = document.createElement("button");
+        b.textContent = op;
+        b.onclick = () => {
+          if (b.disabled) return;
+          d.querySelectorAll("button").forEach(x => x.disabled = true);
+          b.classList.add(oi === p.a ? "certo" : "errado");
+          if (oi !== p.a) d.querySelectorAll("button")[p.a].classList.add("certo");
+          const fb = document.createElement("div"); fb.className = "fb";
+          fb.style.color = (oi===p.a) ? "#22c55e" : "#ef4444";
+          fb.textContent = (oi===p.a) ? "🎉 Isso mesmo!" : "🤔 Não era esse. O certo está em verde.";
+          d.appendChild(fb);
+        };
+        d.appendChild(b);
+      });
+      quiz.appendChild(d);
+    });
+  </script>
 </body>
 </html>
