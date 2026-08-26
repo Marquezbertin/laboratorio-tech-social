@@ -90,6 +90,9 @@
               <option value="cards">Cards / Recursos</option>
               <option value="contact">Contato</option>
               <option value="footer">Rodapé</option>
+              <option value="gallery">Galeria</option>
+              <option value="video">Vídeo</option>
+              <option value="faq">Perguntas (FAQ)</option>
             </select>
             <button class="cmd azul" id="addSec">➕ Adicionar seção</button>
           </div>
@@ -155,9 +158,12 @@
       about: { label: "Sobre", fields: [ {k:"heading",l:"Título",t:"text"}, {k:"text",l:"Texto",t:"area"} ], image: true },
       cards: { label: "Cards / Recursos", fields: [ {k:"heading",l:"Título da seção",t:"text"} ], cards: true },
       contact: { label: "Contato", fields: [ {k:"heading",l:"Título",t:"text"}, {k:"email",l:"E-mail de contato",t:"text"} ] },
-      footer: { label: "Rodapé", fields: [ {k:"text",l:"Texto do rodapé",t:"text"} ] }
+      footer: { label: "Rodapé", fields: [ {k:"text",l:"Texto do rodapé",t:"text"} ] },
+      gallery: { label: "Galeria de imagens", fields: [ {k:"heading",l:"Título",t:"text"} ], gallery: true },
+      video: { label: "Vídeo", fields: [ {k:"heading",l:"Título",t:"text"}, {k:"url",l:"URL do vídeo (YouTube/Vimeo)",t:"text"} ] },
+      faq: { label: "Perguntas frequentes", fields: [ {k:"heading",l:"Título da seção",t:"text"} ], faq: true }
     };
-    const NAV = { hero:"Início", about:"Sobre", cards:"Recursos", contact:"Contato" };
+    const NAV = { hero:"Início", about:"Sobre", cards:"Recursos", contact:"Contato", gallery:"Galeria", video:"Vídeo", faq:"FAQ" };
     const PRESETS = [
       { nome:"Escola", bg:"#0f172a", fg:"#e2e8f0", ac:"#38bdf8", font:"Segoe UI" },
       { nome:"Natureza", bg:"#064e3b", fg:"#ecfdf5", ac:"#34d399", font:"Georgia" },
@@ -210,6 +216,18 @@
           body += `<section id="sec${i}"><h2>${escapeHtml(sec.heading)}</h2><form onsubmit="return false"><input placeholder="Seu nome"><br><input placeholder="Seu e-mail"><br><textarea placeholder="Sua mensagem" rows="3"></textarea><br><button type="button">Enviar</button></form><p>${escapeHtml(sec.email ? "Ou fale em: " + sec.email : "")}</p></section>`;
         } else if (sec.type === "footer") {
           body += `<footer id="sec${i}">${escapeHtml(sec.text)}</footer>`;
+        } else if (sec.type === "gallery") {
+          let imgs = "";
+          (sec.images || []).forEach(im => { imgs += `<div class="gitem"><img src="${escapeHtml(im)}" alt=""></div>`; });
+          body += `<section id="sec${i}"><h2>${escapeHtml(sec.heading)}</h2><div class="gallery">${imgs}</div></section>`;
+        } else if (sec.type === "video") {
+          let src = sec.url || ""; src = src.replace("watch?v=", "embed/");
+          const ifr = src ? `<div class="video"><iframe src="${escapeHtml(src)}" style="width:100%;aspect-ratio:16/9;border:0;border-radius:12px" allowfullscreen></iframe></div>` : "";
+          body += `<section id="sec${i}"><h2>${escapeHtml(sec.heading)}</h2>${ifr}</section>`;
+        } else if (sec.type === "faq") {
+          let items = "";
+          (sec.items || []).forEach(it => { items += `<details><summary>${escapeHtml(it.q)}</summary><p>${escapeHtml(it.a)}</p></details>`; });
+          body += `<section id="sec${i}"><h2>${escapeHtml(sec.heading)}</h2><div class="faq">${items}</div></section>`;
         }
       });
       const css = `*{box-sizing:border-box}body{margin:0;font-family:${font},sans-serif;background:${bg};color:${fg};line-height:1.6}
@@ -221,7 +239,10 @@ button{background:${ac};color:#fff;border:none;padding:12px 24px;border-radius:9
 .cards{display:flex;gap:16px;flex-wrap:wrap}
 .card{flex:1 1 220px;border:1px solid ${ac};border-radius:12px;padding:16px;background:rgba(255,255,255,.06)}
 form input,form textarea{width:100%;padding:8px;margin:6px 0;border-radius:8px;border:1px solid #aaa}
-footer{text-align:center;padding:24px;border-top:1px solid rgba(128,128,128,.4)}`;
+ footer{text-align:center;padding:24px;border-top:1px solid rgba(128,128,128,.4)}
+ .gallery{display:flex;gap:12px;flex-wrap:wrap}.gitem{flex:1 1 200px}.gitem img{width:100%;border-radius:12px;aspect-ratio:4/3;object-fit:cover}
+ .faq details{border:1px solid ${ac};border-radius:10px;padding:10px 14px;margin:8px 0;background:rgba(255,255,255,.06)}.faq summary{cursor:pointer;font-weight:600}
+ .video{max-width:760px;margin:0 auto}`;
       const jsFinal = (s.js && s.js.trim()) ? s.js.replace(/<\/script>/gi, "<\\/script>") : "var hb=document.getElementById('heroBtn'); if(hb){hb.onclick=function(){alert('Obrigado por visitar! 💙');}};";
       return `<!DOCTYPE html>\n<html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">\n<title>${T}</title>\n<style>${css}</style></head>\n<body>\n<header><nav><strong>${E} ${T}</strong>${nav}</nav></header>\n${body}\n<script>${jsFinal}<\/script>\n</body></html>`;
     }
@@ -273,6 +294,41 @@ footer{text-align:center;padding:24px;border-top:1px solid rgba(128,128,128,.4)}
           add.addEventListener("click", () => { site.sections[si].cards.push({t:"", d:""}); buildForm(); renderPreview(); });
           box.appendChild(add);
         }
+        if (sch.gallery) {
+          const labG = document.createElement("label"); labG.textContent = "Imagens:"; box.appendChild(labG);
+          (sec.images || []).forEach((im, gi) => {
+            const row = document.createElement("div"); row.style.cssText = "display:flex;gap:6px;margin:4px 0;align-items:center";
+            const th = document.createElement("span"); th.textContent = "🖼️"; th.style.cssText = "font-size:1.2rem";
+            const rm = document.createElement("button"); rm.textContent = "✕"; rm.style.cssText = "background:#7f1d1d;color:#fff;border:none;border-radius:8px;cursor:pointer;padding:6px 10px";
+            rm.addEventListener("click", () => { site.sections[si].images.splice(gi, 1); buildForm(); renderPreview(); });
+            row.appendChild(th); row.appendChild(rm); box.appendChild(row);
+          });
+          const addImg = document.createElement("input"); addImg.type = "file"; addImg.accept = "image/*"; addImg.style.marginTop = "6px";
+          addImg.addEventListener("change", () => {
+            const file = addImg.files[0]; if (!file) return;
+            const r = new FileReader();
+            r.onload = () => { if (!site.sections[si].images) site.sections[si].images = []; site.sections[si].images.push(r.result); buildForm(); renderPreview(); };
+            r.readAsDataURL(file);
+          });
+          box.appendChild(addImg);
+        }
+        if (sch.faq) {
+          const labF = document.createElement("label"); labF.textContent = "Perguntas e respostas:"; box.appendChild(labF);
+          (sec.items || []).forEach((it, ii) => {
+            const row = document.createElement("div"); row.style.cssText = "display:flex;gap:6px;margin:4px 0;align-items:center";
+            const q = document.createElement("input"); q.placeholder = "Pergunta"; q.value = it.q;
+            const a = document.createElement("input"); a.placeholder = "Resposta"; a.value = it.a;
+            const rm = document.createElement("button"); rm.textContent = "✕"; rm.style.cssText = "background:#7f1d1d;color:#fff;border:none;border-radius:8px;cursor:pointer;padding:6px 10px";
+            q.addEventListener("input", () => { site.sections[si].items[ii].q = q.value; renderPreview(); });
+            a.addEventListener("input", () => { site.sections[si].items[ii].a = a.value; renderPreview(); });
+            rm.addEventListener("click", () => { site.sections[si].items.splice(ii, 1); buildForm(); renderPreview(); });
+            row.appendChild(q); row.appendChild(a); row.appendChild(rm); box.appendChild(row);
+          });
+          const addQ = document.createElement("button"); addQ.textContent = "➕ Pergunta"; addQ.className = "cmd azul";
+          addQ.style.cssText = "padding:6px 12px;margin-top:6px;font-size:.85rem";
+          addQ.addEventListener("click", () => { if (!site.sections[si].items) site.sections[si].items = []; site.sections[si].items.push({q:"", a:""}); buildForm(); renderPreview(); });
+          box.appendChild(addQ);
+        }
         if (sch.image) {
           const labI = document.createElement("label"); labI.textContent = "Imagem de fundo (opcional)"; box.appendChild(labI);
           if (sec.image) { const av = document.createElement("div"); av.style.cssText = "margin-top:4px;font-size:.8rem;color:#34d399"; av.textContent = "✅ imagem carregada"; box.appendChild(av); }
@@ -303,6 +359,9 @@ footer{text-align:center;padding:24px;border-top:1px solid rgba(128,128,128,.4)}
       if (type === "cards") Object.assign(novo, { heading:"Recursos", cards:[{t:"",d:""}] });
       if (type === "contact") Object.assign(novo, { heading:"Contato", email:"" });
       if (type === "footer") Object.assign(novo, { text:"" });
+      if (type === "gallery") Object.assign(novo, { heading:"Galeria", images:[] });
+      if (type === "video") Object.assign(novo, { heading:"Vídeo", url:"" });
+      if (type === "faq") Object.assign(novo, { heading:"Perguntas", items:[{q:"", a:""}] });
       site.sections.push(novo); buildForm(); renderPreview();
     };
 
