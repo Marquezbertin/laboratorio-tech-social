@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulador Robótica & IoT | Lab Tech</title>
+  <style>
+    :root { --azul:#38bdf8; --rosa:#ff6f61; --fundo:#0f172a; --texto:#e2e8f0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--fundo); color: var(--texto); line-height: 1.6; }
+    header { background: #1e293b; padding: 16px 20px; border-bottom: 1px solid #334155; }
+    nav { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    nav .logo { font-weight: 700; color: var(--azul); margin-right: auto; }
+    nav a { color: var(--texto); text-decoration: none; font-size: 0.9rem; }
+    nav a:hover { color: var(--azul); }
+    main { max-width: 860px; margin: 0 auto; padding: 34px 20px 60px; }
+    .voltar { color: var(--azul); text-decoration: none; font-size: 0.9rem; }
+    h1 { color: var(--azul); margin: 14px 0; }
+    .faixa { color: var(--rosa); font-weight: 600; }
+    .placa { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 24px; margin-top: 20px; text-align: center; }
+    .led { width: 90px; height: 90px; border-radius: 50%; background: #334155; margin: 10px auto; border: 4px solid #0f172a; transition: all .2s; }
+    .led.on { background: #fde047; box-shadow: 0 0 30px #fde047; }
+    .controles { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 16px; }
+    button { background: var(--azul); color: #0f172a; border: none; padding: 10px 18px; border-radius: 10px; cursor: pointer; font-weight: 600; }
+    button.rosa { background: var(--rosa); color: #fff; }
+    label { display: block; margin-top: 14px; }
+    input[type=range] { width: 70%; }
+    .modo { margin-top: 18px; }
+    .nuvem { background: #0f172a; border: 1px solid #334155; border-radius: 14px; padding: 18px; margin-top: 20px; display: none; }
+    .nuvem h3 { color: var(--azul); }
+    pre { background: #0f172a; padding: 12px; border-radius: 10px; overflow: auto; color: #93c5fd; margin-top: 10px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+    th, td { padding: 8px 10px; border-bottom: 1px solid #334155; text-align: left; font-size: 0.9rem; }
+    th { color: var(--rosa); }
+    .links { margin-top: 26px; }
+    .links a { display: inline-block; margin-right: 10px; color: var(--azul); border: 1px solid #334155; border-radius: 999px; padding: 6px 14px; text-decoration: none; }
+    footer { text-align: center; padding: 26px; color: #64748b; border-top: 1px solid #334155; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <span class="logo"><img src="/laboratorio-tech-social/logo.svg" alt="Logo" height="22" style="vertical-align:middle;margin-right:6px;" /> Lab Tech Social</span>
+      <a href="../index.html">Início</a>
+      <a href="../trilhas.html">Trilhas</a>
+      <a href="../exercicios.html">Exercícios</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../calendario.html">Calendário</a>
+      <a href="../voluntarios.html">Voluntários</a>
+      <a href="../slides.html">Slides</a>
+      <a href="../inscricao/">Inscrição</a>
+      <a href="../certificado/">Certificados</a>
+      <a href="../sobre.html">Sobre</a>
+      <a href="../index_en.html" style="color:var(--azul);">EN</a>
+    </nav>
+  </header>
+
+  <main>
+    <a class="voltar" href="../exercicios.html">← Voltar aos Exercícios</a>
+    <h1>🤖 Simulador de Robótica & IoT</h1>
+    <p class="faixa">Para crianças e adolescentes</p>
+
+    <div class="placa">
+      <h3>💡 LED virtual</h3>
+      <div class="led" id="led"></div>
+      <div class="controles">
+        <button id="btnOn">Acender</button>
+        <button id="btnOff" class="rosa">Apagar</button>
+      </div>
+      <label>Nível de luz do ambiente: <strong id="luzVal">80</strong></label>
+      <input type="range" id="luz" min="0" max="100" value="80" />
+      <div class="modo">
+        <label><input type="checkbox" id="auto" /> Modo automático (se luz &lt; 30, acende sozinho)</label>
+      </div>
+    </div>
+
+    <div class="nuvem" id="nuvem">
+      <h3>☁️ Enviar para a Nuvem (simulado)</h3>
+      <p style="color:#94a3b8;">Adolescentes: cada leitura vira um dado enviado para a "nuvem" (aqui, só uma simulação local).</p>
+      <button class="rosa" id="btnNuvem">📡 Enviar leitura atual</button>
+      <pre id="json">{}</pre>
+      <h3 style="margin-top:14px;">Histórico de dados</h3>
+      <table><thead><tr><th>#</th><th>Sensor (luz)</th><th>LED</th><th>Hora</th></tr></thead>
+        <tbody id="hist"></tbody></table>
+    </div>
+
+    <p style="margin-top:18px;color:#94a3b8;">👦 Crianças: brinque de acender/apagar e ver o que acontece com pouca luz.<br/>
+       🧑‍💻 Adolescentes: ative o "Enviar para a Nuvem" para ver IoT em ação (dados → nuvem).</p>
+
+    <div class="links">
+      <a href="../exercicios/quiz-criancas.html">🧪 Quiz Crianças</a>
+      <a href="../exercicios/quiz-teens.html">🧪 Quiz Teens</a>
+      <a href="../exercicios/code-builder.html">💻 Construtor de Código</a>
+    </div>
+  </main>
+
+  <footer>Licença MIT — projeto social gratuito.</footer>
+  <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+  <script src="https://vlibras.gov.br/app.js"></script>
+  <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+
+  <script>
+    const led = document.getElementById("led");
+    const luz = document.getElementById("luz");
+    const luzVal = document.getElementById("luzVal");
+    const auto = document.getElementById("auto");
+
+    function render() {
+      luzVal.textContent = luz.value;
+      const autoOn = auto.checked && +luz.value < 30;
+      const ligado = document.getElementById("btnOn").dataset.on === "1" || autoOn;
+      led.classList.toggle("on", ligado);
+      document.getElementById("btnOn").dataset.on = autoOn ? "1" : (document.getElementById("btnOn").dataset.on || "0");
+      if (autoOn) document.getElementById("btnOn").dataset.on = "1";
+      // in auto mode keep led on; manual off resets
+    }
+    document.getElementById("btnOn").onclick = () => { document.getElementById("btnOn").dataset.on = "1"; render(); };
+    document.getElementById("btnOff").onclick = () => { document.getElementById("btnOn").dataset.on = "0"; auto.checked = false; render(); };
+    luz.oninput = render;
+    auto.onchange = render;
+
+    // Teen: cloud simulation
+    const nuvem = document.getElementById("nuvem");
+    const json = document.getElementById("json");
+    const hist = document.getElementById("hist");
+    let n = 0;
+    // reveal cloud section for teens (and everyone can try)
+    nuvem.style.display = "block";
+    document.getElementById("btnNuvem").onclick = () => {
+      const d = {
+        sensor_luz: +luz.value,
+        led: led.classList.contains("on"),
+        timestamp: new Date().toLocaleTimeString("pt-BR")
+      };
+      json.textContent = JSON.stringify(d, null, 2);
+      n++;
+      const tr = document.createElement("tr");
+      tr.innerHTML = `<td>${n}</td><td>${d.sensor_luz}</td><td>${d.led ? "aceso" : "apagado"}</td><td>${d.timestamp}</td>`;
+      hist.prepend(tr);
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quiz Makers/Devs | Lab Tech</title>
+  <style>
+    :root { --azul:#38bdf8; --rosa:#ff6f61; --fundo:#0f172a; --texto:#e2e8f0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--fundo); color: var(--texto); line-height: 1.6; }
+    header { background: #1e293b; padding: 16px 20px; border-bottom: 1px solid #334155; }
+    nav { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    nav .logo { font-weight: 700; color: var(--azul); margin-right: auto; }
+    nav a { color: var(--texto); text-decoration: none; font-size: 0.9rem; }
+    nav a:hover { color: var(--azul); }
+    main { max-width: 760px; margin: 0 auto; padding: 34px 20px 60px; }
+    .voltar { color: var(--azul); text-decoration: none; font-size: 0.9rem; }
+    h1 { color: var(--azul); margin: 14px 0; }
+    .q { background: #1e293b; border: 1px solid #334155; border-radius: 14px; padding: 20px; margin-top: 18px; }
+    .q h3 { color: #f1f5f9; margin-bottom: 12px; }
+    .opt { display: block; width: 100%; text-align: left; background: #0f172a; color: var(--texto); border: 1px solid #334155; padding: 10px 14px; border-radius: 10px; margin: 8px 0; cursor: pointer; font-size: 1rem; }
+    .opt:hover { border-color: var(--azul); }
+    .opt.certo { border-color: #34d399; background: #064e3b; }
+    .opt.errado { border-color: #f87171; background: #7f1d1d; }
+    .fb { margin-top: 10px; font-size: 0.95rem; min-height: 22px; }
+    .certo-txt { color: #6ee7b7; }
+    .errado-txt { color: #fca5a5; }
+    .placar { text-align: center; margin-top: 24px; font-size: 1.2rem; color: var(--rosa); font-weight: 700; }
+    .links { margin-top: 26px; }
+    .links a { display: inline-block; margin-right: 10px; color: var(--azul); border: 1px solid #334155; padding: 6px 14px; border-radius: 999px; text-decoration: none; }
+    footer { text-align: center; padding: 26px; color: #64748b; border-top: 1px solid #334155; }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <span class="logo"><img src="/laboratorio-tech-social/logo.svg" alt="Logo" height="22" style="vertical-align:middle;margin-right:6px;" /> Lab Tech Social</span>
+      <a href="../index.html">Início</a>
+      <a href="../trilhas.html">Trilhas</a>
+      <a href="../exercicios.html">Exercícios</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../calendario.html">Calendário</a>
+      <a href="../voluntarios.html">Voluntários</a>
+      <a href="../slides.html">Slides</a>
+      <a href="../inscricao/">Inscrição</a>
+      <a href="../certificado/">Certificados</a>
+      <a href="../sobre.html">Sobre</a>
+      <a href="../index_en.html" style="color:var(--azul);">EN</a>
+    </nav>
+  </header>
+
+  <main>
+    <a class="voltar" href="../exercicios.html">← Voltar aos Exercícios</a>
+    <p style="color:var(--rosa);font-weight:600;">🧑‍💻 Makers/Devs · 13–20 anos</p>
+    <h1>🧪 Quiz: Makers/Devs</h1>
+    <p style="color:#94a3b8;">Teste seus conhecimentos de Python, Web, QA, Dados e IoT.</p>
+    <div id="quiz"></div>
+    <div class="placar" id="placar"></div>
+    <div class="links">
+      <a href="../exercicios/code-builder.html">💻 Construtor de Código</a>
+      <a href="../exercicios/simulador-robotica.html">🤖 Simulador Robótica/IoT</a>
+    </div>
+  </main>
+
+  <footer>Licença MIT — projeto social gratuito.</footer>
+  <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+  <script src="https://vlibras.gov.br/app.js"></script>
+  <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+
+  <script>
+    const perguntas = [
+      { q: "Em Python, qual comando mostra texto na tela?", op: ["print()", "echo()", "say()"], c: 0,
+        fb: "Em Python usamos print() para exibir mensagens." },
+      { q: "Para deixar um site interativo usamos...", op: ["JavaScript", "SQL", "XML"], c: 0,
+        fb: "JavaScript (JS) dá interatividade às páginas web." },
+      { q: "Qual ferramenta é usada para testar software?", op: ["pytest", "Paint", "Word"], c: 0,
+        fb: "pytest é uma ferramenta de teste automatizado em Python." },
+      { q: "A biblioteca Pandas serve para...", op: ["Trabalhar com dados", "Criar jogos", "Editar imagens"], c: 0,
+        fb: "Pandas facilita leitura e análise de dados." },
+      { q: "IoT significa...", op: ["Internet das Coisas", "Internet Total", "Imagem Online"], c: 0,
+        fb: "IoT = Internet das Coisas: objetos conectados à internet." },
+      { q: "Uma API é...", op: ["Um 'porteiro' que liga apps", "Uma senha", "Um navegador"], c: 0,
+        fb: "API permite que um programa peça dados de outro." },
+      { q: "Em QA, o que é um 'bug'?", op: ["Um erro no software", "Um elogio", "Um vírus"], c: 0,
+        fb: "Bug é um defeito que faz o software comportar-se mal." }
+    ];
+    let acertos = 0;
+    const quiz = document.getElementById("quiz");
+    perguntas.forEach((p, i) => {
+      const d = document.createElement("div");
+      d.className = "q";
+      d.innerHTML = `<h3>${i + 1}. ${p.q}</h3>` + p.op.map((o, j) =>
+        `<button class="opt" data-i="${i}" data-j="${j}">${o}</button>`).join("");
+      quiz.appendChild(d);
+    });
+    quiz.addEventListener("click", e => {
+      const b = e.target.closest(".opt");
+      if (!b || b.disabled) return;
+      const i = +b.dataset.i, j = +b.dataset.j;
+      const p = perguntas[i];
+      const botoes = quiz.querySelectorAll(`.opt[data-i="${i}"]`);
+      botoes.forEach(x => x.disabled = true);
+      if (j === p.c) { b.classList.add("certo"); acertos++; }
+      else { b.classList.add("errado"); botoes[p.c].classList.add("certo"); }
+      const fb = document.createElement("div");
+      fb.className = "fb " + (j === p.c ? "certo-txt" : "errado-txt");
+      fb.textContent = (j === p.c ? "✅ " : "❌ ") + p.fb;
+      b.parentElement.appendChild(fb);
+      const feitas = [...quiz.querySelectorAll(".q")].filter(q => q.querySelector(".fb")).length;
+      if (feitas === perguntas.length) {
+        document.getElementById("placar").textContent =
+          `🏆 Você acertou ${acertos} de ${perguntas.length}! ` +
+          (acertos >= 5 ? "Mandou muito bem!" : "Revise o material e tente de novo!");
+      }
+    });
+  </script>
+</body>
+</html>

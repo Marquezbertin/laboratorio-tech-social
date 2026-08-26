@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Criador de Site | Lab Tech</title>
+  <style>
+    :root { --azul:#38bdf8; --rosa:#ff6f61; --fundo:#0f172a; --texto:#e2e8f0; }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--fundo); color: var(--texto); line-height: 1.6; }
+    header { background: #1e293b; padding: 16px 20px; border-bottom: 1px solid #334155; }
+    nav { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    nav .logo { font-weight: 700; color: var(--azul); margin-right: auto; }
+    nav a { color: var(--texto); text-decoration: none; font-size: 0.9rem; }
+    nav a:hover { color: var(--azul); }
+    main { max-width: 960px; margin: 0 auto; padding: 34px 20px 60px; }
+    .voltar { color: var(--azul); text-decoration: none; font-size: 0.9rem; }
+    h1 { color: var(--azul); margin: 14px 0; }
+    .faixa { color: var(--rosa); font-weight: 600; }
+    .area { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 18px; }
+    .form, .preview, .code { background: #1e293b; border: 1px solid #334155; border-radius: 16px; padding: 20px; }
+    label { display: block; margin: 12px 0 4px; font-weight: 600; }
+    input, textarea { width: 100%; padding: 8px 10px; border-radius: 8px; border: 1px solid #334155; background: #0f172a; color: var(--texto); }
+    .preview-box { border-radius: 12px; padding: 20px; min-height: 220px; }
+    .preview-box h2 { margin-bottom: 8px; }
+    .preview-box button { margin-top: 14px; border: none; padding: 10px 18px; border-radius: 999px; cursor: pointer; }
+    .code pre { background: #0f172a; padding: 12px; border-radius: 10px; overflow: auto; color: #93c5fd; max-height: 280px; }
+    .cmd { background: var(--rosa); color: #fff; border: none; padding: 10px 18px; border-radius: 10px; cursor: pointer; font-weight: 700; margin-top: 12px; }
+    .links { margin-top: 26px; }
+    .links a { display: inline-block; margin-right: 10px; color: var(--azul); border: 1px solid #334155; border-radius: 999px; padding: 6px 14px; text-decoration: none; }
+    footer { text-align: center; padding: 26px; color: #64748b; border-top: 1px solid #334155; }
+    @media(max-width:720px){ .area{ grid-template-columns:1fr; } }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <span class="logo"><img src="/laboratorio-tech-social/logo.svg" alt="Logo" height="22" style="vertical-align:middle;margin-right:6px;" /> Lab Tech Social</span>
+      <a href="../index.html">Início</a>
+      <a href="../trilhas.html">Trilhas</a>
+      <a href="../exercicios.html">Exercícios</a>
+      <a href="../blog.html">Blog</a>
+      <a href="../calendario.html">Calendário</a>
+      <a href="../voluntarios.html">Voluntários</a>
+      <a href="../slides.html">Slides</a>
+      <a href="../inscricao/">Inscrição</a>
+      <a href="../certificado/">Certificados</a>
+      <a href="../sobre.html">Sobre</a>
+      <a href="../index_en.html" style="color:var(--azul);">EN</a>
+    </nav>
+  </header>
+
+  <main>
+    <a class="voltar" href="../exercicios.html">← Voltar aos Exercícios</a>
+    <h1>🌐 Criador de Site</h1>
+    <p class="faixa">Para crianças e adolescentes</p>
+    <p style="color:#94a3b8;">Monte seu site e veja ao vivo. Depois, copie o código ou baixe o arquivo .html!</p>
+
+    <div class="area">
+      <div class="form">
+        <label>Seu nome / título</label>
+        <input id="titulo" value="Meu Site Top" />
+        <label>Emoji (opcional)</label>
+        <input id="emoji" value="🚀" />
+        <label>Texto da página</label>
+        <textarea id="texto" rows="3">Aprendi tecnologia no Laboratório Tech Social!</textarea>
+        <label>Texto do botão</label>
+        <input id="btxt" value="Clique aqui" />
+        <label>Cor de fundo</label>
+        <input id="bg" type="color" value="#0f172a" style="height:40px;" />
+        <label>Cor do texto</label>
+        <input id="fg" type="color" value="#e2e8f0" style="height:40px;" />
+        <label>Cor do botão</label>
+        <input id="bc" type="color" value="#ff6f61" style="height:40px;" />
+        <button class="cmd" id="gen">🔄 Atualizar pré-visualização</button>
+        <button class="cmd" id="dl">⬇️ Baixar .html</button>
+      </div>
+
+      <div class="preview">
+        <h3 style="color:var(--azul);">Pré-visualização</h3>
+        <div class="preview-box" id="pv"></div>
+      </div>
+    </div>
+
+    <div class="code" style="margin-top:18px;">
+      <h3 style="color:var(--azul);">Código gerado (copie e cole no bloco de notas)</h3>
+      <pre id="codigo"></pre>
+    </div>
+
+    <div class="links">
+      <a href="../exercicios/code-builder.html">💻 Construtor de Código</a>
+      <a href="../exercicios/criador-projeto.html">📋 Criador de Projetos</a>
+    </div>
+  </main>
+
+  <footer>Licença MIT — projeto social gratuito.</footer>
+  <div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
+  <script src="https://vlibras.gov.br/app.js"></script>
+  <script>new window.VLibras.Widget('https://vlibras.gov.br/app');</script>
+
+  <script>
+    function gerar() {
+      const titulo = document.getElementById("titulo").value || "Meu Site";
+      const emoji = document.getElementById("emoji").value;
+      const texto = document.getElementById("texto").value;
+      const btxt = document.getElementById("btxt").value;
+      const bg = document.getElementById("bg").value;
+      const fg = document.getElementById("fg").value;
+      const bc = document.getElementById("bc").value;
+      const html = `<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="UTF-8">
+<title>${titulo}</title>
+<style>body{font-family:sans-serif;background:${bg};color:${fg};text-align:center;padding:40px}
+button{background:${bc};color:#fff;border:none;padding:12px 24px;border-radius:999px;cursor:pointer;font-size:16px}</style>
+</head><body>
+<h1>${emoji} ${titulo}</h1>
+<p>${texto}</p>
+<button>${btxt}</button>
+</body></html>`;
+      document.getElementById("pv").style.background = bg;
+      document.getElementById("pv").style.color = fg;
+      document.getElementById("pv").innerHTML = `<h2>${emoji} ${titulo}</h2><p>${texto}</p><button style="background:${bc};color:#fff;border:none;padding:10px 18px;border-radius:999px;cursor:pointer;">${btxt}</button>`;
+      document.getElementById("codigo").textContent = html;
+      window._html = html;
+    }
+    document.getElementById("gen").onclick = gerar;
+    document.getElementById("dl").onclick = () => {
+      if (!window._html) gerar();
+      const blob = new Blob([window._html], { type: "text/html" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "meu-site.html";
+      a.click();
+    };
+    gerar();
+  </script>
+</body>
+</html>
