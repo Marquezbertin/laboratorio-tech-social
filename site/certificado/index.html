@@ -13,6 +13,7 @@
     .certificado {
       max-width: 800px; margin: 0 auto; background: #fff; border: 8px solid #38bdf8;
       border-radius: 16px; padding: 50px; text-align: center; position: relative;
+      display: none;
     }
     .certificado::before { content: "🚀"; font-size: 48px; display: block; }
     .certificado h1 { color: #0f172a; letter-spacing: 4px; }
@@ -49,8 +50,11 @@
     <input id="carga" value="20 horas" />
     <label>Cidade / Data</label>
     <input id="data" value="São Pedro/SP, 2026" />
-    <button onclick="gerar()">Gerar Certificado</button>
-    <button onclick="window.print()">Imprimir / PDF</button>
+    <label>Senha de acesso</label>
+    <input id="senha" type="password" placeholder="Digite a senha para gerar" />
+    <button onclick="autenticar()">Gerar Certificado</button>
+    <button id="btnImprimir" onclick="imprimir()" disabled>Imprimir / PDF</button>
+    <p id="erro" style="color:red;display:none;margin-top:8px;">Senha incorreta!</p>
   </div>
 
   <div class="certificado" id="cert">
@@ -64,6 +68,41 @@
   </div>
 
   <script>
+    // Hash SHA-256 da senha (nao expoe o texto puro)
+    const HASH_SENHA = "02071e7e61534e34a6f8d4cb53e9ca59618b0cddd98905bca7e08c8042d3d544";
+
+    async function hashSenha(texto) {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(texto);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    async function autenticar() {
+      const senha = document.getElementById("senha").value;
+      const erro = document.getElementById("erro");
+      const hashInput = await hashSenha(senha);
+
+      if (hashInput === HASH_SENHA) {
+        erro.style.display = "none";
+        gerar();
+        document.getElementById("cert").style.display = "block";
+        document.getElementById("btnImprimir").disabled = false;
+      } else {
+        erro.style.display = "block";
+        document.getElementById("senha").value = "";
+      }
+    }
+
+    function imprimir() {
+      if (!document.getElementById("cert").style.display || 
+          document.getElementById("cert").style.display === "none") {
+        return;
+      }
+      window.print();
+    }
+
     function gerar() {
       document.getElementById("outNome").textContent = document.getElementById("nome").value;
       document.getElementById("outTrilha").textContent = document.getElementById("trilha").value;
