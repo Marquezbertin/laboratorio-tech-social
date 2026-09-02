@@ -24,6 +24,19 @@ Entregar um **projeto de impacto social** em open source (ex: site para um proje
 - Conta no [GitHub](https://github.com/).
 - Vontade de aprender e errar muito (faz parte!).
 
+## 📚 Conteúdo complementar (gratuito)
+
+Além das aulas presenciais, o laboratório disponibiliza repositórios completos para estudo autônomo:
+
+| Repositório | O que tem | Link |
+|-------------|-----------|------|
+| **Lógica de Programação** | 15 módulos + 80 exercícios em VisualG | [Acessar →](https://github.com/Marquezbertin/logica_programacao) |
+| **Pensamento Computacional** | 15 módulos + 90 exercícios conceituais | [Acessar →](https://github.com/Marquezbertin/pensamento_computacional) |
+| **QA_RUN** | Jogo educativo HTML5 — rotina de QA | [Acessar →](https://github.com/Marquezbertin/QA_RUN) |
+| **Manual QA Completo** | Manual de Quality Assurance com Python | [Acessar →](https://github.com/Marquezbertin/manual-qa-completo) |
+
+---
+
 ## 🚀 Como começar
 Abra o [`módulo 01`](modulo-01-python/README.md) e siga na ordem. Cada módulo tem exemplos de código prontos para rodar.
 

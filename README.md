@@ -49,6 +49,22 @@ laboratorio-tech-social/
 
 ---
 
+## 🌐 Ecossistema de Conteúdos Gratuitos
+
+O Laboratório Tech Social é o **hub** que conecta todos os projetos gratuitos. Cada repositório é autocontido e pode ser usado isoladamente ou junto com os outros:
+
+| Repositório | O que é | Público-alvo |
+|-------------|---------|--------------|
+| [**pensamento_computacional**](https://github.com/Marquezbertin/pensamento_computacional) | 15 módulos + 90 exercícios de pensamento computacional e introdução à tecnologia | Iniciantes absolutos (8–12+) |
+| [**logica_programacao**](https://github.com/Marquezbertin/logica_programacao) | 15 módulos + 80 exercícios de lógica de programação em VisualG | Iniciantes (10–15+) |
+| [**QA_RUN**](https://github.com/Marquezbertin/QA_RUN) | Jogo educativo HTML5 — simule a rotina de um profissional de QA | Todos os ages |
+| [**manual-qa-completo**](https://github.com/Marquezbertin/manual-qa-completo) | Manual completo de Quality Assurance com Python | Intermediários (14+) |
+| [**laboratorio-tech-social**](https://github.com/Marquezbertin/laboratorio-tech-social) | Este hub — trilhas, site, inscrições, certificados | Todos |
+
+> 🌍 Todos os conteúdos são **gratuitos** e **open source**. Use, compartilhe e ensine.
+
+---
+
 ## 🎓 Trilhas de Aprendizagem
 
 ### 🧒 Crianças (8–12 anos) — *Exploradores*

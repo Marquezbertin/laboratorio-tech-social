@@ -26,6 +26,17 @@ No último encontro, cada Explorador apresenta um **projeto pessoal** (um jogo, 
 - Navegador (Chrome, Firefox, Edge).
 - Para o módulo 03: kit básico Arduino/Pico (emprestado pelo lab).
 
+## 📚 Conteúdo complementar (gratuito)
+
+Além das aulas presenciais, o laboratório disponibiliza repositórios completos para estudo autônomo:
+
+| Repositório | O que tem | Link |
+|-------------|-----------|------|
+| **Pensamento Computacional** | 15 módulos + 90 exercícios (papel e caneta) | [Acessar →](https://github.com/Marquezbertin/pensamento_computacional) |
+| **Lógica de Programação** | 15 módulos + 80 exercícios em VisualG | [Acessar →](https://github.com/Marquezbertin/logica_programacao) |
+
+---
+
 ## 🚀 Como começar
 
 1. Abra o [`módulo 01`](modulo-01-pensamento-computacional.md).
