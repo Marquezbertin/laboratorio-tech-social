@@ -24,6 +24,36 @@ laboratorio-tech-social (HUB)
 │   ├── 80+ exercícios em VisualG 3.0
 │   └── Público: iniciantes (10+)
 │
+├── python-do-zero/
+│   ├── 15 módulos (01 Introdução → 15 APIs)
+│   ├── 90+ exercícios práticos em Python
+│   └── Público: iniciantes (13+)
+│
+├── html-css-js-pratica/
+│   ├── 15 módulos (01 HTML Básico → 15 Jogos)
+│   ├── 90+ exercícios de desenvolvimento web
+│   └── Público: iniciantes (10+)
+│
+├── git-github-iniciantes/
+│   ├── 15 módulos (01 O que é Git → 15 Projeto Prático)
+│   ├── 90+ exercícios de versionamento
+│   └── Público: iniciantes (12+)
+│
+├── banco-de-dados-sql/
+│   ├── 15 módulos (01 Banco de Dados → 15 E-commerce)
+│   ├── 90+ exercícios de SQL com SQLite
+│   └── Público: intermediários (14+)
+│
+├── ia-para-iniciantes/
+│   ├── 15 módulos (01 O que é IA → 15 Análise de Dados)
+│   ├── 90+ exercícios sobre IA e prompt engineering
+│   └── Público: iniciantes (12+)
+│
+├── ingles-para-programadores/
+│   ├── 15 módulos (01 Fundamentos → 15 Contribuir em OSS)
+│   ├── 90+ exercícios de inglês técnico
+│   └── Público: iniciantes (12+)
+│
 ├── QA_RUN/
 │   ├── Jogo educativo em HTML5
 │   ├── Simula rotina de profissional de QA

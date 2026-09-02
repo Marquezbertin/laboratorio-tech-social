@@ -57,6 +57,12 @@ O Laboratório Tech Social é o **hub** que conecta todos os projetos gratuitos.
 |-------------|---------|--------------|
 | [**pensamento_computacional**](https://github.com/Marquezbertin/pensamento_computacional) | 15 módulos + 90 exercícios de pensamento computacional e introdução à tecnologia | Iniciantes absolutos (8–12+) |
 | [**logica_programacao**](https://github.com/Marquezbertin/logica_programacao) | 15 módulos + 80 exercícios de lógica de programação em VisualG | Iniciantes (10–15+) |
+| [**python-do-zero**](https://github.com/Marquezbertin/python-do-zero) | 15 módulos + 90 exercícios práticos de Python | Iniciantes (13+) |
+| [**html-css-js-pratica**](https://github.com/Marquezbertin/html-css-js-pratica) | 15 módulos + 90 exercícios de HTML, CSS e JavaScript | Iniciantes (10+) |
+| [**git-github-iniciantes**](https://github.com/Marquezbertin/git-github-iniciantes) | 15 módulos + 90 exercícios de Git e GitHub | Iniciantes (12+) |
+| [**banco-de-dados-sql**](https://github.com/Marquezbertin/banco-de-dados-sql) | 15 módulos + 90 exercícios de SQL com SQLite | Intermediários (14+) |
+| [**ia-para-iniciantes**](https://github.com/Marquezbertin/ia-para-iniciantes) | 15 módulos + 90 exercícios sobre IA, prompt engineering e APIs | Iniciantes (12+) |
+| [**ingles-para-programadores**](https://github.com/Marquezbertin/ingles-para-programadores) | 15 módulos + 90 exercícios de inglês técnico para devs | Iniciantes (12+) |
 | [**QA_RUN**](https://github.com/Marquezbertin/QA_RUN) | Jogo educativo HTML5 — simule a rotina de um profissional de QA | Todos os ages |
 | [**manual-qa-completo**](https://github.com/Marquezbertin/manual-qa-completo) | Manual completo de Quality Assurance com Python | Intermediários (14+) |
 | [**laboratorio-tech-social**](https://github.com/Marquezbertin/laboratorio-tech-social) | Este hub — trilhas, site, inscrições, certificados | Todos |
