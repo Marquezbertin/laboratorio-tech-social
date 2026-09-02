@@ -33,6 +33,11 @@
     .certificado .nome { font-size: 32px; color: var(--rosa); margin: 18px 0; font-weight: 800; }
     .certificado p { color: #334155; font-size: 17px; }
     .rodape { margin-top: 30px; font-size: 13px; color: #64748b; }
+    .codigo {
+      margin-top: 12px; font-size: 13px; color: #0f172a; font-weight: 600;
+      background: #f1f5f9; border: 1px dashed #38bdf8; border-radius: 8px;
+      padding: 8px 14px; display: inline-block; letter-spacing: 1px; font-family: monospace;
+    }
     .links { margin-top: 26px; }
     .links a { display: inline-block; margin: 6px 8px 0 0; color: var(--azul); border: 1px solid #334155; border-radius: 999px; padding: 6px 14px; text-decoration: none; }
     footer { text-align: center; padding: 26px; color: #64748b; border-top: 1px solid #334155; }
@@ -80,6 +85,7 @@
         <div class="nome" id="outNome">Aluno(a)</div>
         <p>concluiu a aula <strong>A História da Computação</strong><br>no Laboratório de Tecnologia Social.</p>
         <p id="outData"></p>
+        <div class="codigo" id="outCodigo"></div>
         <div class="rodape">Projeto social gratuito · Licença MIT · lab-tech-social</div>
       </div>
     </div>
@@ -142,11 +148,44 @@
       }
     };
 
+    async function hashSenha(texto) {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(texto);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    function paraBase36(n) {
+      if (n === 0n) return "0";
+      const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      let s = "";
+      while (n > 0n) { s = chars[Number(n % 36n)] + s; n = n / 36n; }
+      return s;
+    }
+
+    async function gerarCodigo(nome, trilha) {
+      const HASH_SENHA = "02071e7e61534e34a6f8d4cb53e9ca59618b0cddd98905bca7e08c8042d3d544";
+      const texto = (nome + "|" + trilha + "|" + HASH_SENHA).toLowerCase();
+      const hashHex = await hashSenha(texto);
+      const codigoBase36 = paraBase36(BigInt("0x" + hashHex));
+      const final12 = codigoBase36.slice(-12);
+      return "TECH-" + final12.slice(0, 4) + "-" + final12.slice(4, 8) + "-" + final12.slice(8, 12);
+    }
+
     document.getElementById("gerar").onclick = () => {
       const nome = document.getElementById("nome").value.trim() || "Aluno(a)";
       document.getElementById("outNome").textContent = nome;
       document.getElementById("outData").textContent = "Emitido em " + new Date().toLocaleDateString("pt-BR");
       document.getElementById("cert").style.display = "block";
+
+      const trilha = "A História da Computação";
+      gerarCodigo(nome, trilha).then(codigo => {
+        const verUrl = "verificar.html?codigo=" + codigo + "&nome=" + encodeURIComponent(nome) + "&trilha=" + encodeURIComponent(trilha);
+        document.getElementById("outCodigo").innerHTML =
+          "Código de verificação: <strong>" + codigo + "</strong><br>" +
+          "<a href='" + verUrl + "' style='color:#38bdf8;'>Verificar autenticidade</a>";
+      });
     };
     document.getElementById("imprimir").onclick = () => window.print();
   </script>

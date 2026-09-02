@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Verificar Certificado - Laboratório de Tecnologia Social</title>
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; background: #f1f5f9; margin: 0; padding: 20px; }
+    .box {
+      max-width: 600px; margin: 40px auto; background: #fff; border-radius: 14px;
+      padding: 30px; text-align: center; border: 1px solid #e2e8f0;
+    }
+    .box .icone { font-size: 52px; }
+    .box h1 { color: #0f172a; font-size: 26px; margin: 14px 0 6px; }
+    .box p { color: #334155; font-size: 16px; line-height: 1.6; }
+    .codigo { font-size: 22px; font-weight: 800; color: #0284c7; letter-spacing: 2px; margin: 18px 0; }
+    .dado { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 16px; margin: 10px 0; text-align: left; }
+    .dado label { font-size: 12px; color: #64748b; text-transform: uppercase; letter-spacing: 1px; }
+    .dado div { font-size: 17px; color: #0f172a; font-weight: 600; margin-top: 3px; }
+    .valido { color: #16a34a; font-weight: 800; font-size: 20px; }
+    .invalido { color: #dc2626; font-weight: 800; font-size: 20px; }
+    .form { margin-top: 24px; text-align: left; }
+    .form label { display: block; margin: 10px 0 4px; font-weight: 600; color: #334155; }
+    .form input { width: 100%; padding: 10px; border: 1px solid #cbd5e1; border-radius: 8px; box-sizing: border-box; }
+    .form button {
+      margin-top: 14px; background: #0284c7; color: #fff; border: none;
+      padding: 12px 20px; border-radius: 8px; cursor: pointer; font-weight: 600; width: 100%;
+    }
+    .form button:hover { background: #0369a1; }
+    .rodape { margin-top: 30px; font-size: 12px; color: #94a3b8; }
+  </style>
+  <link rel="icon" href="/laboratorio-tech-social/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+  <div class="box">
+    <div class="icone">🔍</div>
+    <h1>Verificação de Certificado</h1>
+    <p>Digite o código de verificação impresso no certificado para confirmar sua autenticidade.</p>
+
+    <div class="form">
+      <label>Código de verificação (ex: TECH-XXXX-XXXX-XXXX)</label>
+      <input id="inputCodigo" placeholder="TECH-XXXX-XXXX-XXXX" autocomplete="off" />
+      <label>Nome do aluno</label>
+      <input id="inputNome" placeholder="Nome completo" autocomplete="off" />
+      <label>Trilha ou curso</label>
+      <input id="inputTrilha" placeholder="Nome da trilha" autocomplete="off" />
+      <button onclick="verificar()">Verificar autenticidade</button>
+    </div>
+
+    <div id="resultado" style="display:none;margin-top:24px;"></div>
+  </div>
+
+  <script>
+    // Deve ser identico ao hash usado na geracao do certificado
+    const HASH_SENHA = "02071e7e61534e34a6f8d4cb53e9ca59618b0cddd98905bca7e08c8042d3d544";
+
+    async function hashSenha(texto) {
+      const encoder = new TextEncoder();
+      const data = encoder.encode(texto);
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      const hashArray = Array.from(new Uint8Array(hashBuffer));
+      return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    function paraBase36(n) {
+      if (n === 0n) return "0";
+      const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      let s = "";
+      while (n > 0n) { s = chars[Number(n % 36n)] + s; n = n / 36n; }
+      return s;
+    }
+
+    // Mesmo algoritmo SHA-256 da pagina de geracao
+    async function gerarCodigo(nome, trilha) {
+      const texto = (nome + "|" + trilha + "|" + HASH_SENHA).toLowerCase();
+      const hashHex = await hashSenha(texto);
+      const codigoBase36 = paraBase36(BigInt("0x" + hashHex));
+      const final12 = codigoBase36.slice(-12);
+      return "TECH-" + final12.slice(0, 4) + "-" + final12.slice(4, 8) + "-" + final12.slice(8, 12);
+    }
+
+    function preencheResultado(ok, titulo, mensagem, cor) {
+      const r = document.getElementById("resultado");
+      r.style.display = "block";
+      r.innerHTML =
+        "<div style='font-size:48px;'>" + (ok ? "✅" : "❌") + "</div>" +
+        "<div style='margin-top:8px;color:" + cor + ";font-weight:800;font-size:20px;'>" + titulo + "</div>" +
+        "<p style='margin-top:8px;'>" + mensagem + "</p>";
+    }
+
+    function verificar() {
+      const codigoInput = document.getElementById("inputCodigo").value.trim().toUpperCase();
+      const nome = document.getElementById("inputNome").value.trim();
+      const trilha = document.getElementById("inputTrilha").value.trim();
+
+      if (!codigoInput || !nome || !trilha) {
+        preencheResultado(false, "Dados incompletos", "Preencha o código, o nome e a trilha para verificar.", "#dc2626");
+        return;
+      }
+
+      // Recalcular o codigo esperado com base nos dados informados
+      gerarCodigo(nome, trilha).then(codigoEsperado => {
+        if (codigoInput === codigoEsperado) {
+          document.getElementById("resultado").style.background = "#f0fdf4";
+          preencheResultado(
+            true,
+            "Certificado AUTÊNTICO",
+            "O código <strong style='color:#0284c7;'>" + codigoInput + "</strong> corresponde aos dados informados. Este certificado foi emitido pelo Laboratório de Tecnologia Social e é válido.",
+            "#16a34a"
+          );
+        } else {
+          document.getElementById("resultado").style.background = "#fef2f2";
+          preencheResultado(
+            false,
+            "Certificado NÃO reconhecido",
+            "O código <strong style='color:#dc2626;'>" + codigoInput + "</strong> não corresponde aos dados informados para " + nome + " na trilha \"" + trilha + "\". Verifique os dados ou o código e tente novamente.",
+            "#dc2626"
+          );
+        }
+      });
+    }
+
+    // Preencher automaticamente se vier via URL (?codigo=...&nome=...&trilha=...)
+    (function preencherDaURL() {
+      const params = new URLSearchParams(window.location.search);
+      const codigo = params.get("codigo");
+      const nome = params.get("nome");
+      const trilha = params.get("trilha");
+      if (codigo) document.getElementById("inputCodigo").value = codigo;
+      if (nome) document.getElementById("inputNome").value = nome;
+      if (trilha) document.getElementById("inputTrilha").value = trilha;
+      if (codigo && nome && trilha) verificar();
+    })();
+  </script>
+</body>
+</html>

@@ -20,6 +20,11 @@
     .certificado .nome { font-size: 34px; color: #ff6f61; margin: 20px 0; font-weight: 700; }
     .certificado p { color: #334155; font-size: 18px; }
     .rodape { margin-top: 40px; font-size: 14px; color: #64748b; }
+    .codigo {
+      margin-top: 14px; font-size: 13px; color: #0f172a; font-weight: 600;
+      background: #f1f5f9; border: 1px dashed #38bdf8; border-radius: 8px;
+      padding: 8px 14px; display: inline-block; letter-spacing: 1px;
+    }
     @media print { .form { display: none; } body { background: #fff; } }
   </style>
   <link rel="icon" href="/laboratorio-tech-social/favicon.svg" type="image/svg+xml" />
@@ -65,6 +70,7 @@
        com carga de <strong id="outCarga">20 horas</strong> de aprendizagem<br />
        no Laboratório de Tecnologia Social — projeto gratuito e aberto.</p>
     <p class="rodape" id="outData">São Pedro/SP, 2026 — Bruno Bertin Marquez · Laboratório Tech Social</p>
+    <div class="codigo" id="outCodigo"></div>
   </div>
 
   <script>
@@ -77,6 +83,24 @@
       const hashBuffer = await crypto.subtle.digest('SHA-256', data);
       const hashArray = Array.from(new Uint8Array(hashBuffer));
       return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+    }
+
+    // Converte BigInt para base36 com preenchimento
+    function paraBase36(n) {
+      if (n === 0n) return "0";
+      const chars = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+      let s = "";
+      while (n > 0n) { s = chars[Number(n % 36n)] + s; n = n / 36n; }
+      return s;
+    }
+
+    async function gerarCodigo(nome, trilha) {
+      // SHA-256 do (nome | trilha | segredo) -> codigo unico e deterministico
+      const texto = (nome + "|" + trilha + "|" + HASH_SENHA).toLowerCase();
+      const hashHex = await hashSenha(texto);
+      const codigoBase36 = paraBase36(BigInt("0x" + hashHex));
+      const final12 = codigoBase36.slice(-12);
+      return "TECH-" + final12.slice(0, 4) + "-" + final12.slice(4, 8) + "-" + final12.slice(8, 12);
     }
 
     async function autenticar() {
@@ -109,6 +133,19 @@
       document.getElementById("outCarga").textContent = document.getElementById("carga").value;
       document.getElementById("outData").textContent =
         document.getElementById("data").value + " — Bruno Bertin Marquez · Laboratório Tech Social";
+
+      gerarCodigo(
+        document.getElementById("nome").value,
+        document.getElementById("trilha").value
+      ).then(codigo => {
+        const url = new URL("verificar.html", window.location.href);
+        url.searchParams.set("codigo", codigo);
+        url.searchParams.set("nome", document.getElementById("nome").value);
+        url.searchParams.set("trilha", document.getElementById("trilha").value);
+        document.getElementById("outCodigo").innerHTML =
+          "Código de verificação: <strong>" + codigo + "</strong><br>" +
+          "<a href='" + url.href + "' style='color:#38bdf8;'>Verificar autenticidade</a>";
+      });
     }
   </script>
 
