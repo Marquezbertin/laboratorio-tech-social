@@ -177,20 +177,61 @@
       limparCamposValidacao();
     }
 
+    // ---- HISTORICO (persistido em sessao/localStorage) ----
+    const CHAVE_HISTORICO = "hist_validacao_certificados";
+
+    function carregarHistorico() {
+      const lista = document.getElementById("listaHistorico");
+      lista.innerHTML = "";
+      let registros = [];
+      try {
+        registros = JSON.parse(localStorage.getItem(CHAVE_HISTORICO)) || [];
+      } catch (e) { registros = []; }
+
+      if (!registros.length) {
+        const vazio = document.createElement("div");
+        vazio.className = "historico-vazio";
+        vazio.textContent = "Nenhuma validação realizada ainda.";
+        lista.appendChild(vazio);
+        return;
+      }
+
+      registros.forEach(function (r) {
+        lista.appendChild(montarItemHistorico(r));
+      });
+    }
+
+    function montarItemHistorico(registro) {
+      const item = document.createElement("div");
+      item.className = "historico-item";
+      item.innerHTML =
+        "<div><strong>" + registro.nome + "</strong> — " + registro.trilha +
+        "<div style='color:#64748b;font-size:12px;margin-top:3px;'>" + registro.codigo + " · " + registro.dataHora + "</div></div>" +
+        "<div class='status " + (registro.ok ? "ok" : "nok") + "'>" + (registro.ok ? "✔ AUTÊNTICO" : "✘ NÃO RECONHECIDO") + "</div>";
+      return item;
+    }
+
     function adicionarHistorico(codigo, nome, trilha, ok) {
+      const registro = {
+        codigo: codigo,
+        nome: nome,
+        trilha: trilha,
+        ok: ok,
+        dataHora: new Date().toLocaleString("pt-BR")
+      };
+      let registros = [];
+      try {
+        registros = JSON.parse(localStorage.getItem(CHAVE_HISTORICO)) || [];
+      } catch (e) { registros = []; }
+      registros.unshift(registro);
+      try {
+        localStorage.setItem(CHAVE_HISTORICO, JSON.stringify(registros));
+      } catch (e) { /* storage indisponivel */ }
+
       const lista = document.getElementById("listaHistorico");
       const vazio = lista.querySelector(".historico-vazio");
       if (vazio) vazio.remove();
-
-      const item = document.createElement("div");
-      item.className = "historico-item";
-      const dataHora = new Date().toLocaleString("pt-BR");
-      item.innerHTML =
-        "<div><strong>" + nome + "</strong> — " + trilha +
-        "<div style='color:#64748b;font-size:12px;margin-top:3px;'>" + codigo + " · " + dataHora + "</div></div>" +
-        "<div class='status " + (ok ? "ok" : "nok") + "'>" + (ok ? "✔ AUTÊNTICO" : "✘ NÃO RECONHECIDO") + "</div>";
-
-      lista.prepend(item);
+      lista.prepend(montarItemHistorico(registro));
     }
 
     function limparCamposValidacao() {
@@ -248,6 +289,8 @@
       }
       window.print();
     }
+
+    document.addEventListener("DOMContentLoaded", carregarHistorico);
 
     function gerar() {
       document.getElementById("outNome").textContent = document.getElementById("nome").value;
