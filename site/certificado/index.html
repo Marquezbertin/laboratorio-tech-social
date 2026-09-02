@@ -10,6 +10,30 @@
     .form label { display: block; margin: 10px 0 4px; font-weight: 600; }
     .form input { width: 100%; padding: 8px; border: 1px solid #cbd5e1; border-radius: 6px; }
     .form button { margin-top: 14px; background: #ff6f61; color: #fff; border: none; padding: 10px 18px; border-radius: 8px; cursor: pointer; }
+    .tabs { display: flex; gap: 8px; margin-bottom: 18px; }
+    .tabs button {
+      flex: 1; padding: 12px; border: none; border-radius: 8px; cursor: pointer;
+      font-weight: 700; font-size: 15px; background: #e2e8f0; color: #334155;
+    }
+    .tabs button.ativo { background: #0284c7; color: #fff; }
+    .tab-conteudo { display: none; }
+    .tab-conteudo.ativo { display: block; }
+    .validar-campo { margin-bottom: 12px; }
+    .resultado-validacao {
+      border-radius: 10px; padding: 14px 16px; margin-top: 14px; font-size: 15px;
+    }
+    .resultado-validacao.ok { background: #f0fdf4; border: 1px solid #bbf7d0; }
+    .resultado-validacao.erro { background: #fef2f2; border: 1px solid #fecaca; }
+    .historico { margin-top: 20px; }
+    .historico-item {
+      background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px;
+      padding: 10px 14px; margin-bottom: 8px; font-size: 14px; display: flex;
+      justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap;
+    }
+    .historico-item .status { font-weight: 700; }
+    .historico-item .status.ok { color: #16a34a; }
+    .historico-item .status.nok { color: #dc2626; }
+    .historico-vazio { color: #94a3b8; font-size: 14px; font-style: italic; }
     .certificado {
       max-width: 800px; margin: 0 auto; background: #fff; border: 8px solid #38bdf8;
       border-radius: 16px; padding: 50px; text-align: center; position: relative;
@@ -25,7 +49,7 @@
       background: #f1f5f9; border: 1px dashed #38bdf8; border-radius: 8px;
       padding: 8px 14px; display: inline-block; letter-spacing: 1px;
     }
-    @media print { .form { display: none; } body { background: #fff; } }
+    @media print { .form, .tabs, header { display: none !important; } body { background: #fff; } }
   </style>
   <link rel="icon" href="/laboratorio-tech-social/favicon.svg" type="image/svg+xml" />
 </head>
@@ -45,7 +69,13 @@
       <a href="/laboratorio-tech-social/index_en.html" style="color:#38bdf8;text-decoration:none;">EN</a>
     </nav>
   </header>
-  <div class="form">
+  <div class="tabs">
+    <button id="tabGerar" class="ativo" onclick="trocarAba('gerar')">🎓 Gerar Certificado</button>
+    <button id="tabValidar" onclick="trocarAba('validar')">🔍 Validar Autenticidade</button>
+  </div>
+
+  <!-- ABA 1: GERAR -->
+  <div class="form tab-conteudo ativo" id="abaGerar">
     <h2>Preencha o certificado</h2>
     <label>Nome do aluno</label>
     <input id="nome" value="Maria Silva" />
@@ -62,6 +92,36 @@
     <p id="erro" style="color:red;display:none;margin-top:8px;">Senha incorreta!</p>
   </div>
 
+  <!-- ABA 2: VALIDAR -->
+  <div class="form tab-conteudo" id="abaValidar">
+    <h2>🔍 Validar Autenticidade</h2>
+    <p style="color:#64748b;font-size:14px;margin-top:4px;">
+      Informe o código e os dados do certificado para confirmar se foi emitido legitimamente pelo Laboratório Tech Social.
+    </p>
+    <div class="validar-campo">
+      <label>Código de verificação</label>
+      <input id="valCodigo" placeholder="TECH-XXXX-XXXX-XXXX" autocomplete="off" />
+    </div>
+    <div class="validar-campo">
+      <label>Nome do aluno</label>
+      <input id="valNome" placeholder="Nome completo" autocomplete="off" />
+    </div>
+    <div class="validar-campo">
+      <label>Trilha / Curso</label>
+      <input id="valTrilha" placeholder="Nome da trilha" autocomplete="off" />
+    </div>
+    <button onclick="validar()" style="background:#0284c7;width:100%;">Validar certificado</button>
+
+    <div class="resultado-validacao" id="resultadoValidacao" style="display:none;"></div>
+
+    <div class="historico">
+      <h3 style="margin:18px 0 10px;font-size:16px;">📋 Histórico de validações</h3>
+      <div id="listaHistorico">
+        <div class="historico-vazio">Nenhuma validação realizada ainda.</div>
+      </div>
+    </div>
+  </div>
+
   <div class="certificado" id="cert">
     <h1>CERTIFICADO</h1>
     <p>Certificamos que</p>
@@ -76,6 +136,84 @@
   <script>
     // Hash SHA-256 da senha (nao expoe o texto puro)
     const HASH_SENHA = "02071e7e61534e34a6f8d4cb53e9ca59618b0cddd98905bca7e08c8042d3d544";
+
+    // ---- NAVEGACAO ENTRE ABAS ----
+    function trocarAba(nome) {
+      const gerar = document.getElementById("abaGerar");
+      const validar = document.getElementById("abaValidar");
+      const btnGerar = document.getElementById("tabGerar");
+      const btnValidar = document.getElementById("tabValidar");
+
+      if (nome === "gerar") {
+        gerar.classList.add("ativo");
+        validar.classList.remove("ativo");
+        btnGerar.classList.add("ativo");
+        btnValidar.classList.remove("ativo");
+      } else {
+        validar.classList.add("ativo");
+        gerar.classList.remove("ativo");
+        btnValidar.classList.add("ativo");
+        btnGerar.classList.remove("ativo");
+      }
+    }
+
+    // ---- VALIDACAO DE AUTENTICIDADE ----
+    async function validar() {
+      const codigoInput = document.getElementById("valCodigo").value.trim().toUpperCase();
+      const nome = document.getElementById("valNome").value.trim();
+      const trilha = document.getElementById("valTrilha").value.trim();
+      const resultado = document.getElementById("resultadoValidacao");
+
+      if (!codigoInput || !nome || !trilha) {
+        resultado.style.display = "block";
+        resultado.className = "resultado-validacao erro";
+        resultado.innerHTML = "Preencha o código, o nome e a trilha para validar.";
+        return;
+      }
+
+      const codigoEsperado = await gerarCodigo(nome, trilha);
+      const ok = codigoInput === codigoEsperado;
+
+      if (ok) {
+        resultado.className = "resultado-validacao ok";
+        resultado.innerHTML =
+          "<strong style='color:#16a34a;'>✔ CERTIFICADO AUTÊNTICO</strong><br>" +
+          "<span style='color:#374151;'>O código <strong style='color:#0284c7;'>" + codigoInput +
+          "</strong> confere com " + nome + " na trilha \"" + trilha + "\". Emitido pelo Laboratório Tech Social.</span>";
+      } else {
+        resultado.className = "resultado-validacao erro";
+        resultado.innerHTML =
+          "<strong style='color:#dc2626;'>✘ CERTIFICADO NÃO RECONHECIDO</strong><br>" +
+          "<span style='color:#374151;'>O código <strong style='color:#dc2626;'>" + codigoInput +
+          "</strong> não confere com os dados informados. Verifique e tente novamente.</span>";
+      }
+      resultado.style.display = "block";
+
+      adicionarHistorico(codigoInput, nome, trilha, ok);
+      limparCamposValidacao();
+    }
+
+    function adicionarHistorico(codigo, nome, trilha, ok) {
+      const lista = document.getElementById("listaHistorico");
+      const vazio = lista.querySelector(".historico-vazio");
+      if (vazio) vazio.remove();
+
+      const item = document.createElement("div");
+      item.className = "historico-item";
+      const dataHora = new Date().toLocaleString("pt-BR");
+      item.innerHTML =
+        "<div><strong>" + nome + "</strong> — " + trilha +
+        "<div style='color:#64748b;font-size:12px;margin-top:3px;'>" + codigo + " · " + dataHora + "</div></div>" +
+        "<div class='status " + (ok ? "ok" : "nok") + "'>" + (ok ? "✔ AUTÊNTICO" : "✘ NÃO RECONHECIDO") + "</div>";
+
+      lista.prepend(item);
+    }
+
+    function limparCamposValidacao() {
+      document.getElementById("valCodigo").value = "";
+      document.getElementById("valNome").value = "";
+      document.getElementById("valTrilha").value = "";
+    }
 
     async function hashSenha(texto) {
       const encoder = new TextEncoder();
